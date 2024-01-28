@@ -1,0 +1,10 @@
+Optimization in database could be achieved by changing coordination precision
+https://stackoverflow.com/questions/159255/what-is-the-ideal-data-type-to-use-when-storing-latitude-longitude-in-a-mysql#:~:text=Based%20on%20this%20wiki%20article,and%20latitude%20in%20separate%20fields.&text=Use%20DECIMAL(8%2C6),180%20to%20%2D180%20degrees).
+and schedule reformating
+and changing int precision
+
+Pri registraciq na biznes pishem defaultna stoinost na verified False, posle ruchno promenqme
+
+! VAJNO IMAGE PATH SIZE i keywords = 500 !
+
+foreign key options, cascade
