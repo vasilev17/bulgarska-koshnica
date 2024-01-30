@@ -25,15 +25,18 @@ DROP TABLE IF EXISTS `reports`;
 CREATE TABLE `reports` (
   `report_id` int unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int unsigned NOT NULL,
-  `business_id` int unsigned NOT NULL,
+  `business_id` int unsigned DEFAULT NULL,
   `phone_number` varchar(14) NOT NULL,
   `report_type` int NOT NULL,
   `content` varchar(1000) DEFAULT NULL,
+  `review_id` int unsigned DEFAULT NULL,
   PRIMARY KEY (`report_id`),
   KEY `user_id` (`user_id`),
-  KEY `business_id` (`business_id`),
+  KEY `review_id_idx` (`review_id`),
+  KEY `reports_ibfk_2` (`business_id`),
   CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`business_id`) REFERENCES `businesses` (`business_id`)
+  CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`business_id`) REFERENCES `businesses` (`business_id`),
+  CONSTRAINT `review_id` FOREIGN KEY (`review_id`) REFERENCES `reviews` (`review_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -55,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-28 20:33:52
+-- Dump completed on 2024-01-30 22:47:51
