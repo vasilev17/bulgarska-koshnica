@@ -1,7 +1,13 @@
 const jwt = require("jsonwebtoken");
 
-const security = require("../utils/security.js");
-const storage = require("../utils/storage.js");
+const security = require("../utils/security");
+const storage = require("../utils/storage");
+
+const {
+  IncorrectCredentialsException,
+  UnauthenticatedException,
+  InvalidRefreshTokenException,
+} = require("../error_handling/exceptions");
 
 const register = (req, res) => {
   const { name, email, password, phone_number } = req.body;
@@ -23,29 +29,23 @@ const login = (req, res) => {
   // Check if they are valid
   const user = security.validateUser(email, password);
 
-  if (user) {
-    // If valid login credentials
+  // If invalid login credentials
+  if (!user) throw new IncorrectCredentialsException();
 
-    // Generate JWT including user_id
-    const accessToken = security.generateAccessToken(user.user_id);
-    const refreshToken = security.generateRefreshToken(user.user_id);
+  // Generate JWT including user_id
+  const accessToken = security.generateAccessToken(user.user_id);
+  const refreshToken = security.generateRefreshToken(user.user_id);
 
-    // Add refreshToken to database
-    security.refreshTokens.push(refreshToken);
+  // Add refreshToken to database
+  security.refreshTokens.push(refreshToken);
 
-    // Respond with email, name and token
-    res.json({
-      email: user.email,
-      name: user.name,
-      accessToken,
-      refreshToken,
-    });
-  } else {
-    // Invalid login credentials
-
-    // Respond with error message
-    res.status(400).json("Incorrect Credentials");
-  }
+  // Respond with email, name and token
+  res.json({
+    email: user.email,
+    name: user.name,
+    accessToken,
+    refreshToken,
+  });
 };
 
 const logout = (req, res) => {
@@ -65,21 +65,19 @@ const refresh = (req, res) => {
   const oldRefreshToken = req.body.refreshToken;
 
   // Check if it is present
-  if (!oldRefreshToken) return res.status(401).json("Unauthenticated");
+  if (!oldRefreshToken) throw new UnauthenticatedException();
 
   // Check if it is in the database
   if (!security.refreshTokens.includes(oldRefreshToken))
-    return res.status(403).json("Invalid refresh token");
+    throw new InvalidRefreshTokenException();
 
   // Verify key
   jwt.verify(
     oldRefreshToken,
     "TEMPORARYSECRETKEYREFRESH",
     (err, tokenPayload) => {
-      if (err) {
-        console.log("Error 1123 verifying token!");
-        res.status(400).json("Error 1123 verifying token!");
-      }
+      if (err) throw new InvalidRefreshTokenException();
+
       // Remove old refresh token from database
       security.refreshTokens = security.refreshTokens.filter(
         (token) => token !== oldRefreshToken

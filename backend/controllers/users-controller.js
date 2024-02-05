@@ -1,5 +1,10 @@
 const storage = require("../utils/storage.js");
 
+const {
+  AccessDeniedException,
+  UserNotFoundException,
+} = require("../error_handling/exceptions.js");
+
 const getUserData = (req, res) => {
   // Check if user is asking for his own data
   if (req.tokenPayload.id === req.params.userId) {
@@ -13,11 +18,11 @@ const getUserData = (req, res) => {
         .json({ email: user.email, name: user.name, password: user.password });
     } else {
       // User not found
-      res.status(410).json("User not found");
+      throw new UserNotFoundException();
     }
   } else {
     // User is asking for data, that does not belong to him
-    res.status(403).json("Access denied");
+    throw new AccessDeniedException();
   }
 };
 
