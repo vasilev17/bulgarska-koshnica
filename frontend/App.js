@@ -1,26 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from "react-native";
+import SignUpScreen from "./screens/SignUpScreen";
 
 export default function App() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>BG Кошница!</Text>
-      <StatusBar style="auto" />
-    </SafeAreaView>
-  );
+  return <SignUpScreen />;
 }
 
-const styles = StyleSheet.create({
-
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  text: {
-    color: 'cyan',
-    fontSize: 24,
-  },
-});
+const styles = StyleSheet.create({});
