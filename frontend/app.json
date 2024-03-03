@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "frontend",
+    "slug": "frontend",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/expoBaseIcons/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/expoBaseIcons/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "userInterfaceStyle": "light",
+      "supportsTablet": true
+    },
+    "android": {
+      "softwareKeyboardLayoutMode":"pan",
+      "userInterfaceStyle": "light",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/expoBaseIcons/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/expoBaseIcons/favicon.png"
+    },
+    "plugins": [["./plugins/withDisableForcedDarkModeAndroid.js", {}]]
+  }
+}
