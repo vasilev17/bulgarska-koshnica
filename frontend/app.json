@@ -13,9 +13,11 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "userInterfaceStyle": "light",
       "supportsTablet": true
     },
     "android": {
+      "userInterfaceStyle": "light",
       "adaptiveIcon": {
         "foregroundImage": "./assets/expoBaseIcons/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -23,6 +25,7 @@
     },
     "web": {
       "favicon": "./assets/expoBaseIcons/favicon.png"
-    }
+    },
+    "plugins": [["./plugins/withDisableForcedDarkModeAndroid.js", {}]]
   }
 }

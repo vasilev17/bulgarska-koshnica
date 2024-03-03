@@ -1,10 +1,12 @@
 import { StyleSheet } from "react-native";
+import { COLORS, FONT, SIZES, SHADOWS } from "../shared/Constants";
 
 export const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-between",
-    alignItems: 'center',
+    alignItems: "center",
+    backgroundColor: COLORS.white,
   },
 
   headerWave: {

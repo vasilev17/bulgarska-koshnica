@@ -2,26 +2,33 @@ import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { globalStyles } from "../shared/globalStyles";
 
-const signUpScreen = () => {
+import { icons, images, SIZES, FONT } from "../shared/Constants";
+
+
+import {InterRegular} from "../assets/fonts/Inter-Bold.ttf"
+
+const SignUpScreen = () => {
   return (
     <SafeAreaView style={globalStyles.container}>
-      <Image
-        style={globalStyles.headerWave}
-        source={require("../assets/images/headerWave.png")}
-      />
+      <Image style={globalStyles.headerWave} source={images.headerWave} />
 
       <View>
-        <Text>BG Кошница</Text>
+        <Text style={styles.test}>BG Кошница!</Text>
       </View>
 
       <Image
         style={globalStyles.footerWaveEmpty}
-        source={require("../assets/images/footerWaveEmpty.png")}
+        source={images.footerWaveEmpty}
       />
     </SafeAreaView>
   );
 };
 
-export default signUpScreen;
+export default SignUpScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  test: {
+    fontSize: SIZES.size24,
+    fontFamily: FONT.bold,
+  },
+});
