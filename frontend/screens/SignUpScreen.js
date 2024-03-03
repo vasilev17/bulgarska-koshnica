@@ -1,34 +1,53 @@
-import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Keyboard,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import React from "react";
 import { globalStyles } from "../shared/globalStyles";
-
-import { icons, images, SIZES, FONT } from "../shared/Constants";
-
-
-import {InterRegular} from "../assets/fonts/Inter-Bold.ttf"
+import { icons, images, SIZES, FONT, COLORS } from "../shared/constants";
+import DismissKeyboardView from "../shared/components/DismissKeyboardView";
 
 const SignUpScreen = () => {
   return (
-    <SafeAreaView style={globalStyles.container}>
-      <Image style={globalStyles.headerWave} source={images.headerWave} />
+    <DismissKeyboardView>
+      <SafeAreaView style={globalStyles.container}>
+        <Image style={globalStyles.headerWave} source={images.headerWave} />
 
-      <View>
-        <Text style={styles.test}>BG Кошница!</Text>
-      </View>
+        <Image style={globalStyles.logo} source={images.basketLogo} />
+        <Text style={globalStyles.title}>Добър ден!</Text>
+        <Text style={globalStyles.infoText}>
+          Ако желаете профил, моля въведете името си
+        </Text>
 
-      <Image
-        style={globalStyles.footerWaveEmpty}
-        source={images.footerWaveEmpty}
-      />
-    </SafeAreaView>
+        <TextInput
+          selectionColor={COLORS.primary}
+          style={globalStyles.textInput}
+        >
+          Име
+        </TextInput>
+
+        <TextInput
+          selectionColor={COLORS.primary}
+          style={globalStyles.textInput}
+        >
+          Фамилия
+        </TextInput>
+
+        <Image
+          style={globalStyles.footerWaveEmpty}
+          source={images.footerWaveEmpty}
+        />
+      </SafeAreaView>
+    </DismissKeyboardView>
   );
 };
 
 export default SignUpScreen;
 
-const styles = StyleSheet.create({
-  test: {
-    fontSize: SIZES.size24,
-    fontFamily: FONT.bold,
-  },
-});
+const styles = StyleSheet.create({});
