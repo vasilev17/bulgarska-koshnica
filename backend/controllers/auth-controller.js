@@ -7,12 +7,14 @@ const {
   IncorrectCredentialsException,
   UnauthenticatedException,
   InvalidRefreshTokenException,
+  UserNotFoundException,
 } = require("../error_handling/exceptions");
 
 const register = (req, res) => {
   const { name, email, password, phone_number } = req.body;
+
   const user = {
-    user_id: storage.users.length,
+    user_id: -1,
     name: name,
     email: email,
     password: password,
@@ -22,22 +24,29 @@ const register = (req, res) => {
   return res.status(200).json(user);
 };
 
-const login = (req, res) => {
+async function login(req, res) {
   // Get username and password from login attempt
   const { email, password } = req.body;
 
   // Check if they are valid
-  const user = security.validateUser(email, password);
+  let user = undefined;
 
-  // If invalid login credentials
-  if (!user) throw new IncorrectCredentialsException();
+  try {
+    user = await security.validateUser(email, password);
+  } catch (err) {
+    if (err instanceof UserNotFoundException) {
+      throw new IncorrectCredentialsException(); // Hide UserNotFound exception from client
+    } else {
+      throw err; // Rethrow exception
+    }
+  }
 
   // Generate JWT including user_id
   const accessToken = security.generateAccessToken(user.user_id);
   const refreshToken = security.generateRefreshToken(user.user_id);
 
   // Add refreshToken to database
-  security.refreshTokens.push(refreshToken);
+  await storage.addRefreshToken(user.user_id, refreshToken);
 
   // Respond with email, name and token
   res.json({
@@ -46,21 +55,20 @@ const login = (req, res) => {
     accessToken,
     refreshToken,
   });
-};
+}
 
-const logout = (req, res) => {
+async function logout(req, res) {
   // Get refresh token from request
   const refreshToken = req.body.refreshToken;
 
   // Remove old refresh token from database
-  security.refreshTokens = security.refreshTokens.filter(
-    (token) => token !== refreshToken
-  );
+  if (!(await storage.removeRefreshToken(refreshToken)))
+    throw new UnauthenticatedException();
 
   res.status(200).json("You logged out successfully");
-};
+}
 
-const refresh = (req, res) => {
+async function refresh(req, res) {
   // Get refresh token from request
   const oldRefreshToken = req.body.refreshToken;
 
@@ -68,26 +76,20 @@ const refresh = (req, res) => {
   if (!oldRefreshToken) throw new UnauthenticatedException();
 
   // Check if it is in the database
-  if (!security.refreshTokens.includes(oldRefreshToken))
-    throw new InvalidRefreshTokenException();
+  await storage.findRefreshToken(oldRefreshToken);
 
   // Verify key
   jwt.verify(
     oldRefreshToken,
-    "TEMPORARYSECRETKEYREFRESH",
-    (err, tokenPayload) => {
+    process.env.JWT_ACCESS_REFRESH_TOKEN_KEY,
+    async (err, tokenPayload) => {
       if (err) throw new InvalidRefreshTokenException();
-
-      // Remove old refresh token from database
-      security.refreshTokens = security.refreshTokens.filter(
-        (token) => token !== oldRefreshToken
-      );
 
       const newAccessToken = security.generateAccessToken(tokenPayload.id);
       const newRefreshToken = security.generateRefreshToken(tokenPayload.id);
 
       // Add new refresh token to database
-      security.refreshTokens.push(newRefreshToken);
+      await storage.addRefreshToken(tokenPayload.id, newRefreshToken);
 
       // Respond with new tokens
       res.status(200).json({
@@ -96,6 +98,6 @@ const refresh = (req, res) => {
       });
     }
   );
-};
+}
 
 module.exports = { login, logout, refresh, register };
