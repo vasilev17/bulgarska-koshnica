@@ -22,7 +22,7 @@ const FONT = {
   bold: "Inter-Bold",
 };
 
-const SIZES = {
+const FONTSIZES = {
   size8: 8,
   size10: 10,
   size12: 12,
@@ -41,7 +41,14 @@ const SIZES = {
   size30: 30,
 };
 
+const SIZES = {
+  small: 0,
+  medium: 1,
+  large: 2,
+};
+
 const SHADOWS = {
+  //Example shadows
   small: {
     shadowColor: "#000",
     shadowOffset: {
@@ -65,4 +72,4 @@ const SHADOWS = {
   },
 };
 
-export { COLORS, FONT, SIZES, SHADOWS };
+export { COLORS, FONT, FONTSIZES, SIZES, SHADOWS };

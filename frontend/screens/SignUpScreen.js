@@ -5,13 +5,20 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import React from "react";
 import { globalStyles } from "../shared/globalStyles";
-import { icons, images, SIZES, FONT, COLORS } from "../shared/constants";
+import {
+  icons,
+  images,
+  FONTSIZES,
+  FONT,
+  COLORS,
+  SIZES,
+} from "../shared/constants";
 import DismissKeyboardView from "../shared/components/DismissKeyboardView";
+import CustomButton from "../shared/components/CustomButton";
 
 const SignUpScreen = () => {
   return (
@@ -38,6 +45,14 @@ const SignUpScreen = () => {
         >
           Фамилия
         </TextInput>
+
+        <CustomButton
+          size={SIZES.small}
+          buttonColor={COLORS.primary}
+          fontColor={COLORS.white}
+          hasShadow={true}
+          text="Напред"
+        />
 
         <Image
           style={globalStyles.footerWaveEmpty}
