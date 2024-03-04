@@ -1,5 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { COLORS, FONTSIZES } from "../constants";
 import { SIZES } from "../constants";
 
@@ -12,7 +18,7 @@ const CustomButton = ({
   text = "Напред",
 }) => {
   return (
-    <View
+    <TouchableOpacity
       style={[
         { backgroundColor: buttonColor },
         styles.buttonContainer,
@@ -22,7 +28,7 @@ const CustomButton = ({
       ]}
     >
       <Text style={[{ color: fontColor }, setFontSize(size)]}>{text}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
