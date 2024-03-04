@@ -2,6 +2,7 @@
 
 var express = require("express");
 var path = require("path");
+
 // var cookieParser = require("cookie-parser");
 // var logger = require("morgan");
 
@@ -24,6 +25,16 @@ app.get("/", (req, res) => {
     "This server is not intended for UI experience. Please refer to /api/..."
   );
 });
+
+// app.get("/dbtest", (req, res) => {
+//   let qr = "SELECT * FROM users";
+
+//   // Potential timeout when waiting execution on pool's queue. Watch out for handling!
+//   pool.query(qr, (err, result) => {
+//     if (err) throw err;
+//     res.send("inv recc");
+//   });
+// });
 
 routesConfig(app);
 

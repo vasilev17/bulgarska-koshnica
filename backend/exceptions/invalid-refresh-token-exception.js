@@ -2,7 +2,7 @@ const BaseException = require("./baseException");
 
 class InvalidRefreshTokenException extends BaseException {
   constructor() {
-    super(400, "Invalid Refresh Token");
+    super(403, "Invalid Refresh Token");
   }
 }
 

@@ -18,6 +18,7 @@ const checkRules = (req, res, next) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
+    // For compatibility with express-validator
     return res.status(400).json({ errors: errors.array() });
   }
 
