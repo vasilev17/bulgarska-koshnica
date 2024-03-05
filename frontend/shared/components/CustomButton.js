@@ -1,35 +1,51 @@
-import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TouchableNativeFeedback,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import React, { Component } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { COLORS, FONTSIZES } from "../constants";
 import { SIZES } from "../constants";
+import CustomText from "./CustomText";
+import PropTypes from "prop-types";
 
-const CustomButton = ({
-  size = SIZES.small,
-  buttonColor = COLORS.primary,
-  fontColor = COLORS.white,
-  outlineColor = null,
-  hasShadow = true,
-  text = "Напред",
-}) => {
-  return (
-    <TouchableOpacity
-      style={[
-        { backgroundColor: buttonColor },
-        styles.buttonContainer,
-        setButtonSize(size),
-        outlineColor && { borderColor: outlineColor, borderWidth: 2 },
-        hasShadow && styles.buttonShadow,
-      ]}
-    >
-      <Text style={[{ color: fontColor }, setFontSize(size)]}>{text}</Text>
-    </TouchableOpacity>
-  );
+export class CustomButton extends Component {
+  render() {
+    return (
+      <TouchableOpacity
+        style={[
+          { backgroundColor: this.props.buttonColor },
+          styles.buttonContainer,
+          setButtonSize(this.props.size),
+          this.props.outlineColor && {
+            borderColor: this.props.outlineColor,
+            borderWidth: 2,
+          },
+          this.props.hasShadow && styles.buttonShadow,
+        ]}
+      >
+        <CustomText
+          style={[
+            { color: this.props.fontColor },
+            setFontSize(this.props.size),
+          ]}
+        >
+          {this.props.children}
+        </CustomText>
+      </TouchableOpacity>
+    );
+  }
+}
+
+CustomButton.propTypes = {
+  size: PropTypes.number.isRequired,
+  buttonColor: PropTypes.string,
+  fontColor: PropTypes.string,
+  outlineColor: PropTypes.string,
+  hasShadow: PropTypes.bool,
+};
+
+CustomButton.defaultProps = {
+  buttonColor: COLORS.primary,
+  fontColor: COLORS.white,
+  outlineColor: null,
+  hasShadow: true,
 };
 
 export default CustomButton;
@@ -37,11 +53,11 @@ export default CustomButton;
 setButtonSize = (size) => {
   switch (size) {
     case SIZES.small:
-      return styles.sizeSmall;
+      return styles.buttonSizeSmall;
     case SIZES.medium:
-      return styles.sizeMedium;
+      return styles.buttonSizeMedium;
     case SIZES.large:
-      return styles.sizeLarge;
+      return styles.buttonSizeLarge;
     default:
       console.error(`Wrong size for button component!`);
   }
@@ -50,11 +66,11 @@ setButtonSize = (size) => {
 setFontSize = (size) => {
   switch (size) {
     case SIZES.small:
-      return styles.textMedium;
+      return styles.textSizeMedium;
     case SIZES.medium:
-      return styles.textSmall;
+      return styles.textSizeSmall;
     case SIZES.large:
-      return styles.textLarge;
+      return styles.textSizeLarge;
     default:
       console.error(`Wrong size for button component!`);
   }
@@ -82,30 +98,30 @@ const styles = StyleSheet.create({
     elevation: 7,
   },
 
-  sizeSmall: {
+  buttonSizeSmall: {
     width: 145,
     height: 45,
   },
 
-  sizeMedium: {
+  buttonSizeMedium: {
     width: 225,
     height: 45,
   },
 
-  sizeLarge: {
+  buttonSizeLarge: {
     width: 305,
     height: 60,
   },
 
-  textSmall: {
+  textSizeSmall: {
     fontSize: FONTSIZES.size22,
   },
 
-  textMedium: {
+  textSizeMedium: {
     fontSize: FONTSIZES.size24,
   },
 
-  textLarge: {
+  textSizeLarge: {
     fontSize: FONTSIZES.size25,
   },
 });

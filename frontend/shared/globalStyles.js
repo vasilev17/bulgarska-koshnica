@@ -2,23 +2,30 @@ import { StyleSheet } from "react-native";
 import { COLORS, FONT, FONTSIZES, SHADOWS } from "./constants";
 
 export const globalStyles = StyleSheet.create({
-  container: {
+  appContainer: {
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: COLORS.white,
   },
 
+  screenContentContainer: {
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
   headerWave: {
     width: "100%",
     height: 154, //aprox. = 18%
     zIndex: -1,
+    alignSelf: "flex-start"
   },
 
   footerWaveEmpty: {
     width: "100%",
     height: 154, //aprox. = 18%
     zIndex: -1,
+    alignSelf: "flex-end"
   },
 
   footerWaveWithContent: {
@@ -32,18 +39,17 @@ export const globalStyles = StyleSheet.create({
     height: 84,
   },
 
-  title: {
-    fontFamily: FONT.regular,
-    fontSize: FONTSIZES.size30,
-    color: COLORS.text,
-  },
-
   infoText: {
-    fontFamily: FONT.regular,
-    fontSize: FONTSIZES.size18,
-    color: COLORS.text,
     textAlign: "center",
     width: 300,
+  },
+
+  boldText: {
+    fontFamily: FONT.bold,
+  },
+
+  underlinedText: {
+    textDecorationLine: "underline",
   },
 
   textInput: {
