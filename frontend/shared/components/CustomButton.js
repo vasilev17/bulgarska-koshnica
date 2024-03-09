@@ -10,6 +10,7 @@ export class CustomButton extends Component {
     return (
       <TouchableOpacity
         style={[
+          this.props.style,
           { backgroundColor: this.props.buttonColor },
           styles.buttonContainer,
           setButtonSize(this.props.size),

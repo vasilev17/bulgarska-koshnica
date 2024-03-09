@@ -18,14 +18,14 @@ export const globalStyles = StyleSheet.create({
     width: "100%",
     height: 154, //aprox. = 18%
     zIndex: -1,
-    alignSelf: "flex-start"
+    alignSelf: "flex-start",
   },
 
   footerWaveEmpty: {
     width: "100%",
     height: 154, //aprox. = 18%
     zIndex: -1,
-    alignSelf: "flex-end"
+    alignSelf: "flex-end",
   },
 
   footerWaveWithContent: {
@@ -37,6 +37,7 @@ export const globalStyles = StyleSheet.create({
   logo: {
     width: 84,
     height: 84,
+    marginBottom: "1.5%",
   },
 
   infoText: {
@@ -69,7 +70,7 @@ export const globalStyles = StyleSheet.create({
     //Android
     elevation: 20,
 
-    paddingLeft: 40,
+    paddingLeft: 25,
     paddingRight: 10,
     borderRadius: 5,
     fontSize: FONTSIZES.size24,

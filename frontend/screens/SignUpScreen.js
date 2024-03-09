@@ -1,25 +1,17 @@
 import {
   Image,
   SafeAreaView,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
 import React from "react";
 import { globalStyles } from "../shared/globalStyles";
-import {
-  icons,
-  images,
-  FONTSIZES,
-  FONT,
-  COLORS,
-  SIZES,
-} from "../shared/constants";
+import { images, COLORS, SIZES } from "../shared/constants";
 import DismissKeyboardView from "../shared/components/DismissKeyboardView";
 import CustomButton from "../shared/components/CustomButton";
 import CustomText from "../shared/components/CustomText";
-import { HeadingText } from "../shared/components/HeadingText";
+import ScreenHeader from "../shared/components/ScreenHeader";
 
 const SignUpScreen = () => {
   return (
@@ -27,12 +19,10 @@ const SignUpScreen = () => {
       <SafeAreaView style={globalStyles.appContainer}>
         <Image style={globalStyles.headerWave} source={images.headerWave} />
 
-        <View style={[globalStyles.screenContentContainer, {marginTop: '-7%'}]}>
-          <Image style={globalStyles.logo} source={images.basketLogo} />
-
-          <HeadingText style={[globalStyles.title, { marginTop: "1.5%" }]}>
-            Добър ден!
-          </HeadingText>
+        <View
+          style={[globalStyles.screenContentContainer, { marginTop: "-7%" }]}
+        >
+          <ScreenHeader>Добър ден!</ScreenHeader>
 
           <CustomText
             style={[
@@ -69,9 +59,7 @@ const SignUpScreen = () => {
             Напред
           </CustomButton>
 
-          <CustomText style={{ marginTop: "3%", marginBottom: "3%" }}>
-            Или
-          </CustomText>
+          <CustomText style={{ marginVertical: "3%" }}>Или</CustomText>
 
           <CustomButton
             size={SIZES.large}
@@ -109,5 +97,3 @@ const SignUpScreen = () => {
 };
 
 export default SignUpScreen;
-
-const styles = StyleSheet.create({});
