@@ -87,7 +87,6 @@ const styles = StyleSheet.create({
   buttonShadow: {
     shadowColor: COLORS.black,
 
-    //IOS
     shadowOffset: {
       width: 0,
       height: 3,
@@ -95,7 +94,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
 
-    //Android
     elevation: 7,
   },
 

@@ -24,12 +24,7 @@ const SignUpScreen = () => {
         >
           <ScreenHeader>Добър ден!</ScreenHeader>
 
-          <CustomText
-            style={[
-              globalStyles.infoText,
-              { marginTop: "5%", marginBottom: "5%" },
-            ]}
-          >
+          <CustomText style={[globalStyles.infoText, { marginVertical: "5%" }]}>
             Ако желаете профил, моля въведете името си
           </CustomText>
 

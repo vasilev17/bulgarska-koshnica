@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import { COLORS, FONT, FONTSIZES, SHADOWS } from "./constants";
 
 export const globalStyles = StyleSheet.create({
@@ -45,6 +45,11 @@ export const globalStyles = StyleSheet.create({
     width: 300,
   },
 
+  userTypeCard: {
+    height: 150,
+    width: 320,
+  },
+
   boldText: {
     fontFamily: FONT.bold,
   },
@@ -56,20 +61,6 @@ export const globalStyles = StyleSheet.create({
   textInput: {
     width: 300,
     height: 60,
-
-    shadowColor: COLORS.gray,
-
-    //IOS
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 13,
-
-    //Android
-    elevation: 20,
-
     paddingLeft: 25,
     paddingRight: 10,
     borderRadius: 5,
@@ -79,5 +70,16 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderTopColor: COLORS.graySecondary,
     borderTopWidth: 0.7,
+
+    shadowColor: COLORS.gray,
+
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 13,
+
+    elevation: 20,
   },
 });
