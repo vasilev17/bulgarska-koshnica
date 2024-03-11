@@ -13,7 +13,7 @@ const LoginScreen = () => {
       <SafeAreaView style={globalStyles.appContainer}>
         <Image style={globalStyles.headerWave} source={images.headerWave} />
         <View style={globalStyles.screenContentContainer}>
-          <ScreenHeader style={{ marginBottom: "12%" }}>
+          <ScreenHeader style={{ marginBottom: "7%" }}>
             Влезте в профила си!
           </ScreenHeader>
 
@@ -26,10 +26,7 @@ const LoginScreen = () => {
 
           <TextInput
             selectionColor={COLORS.primary}
-            style={[
-              globalStyles.textInput,
-              { marginTop: "2%", marginBottom: "8%" },
-            ]}
+            style={[globalStyles.textInput, { marginBottom: "10%" }]}
           >
             Парола
           </TextInput>

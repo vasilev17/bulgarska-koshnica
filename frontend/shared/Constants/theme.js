@@ -7,6 +7,7 @@ const COLORS = {
 
   text: "#133610",
 
+  lightGray: "#D9D9D9",
   gray: "#878794",
   graySecondary: "#F4F5FA",
 

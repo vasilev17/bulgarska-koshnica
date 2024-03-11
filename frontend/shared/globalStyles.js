@@ -16,7 +16,7 @@ export const globalStyles = StyleSheet.create({
 
   headerWave: {
     width: "100%",
-    height: 154, //aprox. = 18%
+    height: 135, //aprox. = 18%
     zIndex: -1,
     alignSelf: "flex-start",
   },
@@ -30,7 +30,7 @@ export const globalStyles = StyleSheet.create({
 
   footerWaveWithContent: {
     width: "100%",
-    height: 227,
+    height: 200,
     zIndex: -1,
   },
 
@@ -45,6 +45,23 @@ export const globalStyles = StyleSheet.create({
     width: 300,
   },
 
+  title: {
+    textAlign: "center",
+    width: 350,
+  },
+
+  backButton: {
+    position: "absolute",
+    left: "3.5%",
+    bottom: "6%",
+  },
+
+  continueButton: {
+    position: "absolute",
+    right: "7.5%",
+    bottom: "6%",
+  },
+
   userTypeCard: {
     height: 150,
     width: 320,
@@ -53,12 +70,17 @@ export const globalStyles = StyleSheet.create({
   boldText: {
     fontFamily: FONT.bold,
   },
+  
+  semiBoldText: {
+    fontFamily: FONT.semiBold,
+  },
 
   underlinedText: {
     textDecorationLine: "underline",
   },
 
   textInput: {
+    marginVertical: "2%",
     width: 300,
     height: 60,
     paddingLeft: 25,

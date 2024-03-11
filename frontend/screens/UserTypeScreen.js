@@ -1,4 +1,4 @@
-import { View, SafeAreaView, Image, ImageBackground } from "react-native";
+import { View, SafeAreaView, Image } from "react-native";
 import React from "react";
 import DismissKeyboardView from "../shared/components/DismissKeyboardView";
 import { globalStyles } from "../shared/globalStyles";
@@ -12,13 +12,14 @@ const UserTypeScreen = () => {
     <DismissKeyboardView>
       <SafeAreaView style={globalStyles.appContainer}>
         <Image style={globalStyles.headerWave} source={images.headerWave} />
-        <View
-          style={[globalStyles.screenContentContainer, { marginTop: "0%" }]}
-        >
+        <View style={[globalStyles.screenContentContainer]}>
           <ScreenHeader>Вие сте?</ScreenHeader>
 
           <UserTypeCard
-            style={[globalStyles.userTypeCard, {marginTop: "5%", marginBottom: "7%"}]}
+            style={[
+              globalStyles.userTypeCard,
+              { marginTop: "5%", marginBottom: "7%" },
+            ]}
             image={images.buyer}
             title={"Купувач"}
           />
@@ -35,7 +36,7 @@ const UserTypeScreen = () => {
           buttonColor={COLORS.white}
           fontColor={COLORS.text}
           hasShadow={false}
-          style={{ position: "absolute", left: "3.5%", bottom: "5%" }}
+          style={globalStyles.backButton}
         >
           Назад
         </CustomButton>

@@ -1,6 +1,7 @@
 import {
   Image,
   SafeAreaView,
+  StyleSheet,
   TextInput,
   TouchableOpacity,
   View,
@@ -20,11 +21,11 @@ const SignUpScreen = () => {
         <Image style={globalStyles.headerWave} source={images.headerWave} />
 
         <View
-          style={[globalStyles.screenContentContainer, { marginTop: "-7%" }]}
+          style={globalStyles.screenContentContainer}
         >
           <ScreenHeader>Добър ден!</ScreenHeader>
 
-          <CustomText style={[globalStyles.infoText, { marginVertical: "5%" }]}>
+          <CustomText style={[globalStyles.infoText, { marginTop: "5%", marginBottom: "3%" }]}>
             Ако желаете профил, моля въведете името си
           </CustomText>
 
@@ -37,10 +38,7 @@ const SignUpScreen = () => {
 
           <TextInput
             selectionColor={COLORS.primary}
-            style={[
-              globalStyles.textInput,
-              { marginTop: "2%", marginBottom: "8%" },
-            ]}
+            style={[globalStyles.textInput, { marginBottom: "6%" }]}
           >
             Фамилия
           </TextInput>
@@ -65,13 +63,7 @@ const SignUpScreen = () => {
             Не желая профил
           </CustomButton>
 
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              marginTop: "5%",
-            }}
-          >
+          <View style={styles.textWrapper}>
             <CustomText>Вече имате профил? </CustomText>
             <TouchableOpacity>
               <CustomText
@@ -92,3 +84,11 @@ const SignUpScreen = () => {
 };
 
 export default SignUpScreen;
+
+const styles = StyleSheet.create({
+  textWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: "5%",
+  },
+});

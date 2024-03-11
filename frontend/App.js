@@ -1,5 +1,5 @@
 import { StyleSheet, Text } from "react-native";
-import UserTypeScreen from "./screens/UserTypeScreen";
+import UserInfoScreen from "./screens/UserInfoScreen";
 import { useFonts } from "expo-font";
 
 export default function App() {
@@ -13,7 +13,7 @@ export default function App() {
     return <Text>Loading...</Text>;
   }
 
-  return <UserTypeScreen />;
+  return <UserInfoScreen />;
 }
 
 const styles = StyleSheet.create({});

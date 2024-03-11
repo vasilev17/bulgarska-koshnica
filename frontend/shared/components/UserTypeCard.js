@@ -5,7 +5,7 @@ import {
   View,
 } from "react-native";
 import React, { Component } from "react";
-import { COLORS, FONT, FONTSIZES, SIZES } from "../constants";
+import { COLORS, FONTSIZES } from "../constants";
 import CustomText from "./CustomText";
 
 export class UserTypeCard extends Component {
