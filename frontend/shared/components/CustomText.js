@@ -1,16 +1,20 @@
 import { StyleSheet, Text } from "react-native";
-import React, { Component } from "react";
+import React from "react";
 import { COLORS, FONT, FONTSIZES } from "../constants";
+import PropTypes, { arrayOf, oneOfType } from "prop-types";
 
-export class CustomText extends Component {
-  render() {
-    return (
-      <Text {...this.props} style={[styles.text, this.props.style]}>
-        {this.props.children}
-      </Text>
-    );
-  }
-}
+const CustomText = (props) => {
+  return (
+    <Text {...props} style={[styles.text, props.style]}>
+      {props.children}
+    </Text>
+  );
+};
+
+CustomText.propTypes = {
+  style: Text.propTypes.style,
+  children: oneOfType([arrayOf(PropTypes.string), PropTypes.string]),
+};
 
 export default CustomText;
 

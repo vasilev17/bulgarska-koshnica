@@ -1,52 +1,48 @@
-import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { COLORS, FONTSIZES } from "../constants";
 import { SIZES } from "../constants";
 import CustomText from "./CustomText";
-import PropTypes from "prop-types";
+import PropTypes, { arrayOf, oneOfType } from "prop-types";
 
-export class CustomButton extends Component {
-  render() {
-    return (
-      <TouchableOpacity
-        style={[
-          this.props.style,
-          { backgroundColor: this.props.buttonColor },
-          styles.buttonContainer,
-          setButtonSize(this.props.size),
-          this.props.outlineColor && {
-            borderColor: this.props.outlineColor,
-            borderWidth: 2,
-          },
-          this.props.hasShadow && styles.buttonShadow,
-        ]}
-      >
-        <CustomText
-          style={[
-            { color: this.props.fontColor },
-            setFontSize(this.props.size),
-          ]}
-        >
-          {this.props.children}
-        </CustomText>
-      </TouchableOpacity>
-    );
-  }
-}
+const CustomButton = (props) => {
+  return (
+    <TouchableOpacity
+      style={[
+        { backgroundColor: props.buttonColor },
+        styles.buttonContainer,
+        setButtonSize(props.size),
+        props.outlineColor && {
+          borderColor: props.outlineColor,
+          borderWidth: 2,
+        },
+        props.hasShadow && styles.buttonShadow,
+        props.style,
+      ]}
+    >
+      <CustomText style={[{ color: props.fontColor }, setFontSize(props.size)]}>
+        {props.children}
+      </CustomText>
+    </TouchableOpacity>
+  );
+};
 
 CustomButton.propTypes = {
+  buttonColor: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
-  buttonColor: PropTypes.string,
-  fontColor: PropTypes.string,
+  hasShadow: PropTypes.bool.isRequired,
+  fontColor: PropTypes.string.isRequired,
   outlineColor: PropTypes.string,
-  hasShadow: PropTypes.bool,
+  style: Text.propTypes.style,
+  children: oneOfType([arrayOf(PropTypes.string), PropTypes.string]),
 };
 
 CustomButton.defaultProps = {
   buttonColor: COLORS.primary,
+  size: SIZES.small,
+  hasShadow: true,
   fontColor: COLORS.white,
   outlineColor: null,
-  hasShadow: true,
 };
 
 export default CustomButton;

@@ -18,14 +18,12 @@ export const globalStyles = StyleSheet.create({
     width: "100%",
     height: 135, //aprox. = 18%
     zIndex: -1,
-    alignSelf: "flex-start",
   },
 
   footerWaveEmpty: {
     width: "100%",
     height: 154, //aprox. = 18%
     zIndex: -1,
-    alignSelf: "flex-end",
   },
 
   footerWaveWithContent: {
@@ -70,7 +68,7 @@ export const globalStyles = StyleSheet.create({
   boldText: {
     fontFamily: FONT.bold,
   },
-  
+
   semiBoldText: {
     fontFamily: FONT.semiBold,
   },

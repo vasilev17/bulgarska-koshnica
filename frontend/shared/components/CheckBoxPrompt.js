@@ -1,75 +1,75 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CustomText from "./CustomText";
 import { globalStyles } from "../globalStyles";
 import { COLORS, FONTSIZES } from "../constants";
 import Checkbox from "react-native-bouncy-checkbox";
-import { Component } from "react";
+import PropTypes, { oneOfType } from "prop-types";
 
-export class CheckBoxPrompt extends Component {
-  render() {
-    return (
-      <View style={[this.props.style, styles.checkBoxPromptContainer]}>
-        <Checkbox
-          size={25}
-          fillColor={COLORS.primary}
-          unfillColor={COLORS.lightGray}
-          iconStyle={{ borderRadius: 10 }}
-          innerIconStyle={{ borderWidth: 0 }}
-          onPress={(isChecked) => {}}
-        />
-        <View
-          style={[
-            styles.checkBoxPromptTextWrapper,
-            { width: this.props.width },
-          ]}
-        >
-          <CustomText style={styles.checkBoxPromptText}>
-            Запознах се с{" "}
+const CheckBoxPrompt = (props) => {
+  return (
+    <View style={[styles.checkBoxPromptContainer, props.style]}>
+      <Checkbox
+        size={25}
+        fillColor={COLORS.primary}
+        unfillColor={COLORS.lightGray}
+        iconStyle={{ borderRadius: 10 }}
+        innerIconStyle={{ borderWidth: 0 }}
+        onPress={(isChecked) => {}}
+      />
+      <View style={[styles.checkBoxPromptTextWrapper, { width: props.width }]}>
+        <CustomText style={styles.checkBoxPromptText}>
+          Запознах се с{" "}
+        </CustomText>
+        <TouchableOpacity onPress={props.termsAndConditionsOnPress}>
+          <CustomText
+            style={[
+              globalStyles.semiBoldText,
+              globalStyles.underlinedText,
+              styles.checkBoxPromptText,
+            ]}
+          >
+            Общите условия
           </CustomText>
-          <TouchableOpacity>
-            <CustomText
-              style={[
-                globalStyles.semiBoldText,
-                globalStyles.underlinedText,
-                styles.checkBoxPromptText,
-              ]}
-            >
-              Общите условия
-            </CustomText>
-          </TouchableOpacity>
-          <CustomText style={styles.checkBoxPromptText}> и </CustomText>
-          <CustomText style={styles.checkBoxPromptText}>правата по </CustomText>
-          <TouchableOpacity>
-            <CustomText
-              style={[
-                globalStyles.semiBoldText,
-                globalStyles.underlinedText,
-                styles.checkBoxPromptText,
-              ]}
-            >
-              Защита на личните
-            </CustomText>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <CustomText
-              style={[
-                globalStyles.semiBoldText,
-                globalStyles.underlinedText,
-                styles.checkBoxPromptText,
-              ]}
-            >
-              данни
-            </CustomText>
-          </TouchableOpacity>
-          <CustomText style={styles.checkBoxPromptText}>
-            {" "}
-            и ги приемам.{" "}
+        </TouchableOpacity>
+        <CustomText style={styles.checkBoxPromptText}> и </CustomText>
+        <CustomText style={styles.checkBoxPromptText}>правата по </CustomText>
+        <TouchableOpacity onPress={props.privacyPolicyOnPress}>
+          <CustomText
+            style={[
+              globalStyles.semiBoldText,
+              globalStyles.underlinedText,
+              styles.checkBoxPromptText,
+            ]}
+          >
+            Защита на личните
           </CustomText>
-        </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={props.privacyPolicyOnPress}>
+          <CustomText
+            style={[
+              globalStyles.semiBoldText,
+              globalStyles.underlinedText,
+              styles.checkBoxPromptText,
+            ]}
+          >
+            данни
+          </CustomText>
+        </TouchableOpacity>
+        <CustomText style={styles.checkBoxPromptText}>
+          {" "}
+          и ги приемам.{" "}
+        </CustomText>
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
+
+CheckBoxPrompt.propTypes = {
+  style: Text.propTypes.style,
+  width: oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  termsAndConditionsOnPress: PropTypes.func,
+  privacyPolicyOnPress: PropTypes.func,
+};
 
 export default CheckBoxPrompt;
 

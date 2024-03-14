@@ -1,30 +1,31 @@
 import {
   ImageBackground,
   StyleSheet,
+  Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { Component } from "react";
+import React from "react";
 import { COLORS, FONTSIZES } from "../constants";
 import CustomText from "./CustomText";
+import PropTypes from "prop-types";
 
-export class UserTypeCard extends Component {
-  render() {
-    return (
-      <TouchableOpacity
-        style={[this.props.style, styles.borderRadius, styles.shadow]}
-      >
-        <ImageBackground
-          imageStyle={styles.borderRadius}
-          source={this.props.image}
-        >
-          <View style={styles.overlay} />
-          <CustomText style={styles.text}>{this.props.title}</CustomText>
-        </ImageBackground>
-      </TouchableOpacity>
-    );
-  }
-}
+const UserTypeCard = (props) => {
+  return (
+    <TouchableOpacity style={[styles.borderRadius, styles.shadow, props.style]}>
+      <ImageBackground imageStyle={styles.borderRadius} source={props.image}>
+        <View style={styles.overlay} />
+        <CustomText style={styles.text}>{props.title}</CustomText>
+      </ImageBackground>
+    </TouchableOpacity>
+  );
+};
+
+UserTypeCard.propTypes = {
+  image: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  style: Text.propTypes.style,
+};
 
 export default UserTypeCard;
 
