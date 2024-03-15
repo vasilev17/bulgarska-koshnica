@@ -1,85 +1,68 @@
-import {
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { globalStyles } from "../shared/globalStyles";
-import { images, COLORS, SIZES } from "../shared/constants";
-import DismissKeyboardView from "../shared/components/DismissKeyboardView";
+import { COLORS, SIZES, FOOTERSTYLES } from "../shared/constants";
 import CustomButton from "../shared/components/CustomButton";
 import CustomText from "../shared/components/CustomText";
-import ScreenHeader from "../shared/components/ScreenHeader";
+import BaseAppScreen from "../shared/components/BaseAppScreen";
 
 const SignUpScreen = () => {
   return (
-    <DismissKeyboardView>
-      <SafeAreaView style={globalStyles.appContainer}>
-        <Image style={globalStyles.headerWave} source={images.headerWave} />
+    <BaseAppScreen
+    contentOffset={"14.5%"}
+      screenHeaderTitle="Добър ден!"
+      footerWaveType={FOOTERSTYLES.footerEmpty}
+      hasBackButton={false}
+      hasContinueButton={false}
+    >
+      <CustomText
+        style={[globalStyles.infoText, { marginTop: "5%", marginBottom: "3%" }]}
+      >
+        Ако желаете профил, моля въведете името си
+      </CustomText>
 
-        <View
-          style={globalStyles.screenContentContainer}
-        >
-          <ScreenHeader>Добър ден!</ScreenHeader>
+      <TextInput selectionColor={COLORS.primary} style={globalStyles.textInput}>
+        Име
+      </TextInput>
 
-          <CustomText style={[globalStyles.infoText, { marginTop: "5%", marginBottom: "3%" }]}>
-            Ако желаете профил, моля въведете името си
+      <TextInput
+        selectionColor={COLORS.primary}
+        style={[globalStyles.textInput, { marginBottom: "6%" }]}
+      >
+        Фамилия
+      </TextInput>
+
+      <CustomButton
+        size={SIZES.small}
+        buttonColor={COLORS.primary}
+        fontColor={COLORS.white}
+        hasShadow={true}
+      >
+        Напред
+      </CustomButton>
+
+      <CustomText style={{ marginVertical: "3%" }}>Или</CustomText>
+
+      <CustomButton
+        size={SIZES.large}
+        buttonColor={COLORS.secondary}
+        fontColor={COLORS.white}
+        hasShadow={true}
+      >
+        Не желая профил
+      </CustomButton>
+
+      <View style={styles.textWrapper}>
+        <CustomText>Вече имате профил? </CustomText>
+        <TouchableOpacity>
+          <CustomText
+            style={[globalStyles.boldText, globalStyles.underlinedText]}
+          >
+            Вход
           </CustomText>
-
-          <TextInput
-            selectionColor={COLORS.primary}
-            style={globalStyles.textInput}
-          >
-            Име
-          </TextInput>
-
-          <TextInput
-            selectionColor={COLORS.primary}
-            style={[globalStyles.textInput, { marginBottom: "6%" }]}
-          >
-            Фамилия
-          </TextInput>
-
-          <CustomButton
-            size={SIZES.small}
-            buttonColor={COLORS.primary}
-            fontColor={COLORS.white}
-            hasShadow={true}
-          >
-            Напред
-          </CustomButton>
-
-          <CustomText style={{ marginVertical: "3%" }}>Или</CustomText>
-
-          <CustomButton
-            size={SIZES.large}
-            buttonColor={COLORS.secondary}
-            fontColor={COLORS.white}
-            hasShadow={true}
-          >
-            Не желая профил
-          </CustomButton>
-
-          <View style={styles.textWrapper}>
-            <CustomText>Вече имате профил? </CustomText>
-            <TouchableOpacity>
-              <CustomText
-                style={[globalStyles.boldText, globalStyles.underlinedText]}
-              >
-                Вход
-              </CustomText>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <Image
-          style={globalStyles.footerWaveEmpty}
-          source={images.footerWaveEmpty}
-        />
-      </SafeAreaView>
-    </DismissKeyboardView>
+        </TouchableOpacity>
+      </View>
+    </BaseAppScreen>
   );
 };
 

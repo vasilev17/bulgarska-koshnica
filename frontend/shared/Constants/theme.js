@@ -48,6 +48,11 @@ const SIZES = {
   large: 2,
 };
 
+const FOOTERSTYLES = {
+  footerWithContent: 0,
+  footerEmpty: 1,
+};
+
 const SHADOWS = {
   //Example shadows
   small: {
@@ -73,4 +78,4 @@ const SHADOWS = {
   },
 };
 
-export { COLORS, FONT, FONTSIZES, SIZES, SHADOWS };
+export { COLORS, FONT, FONTSIZES, SIZES, FOOTERSTYLES, SHADOWS };

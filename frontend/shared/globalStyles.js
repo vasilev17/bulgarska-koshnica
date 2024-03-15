@@ -1,63 +1,10 @@
-import { StyleSheet, Platform } from "react-native";
-import { COLORS, FONT, FONTSIZES, SHADOWS } from "./constants";
+import { StyleSheet } from "react-native";
+import { COLORS, FONT, FONTSIZES } from "./constants";
 
 export const globalStyles = StyleSheet.create({
-  appContainer: {
-    flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: COLORS.white,
-  },
-
-  screenContentContainer: {
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-
-  headerWave: {
-    width: "100%",
-    height: 135, //aprox. = 18%
-    zIndex: -1,
-  },
-
-  footerWaveEmpty: {
-    width: "100%",
-    height: 154, //aprox. = 18%
-    zIndex: -1,
-  },
-
-  footerWaveWithContent: {
-    width: "100%",
-    height: 200,
-    zIndex: -1,
-  },
-
-  logo: {
-    width: 84,
-    height: 84,
-    marginBottom: "1.5%",
-  },
-
   infoText: {
     textAlign: "center",
     width: 300,
-  },
-
-  title: {
-    textAlign: "center",
-    width: 350,
-  },
-
-  backButton: {
-    position: "absolute",
-    left: "3.5%",
-    bottom: "6%",
-  },
-
-  continueButton: {
-    position: "absolute",
-    right: "7.5%",
-    bottom: "6%",
   },
 
   userTypeCard: {
@@ -78,7 +25,7 @@ export const globalStyles = StyleSheet.create({
   },
 
   textInput: {
-    marginVertical: "2%",
+    marginVertical: "1.3%",
     width: 300,
     height: 60,
     paddingLeft: 25,

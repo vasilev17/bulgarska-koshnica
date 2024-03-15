@@ -1,13 +1,11 @@
-import { Image, SafeAreaView, TextInput, View } from "react-native";
+import { TextInput } from "react-native";
 import React, { useRef } from "react";
-import { COLORS, SIZES, images } from "../shared/constants";
-import DismissKeyboardView from "../shared/components/DismissKeyboardView";
+import { COLORS } from "../shared/constants";
 import { globalStyles } from "../shared/globalStyles";
-import ScreenHeader from "../shared/components/ScreenHeader";
 import CheckBoxPrompt from "../shared/components/CheckBoxPrompt";
-import CustomButton from "../shared/components/CustomButton";
 import BottomSheetModalComponent from "../shared/components/BottomSheetModalComponent";
 import CustomText from "../shared/components/CustomText";
+import BaseAppScreen from "../shared/components/BaseAppScreen";
 
 const UserInfoScreen = () => {
   const termsAndConditionsBottomSheetModalRef = useRef(null);
@@ -19,76 +17,37 @@ const UserInfoScreen = () => {
     privacyPolicyBottomSheetModalRef.current?.present();
 
   return [
-    <DismissKeyboardView key={0}>
-      <SafeAreaView style={globalStyles.appContainer}>
-        <Image style={globalStyles.headerWave} source={images.headerWave} />
+    <BaseAppScreen
+      contentOffset={"12.5%"}
+      screenHeaderTitle={"Моля попълнете следните полета"}
+      key={0}
+    >
+      <TextInput
+        selectionColor={COLORS.primary}
+        style={[globalStyles.textInput, { marginTop: "5%" }]}
+      >
+        Имейл
+      </TextInput>
 
-        <View
-          style={[globalStyles.screenContentContainer, { marginTop: "-9%" }]}
-        >
-          <ScreenHeader>Моля попълнете следните полета</ScreenHeader>
+      <TextInput selectionColor={COLORS.primary} style={globalStyles.textInput}>
+        Телефонен номер
+      </TextInput>
 
-          <TextInput
-            selectionColor={COLORS.primary}
-            style={[globalStyles.textInput, { marginTop: "5%" }]}
-          >
-            Имейл
-          </TextInput>
+      <TextInput selectionColor={COLORS.primary} style={globalStyles.textInput}>
+        Парола
+      </TextInput>
 
-          <TextInput
-            selectionColor={COLORS.primary}
-            style={globalStyles.textInput}
-          >
-            Телефонен номер
-          </TextInput>
+      <TextInput selectionColor={COLORS.primary} style={globalStyles.textInput}>
+        Повторете паролата
+      </TextInput>
 
-          <TextInput
-            selectionColor={COLORS.primary}
-            style={globalStyles.textInput}
-          >
-            Парола
-          </TextInput>
-
-          <TextInput
-            selectionColor={COLORS.primary}
-            style={globalStyles.textInput}
-          >
-            Повторете паролата
-          </TextInput>
-
-          <CheckBoxPrompt
-            style={{ marginTop: "3%" }}
-            width={262}
-            termsAndConditionsOnPress={handleTermsAndConditionsBottomSheetOpen}
-            privacyPolicyOnPress={handlePrivacyPolicyBottomSheetOpen}
-          />
-        </View>
-
-        <CustomButton
-          size={SIZES.small}
-          buttonColor={COLORS.white}
-          fontColor={COLORS.text}
-          hasShadow={false}
-          style={globalStyles.backButton}
-        >
-          Назад
-        </CustomButton>
-
-        <CustomButton
-          size={SIZES.small}
-          buttonColor={COLORS.secondary}
-          fontColor={COLORS.white}
-          hasShadow={true}
-          style={globalStyles.continueButton}
-        >
-          Напред
-        </CustomButton>
-        <Image
-          style={globalStyles.footerWaveWithContent}
-          source={images.footerWaveWithContent}
-        />
-      </SafeAreaView>
-    </DismissKeyboardView>,
+      <CheckBoxPrompt
+        style={{ marginTop: "3%" }}
+        width={262}
+        termsAndConditionsOnPress={handleTermsAndConditionsBottomSheetOpen}
+        privacyPolicyOnPress={handlePrivacyPolicyBottomSheetOpen}
+      />
+    </BaseAppScreen>,
 
     // -- Terms and Conditions BottomSheetModal --
 

@@ -1,15 +1,14 @@
-import { Image, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import HeadingText from "./HeadingText";
-import { globalStyles } from "../globalStyles";
 import { images } from "../constants";
 import PropTypes, { arrayOf, oneOfType } from "prop-types";
 
 const ScreenHeader = (props) => {
   return (
     <View style={[props.style, { alignItems: "center" }]}>
-      <Image style={globalStyles.logo} source={images.basketLogo} />
-      <HeadingText style={globalStyles.title}>{props.children}</HeadingText>
+      <Image style={styles.logo} source={images.basketLogo} />
+      <HeadingText style={styles.title}>{props.children}</HeadingText>
     </View>
   );
 };
@@ -20,3 +19,16 @@ ScreenHeader.propTypes = {
 };
 
 export default ScreenHeader;
+
+const styles = StyleSheet.create({
+  logo: {
+    width: 84,
+    height: 84,
+    marginBottom: "1.5%",
+  },
+
+  title: {
+    textAlign: "center",
+    width: 350,
+  },
+});

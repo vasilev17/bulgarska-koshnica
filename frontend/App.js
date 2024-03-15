@@ -1,5 +1,11 @@
 import { StyleSheet, Text } from "react-native";
+import SignUpScreen from "./screens/SignUpScreen";
+import LoginScreen from "./screens/LoginScreen";
+import UserTypeScreen from "./screens/UserTypeScreen";
 import UserInfoScreen from "./screens/UserInfoScreen";
+import BusinessInfoScreen from "./screens/BusinessInfoScreen";
+import ChooseLocationScreen from "./screens/ChooseLocationScreen";
+
 import { useFonts } from "expo-font";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
@@ -16,7 +22,7 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <UserInfoScreen />
+      <ChooseLocationScreen />
     </GestureHandlerRootView>
   );
 }

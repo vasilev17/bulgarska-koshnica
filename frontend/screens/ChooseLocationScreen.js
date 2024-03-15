@@ -1,12 +1,14 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
+import BaseAppScreen from "../shared/components/BaseAppScreen";
 
 const ChooseLocationScreen = () => {
   return (
-    <View>
-      <Text>ChooseLocationScreen</Text>
-    </View>
-  )
-}
+    <BaseAppScreen
+      contentOffset={"13%"}
+      screenHeaderTitle="Посочете локацията на бизнеса Ви"
+    ></BaseAppScreen>
+  );
+};
 
-export default ChooseLocationScreen
+export default ChooseLocationScreen;
