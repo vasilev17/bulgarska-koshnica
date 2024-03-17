@@ -19,6 +19,7 @@ const CustomButton = (props) => {
         props.hasShadow && styles.buttonShadow,
         props.style,
       ]}
+      onPress={props.onPress}
     >
       <CustomText style={[{ color: props.fontColor }, setFontSize(props.size)]}>
         {props.children}
@@ -28,6 +29,7 @@ const CustomButton = (props) => {
 };
 
 CustomButton.propTypes = {
+  onPress:PropTypes.func,
   buttonColor: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
   hasShadow: PropTypes.bool.isRequired,

@@ -46,6 +46,7 @@ const BaseAppScreen = (props) => {
           fontColor={COLORS.white}
           hasShadow={true}
           style={styles.continueButton}
+          onPress={props.onContinuePress}
         >
           Напред
         </CustomButton>
@@ -73,6 +74,7 @@ const BaseAppScreen = (props) => {
 };
 
 BaseAppScreen.propTypes = {
+  onContinuePress:PropTypes.func,
   footerWaveType: PropTypes.number.isRequired,
   hasBackButton: PropTypes.bool.isRequired,
   hasContinueButton: PropTypes.bool.isRequired,
