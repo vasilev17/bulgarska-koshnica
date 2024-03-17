@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     top: "33%",
     left: 0,
     right: 0,
-    margin: "auto",
     fontSize: FONTSIZES.size30,
     color: COLORS.white,
   },
