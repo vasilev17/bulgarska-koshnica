@@ -7,6 +7,11 @@ export const globalStyles = StyleSheet.create({
     width: 300,
   },
 
+  infoTextLong: {
+    textAlign: "center",
+    width: 360,
+  },
+
   userTypeCard: {
     height: 150,
     width: 320,

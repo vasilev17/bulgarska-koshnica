@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
 
   title: {
     textAlign: "center",
-    width: 350,
+    width: 360,
   },
 });
