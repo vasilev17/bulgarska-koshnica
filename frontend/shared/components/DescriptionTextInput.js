@@ -1,6 +1,6 @@
 import { StyleSheet, TextInput, View } from "react-native";
 import React, { useState } from "react";
-import { COLORS, FONTSIZES } from "../constants";
+import { COLORS, FONT, FONTSIZES } from "../constants";
 import CustomText from "./CustomText";
 
 const DescriptionTextInput = (props) => {
@@ -47,6 +47,8 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZES.size16,
     textAlignVertical: "top",
     padding: 20,
+    fontFamily: FONT.regular,
+    color: COLORS.text,
     zIndex: 99,
   },
   placeholder: {

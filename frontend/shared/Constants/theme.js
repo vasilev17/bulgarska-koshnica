@@ -4,6 +4,7 @@ const COLORS = {
   primary: "#6AC57E",
   secondary: "#23233C",
   tertriary: "#133610",
+  shadowPrimary: "#00ff38",
 
   text: "#133610",
 

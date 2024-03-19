@@ -17,14 +17,14 @@ const LoginScreen = () => {
     >
       <TextInput
         selectionColor={COLORS.primary}
-        style={[globalStyles.textInput, { marginTop: "5%" }]}
+        style={[globalStyles.textInput, globalStyles.textTile, { marginTop: "5%" }]}
       >
         Имейл или тел. номер
       </TextInput>
 
       <TextInput
         selectionColor={COLORS.primary}
-        style={[globalStyles.textInput, { marginBottom: "10%" }]}
+        style={[globalStyles.textInput, globalStyles.textTile, { marginBottom: "10%" }]}
       >
         Парола
       </TextInput>

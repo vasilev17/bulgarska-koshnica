@@ -21,13 +21,13 @@ const SignUpScreen = () => {
         Ако желаете профил, моля въведете името си
       </CustomText>
 
-      <TextInput selectionColor={COLORS.primary} style={globalStyles.textInput}>
+      <TextInput selectionColor={COLORS.primary} style={[globalStyles.textInput, globalStyles.textTile]}>
         Име
       </TextInput>
 
       <TextInput
         selectionColor={COLORS.primary}
-        style={[globalStyles.textInput, { marginBottom: "6%" }]}
+        style={[globalStyles.textInput, globalStyles.textTile, { marginBottom: "6%" }]}
       >
         Фамилия
       </TextInput>

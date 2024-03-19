@@ -29,16 +29,11 @@ export const globalStyles = StyleSheet.create({
     textDecorationLine: "underline",
   },
 
-  textInput: {
+  textTile: {
     marginVertical: "1.3%",
     width: 300,
     height: 60,
-    paddingLeft: 25,
-    paddingRight: 10,
     borderRadius: 5,
-    fontSize: FONTSIZES.size24,
-    fontFamily: FONT.regular,
-    color: COLORS.text,
     backgroundColor: COLORS.white,
     borderTopColor: COLORS.graySecondary,
     borderTopWidth: 0.7,
@@ -53,5 +48,13 @@ export const globalStyles = StyleSheet.create({
     shadowRadius: 13,
 
     elevation: 20,
+  },
+
+  textInput: {
+    paddingLeft: 25,
+    paddingRight: 10,
+    fontSize: FONTSIZES.size24,
+    fontFamily: FONT.regular,
+    color: COLORS.text,
   },
 });

@@ -24,20 +24,20 @@ const UserInfoScreen = () => {
     >
       <TextInput
         selectionColor={COLORS.primary}
-        style={[globalStyles.textInput, { marginTop: "5%" }]}
+        style={[globalStyles.textInput, globalStyles.textTile, { marginTop: "5%" }]}
       >
         Имейл
       </TextInput>
 
-      <TextInput selectionColor={COLORS.primary} style={globalStyles.textInput}>
+      <TextInput selectionColor={COLORS.primary} style={[globalStyles.textInput, globalStyles.textTile]}>
         Телефонен номер
       </TextInput>
 
-      <TextInput selectionColor={COLORS.primary} style={globalStyles.textInput}>
+      <TextInput selectionColor={COLORS.primary} style={[globalStyles.textInput, globalStyles.textTile]}>
         Парола
       </TextInput>
 
-      <TextInput selectionColor={COLORS.primary} style={globalStyles.textInput}>
+      <TextInput selectionColor={COLORS.primary} style={[globalStyles.textInput, globalStyles.textTile]}>
         Повторете паролата
       </TextInput>
 

@@ -6,6 +6,7 @@ import UserInfoScreen from "./screens/UserInfoScreen";
 import BusinessInfoScreen from "./screens/BusinessInfoScreen";
 import ChooseLocationScreen from "./screens/ChooseLocationScreen";
 import BusinessDescriptionScreen from "./screens/BusinessDescriptionScreen";
+import BusinessCategoryScreen from "./screens/BusinessCategoryScreen";
 
 import { useFonts } from "expo-font";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -23,7 +24,7 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <BusinessDescriptionScreen />
+      <BusinessCategoryScreen />
     </GestureHandlerRootView>
   );
 }
