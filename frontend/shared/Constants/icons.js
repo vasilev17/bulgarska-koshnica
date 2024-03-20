@@ -33,6 +33,8 @@ import rating5 from "../../assets/icons/rating5Icon.png";
 import refreshLocation from "../../assets/icons/refreshLocationIcon.png";
 import shop from "../../assets/icons/shopIcon.png";
 import websitePlanet from "../../assets/icons/websitePlanetIcon.png";
+import tickIcon from "../../assets/icons/tickIcon.png";
+import xIcon from "../../assets/icons/xIcon.png";
 
 const ratings = {
   1: rating1,
@@ -74,4 +76,6 @@ export default {
   refreshLocation,
   shop,
   websitePlanet,
+  tickIcon,
+  xIcon,
 };

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import React, { useState } from "react";
 import CustomText from "./CustomText";
 import { COLORS, FONTSIZES } from "../constants";
@@ -10,7 +10,7 @@ const ToggleTile = (props) => {
   const [isSelected, setIsSelected] = useState(false);
   return (
     <TouchableOpacity
-    onPress={()=>setIsSelected(!isSelected)}
+      onPress={() => setIsSelected(!isSelected)}
       style={[
         globalStyles.textTile,
         styles.tileConatiner,

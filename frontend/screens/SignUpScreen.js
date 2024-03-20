@@ -4,11 +4,11 @@ import { globalStyles } from "../shared/globalStyles";
 import { COLORS, SIZES, FOOTERSTYLES } from "../shared/constants";
 import CustomButton from "../shared/components/CustomButton";
 import CustomText from "../shared/components/CustomText";
-import BaseAppScreen from "../shared/components/BaseAppScreen";
+import BaseAppComponent from "../shared/components/BaseAppComponent";
 
 const SignUpScreen = () => {
   return (
-    <BaseAppScreen
+    <BaseAppComponent
     contentOffset={"14.5%"}
       screenHeaderTitle="Добър ден!"
       footerWaveType={FOOTERSTYLES.footerEmpty}
@@ -62,7 +62,7 @@ const SignUpScreen = () => {
           </CustomText>
         </TouchableOpacity>
       </View>
-    </BaseAppScreen>
+    </BaseAppComponent>
   );
 };
 

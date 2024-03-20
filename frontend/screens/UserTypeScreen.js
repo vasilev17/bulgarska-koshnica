@@ -2,11 +2,11 @@ import React from "react";
 import { globalStyles } from "../shared/globalStyles";
 import { images } from "../shared/constants";
 import UserTypeCard from "../shared/components/UserTypeCard";
-import BaseAppScreen from "../shared/components/BaseAppScreen";
+import BaseAppComponent from "../shared/components/BaseAppComponent";
 
 const UserTypeScreen = () => {
   return (
-    <BaseAppScreen contentOffset={"16%"} screenHeaderTitle="Вие сте?" hasContinueButton={false}>
+    <BaseAppComponent contentOffset={"16%"} screenHeaderTitle="Вие сте?" hasContinueButton={false}>
       <UserTypeCard
         style={[
           globalStyles.userTypeCard,
@@ -21,7 +21,7 @@ const UserTypeScreen = () => {
         image={images.producer}
         title={"Продавач"}
       />
-    </BaseAppScreen>
+    </BaseAppComponent>
   );
 };
 

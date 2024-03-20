@@ -5,7 +5,7 @@ import { globalStyles } from "../shared/globalStyles";
 import CheckBoxPrompt from "../shared/components/CheckBoxPrompt";
 import BottomSheetModalComponent from "../shared/components/BottomSheetModalComponent";
 import CustomText from "../shared/components/CustomText";
-import BaseAppScreen from "../shared/components/BaseAppScreen";
+import BaseAppComponent from "../shared/components/BaseAppComponent";
 
 const UserInfoScreen = () => {
   const termsAndConditionsBottomSheetModalRef = useRef(null);
@@ -17,7 +17,7 @@ const UserInfoScreen = () => {
     privacyPolicyBottomSheetModalRef.current?.present();
 
   return [
-    <BaseAppScreen
+    <BaseAppComponent
       contentOffset={"12.5%"}
       screenHeaderTitle={"Моля попълнете следните полета"}
       key={0}
@@ -47,7 +47,7 @@ const UserInfoScreen = () => {
         termsAndConditionsOnPress={handleTermsAndConditionsBottomSheetOpen}
         privacyPolicyOnPress={handlePrivacyPolicyBottomSheetOpen}
       />
-    </BaseAppScreen>,
+    </BaseAppComponent>,
 
     // -- Terms and Conditions BottomSheetModal --
 

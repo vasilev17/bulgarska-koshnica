@@ -4,11 +4,11 @@ import { globalStyles } from "../shared/globalStyles";
 import { COLORS, FOOTERSTYLES, SIZES } from "../shared/constants";
 import CustomText from "../shared/components/CustomText";
 import CustomButton from "../shared/components/CustomButton";
-import BaseAppScreen from "../shared/components/BaseAppScreen";
+import BaseAppComponent from "../shared/components/BaseAppComponent";
 
 const LoginScreen = () => {
   return (
-    <BaseAppScreen
+    <BaseAppComponent
     contentOffset={"19.5%"}
       screenHeaderTitle="Влезте в профила си!"
       footerWaveType={FOOTERSTYLES.footerEmpty}
@@ -48,7 +48,7 @@ const LoginScreen = () => {
       >
         Регистрация
       </CustomButton>
-    </BaseAppScreen>
+    </BaseAppComponent>
   );
 };
 

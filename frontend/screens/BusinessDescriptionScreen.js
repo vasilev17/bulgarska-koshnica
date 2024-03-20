@@ -1,13 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import BaseAppScreen from "../shared/components/BaseAppScreen";
+import BaseAppComponent from "../shared/components/BaseAppComponent";
 import DescriptionTextInput from "../shared/components/DescriptionTextInput";
 import CustomText from "../shared/components/CustomText";
 import { globalStyles } from "../shared/globalStyles";
 
 const BusinessDescriptionScreen = () => {
   return (
-    <BaseAppScreen
+    <BaseAppComponent
       screenHeaderTitle="Попълнете информация за биснеса Ви"
       contentOffset={"8%"}
     >
@@ -16,7 +15,7 @@ const BusinessDescriptionScreen = () => {
       <CustomText style={[globalStyles.infoTextLong, { marginTop: "2%" }]}>
         Тази информация ще бъде публична. Чрез нея хората ще достигат до Вас.
       </CustomText>
-    </BaseAppScreen>
+    </BaseAppComponent>
   );
 };
 

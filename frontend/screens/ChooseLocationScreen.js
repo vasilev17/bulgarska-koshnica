@@ -1,6 +1,6 @@
 import { View, StyleSheet, ImageBackground, Image } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
-import BaseAppScreen from "../shared/components/BaseAppScreen";
+import BaseAppComponent from "../shared/components/BaseAppComponent";
 import { COLORS, FONT, FONTSIZES, icons, images } from "../shared/constants";
 import MapView from "react-native-maps";
 import CustomText from "../shared/components/CustomText";
@@ -45,7 +45,7 @@ const ChooseLocationScreen = () => {
   };
 
   return (
-    <BaseAppScreen
+    <BaseAppComponent
       contentOffset={"11.5%"}
       screenHeaderTitle="Посочете локацията на бизнеса Ви"
       onContinuePress={pickLocation}
@@ -100,7 +100,7 @@ const ChooseLocationScreen = () => {
           </ImageBackground>
         </TouchableOpacity>
       </View>
-    </BaseAppScreen>
+    </BaseAppComponent>
   );
 };
 

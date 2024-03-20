@@ -1,9 +1,8 @@
-import { useFonts } from "expo-font";
-
 const COLORS = {
   primary: "#6AC57E",
   secondary: "#23233C",
   tertriary: "#133610",
+
   shadowPrimary: "#00ff38",
 
   text: "#133610",
@@ -14,6 +13,8 @@ const COLORS = {
 
   white: "#FFFFFF",
   whiteDarker: "#F4F5FA",
+
+  red: "#FF0000",
 
   black: "#000000",
 };

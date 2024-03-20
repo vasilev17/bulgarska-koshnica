@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import { COLORS, FONT, FONTSIZES } from "../constants";
 import CustomText from "./CustomText";
@@ -26,6 +26,10 @@ const DescriptionTextInput = (props) => {
       )}
     </View>
   );
+};
+
+DescriptionTextInput.propTypes = {
+  style: Text.propTypes.style,
 };
 
 export default DescriptionTextInput;
