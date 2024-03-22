@@ -15,7 +15,7 @@ const DeliveryRadioButtons = () => {
 
   return (
     <View>
-      <CustomText style={[styles.title, { marginBottom: "2%" }]}>
+      <CustomText style={[styles.title, { marginBottom: "1.5%" }]}>
         Предлагате ли доставка?
       </CustomText>
       <TouchableOpacity
