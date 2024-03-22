@@ -1,21 +1,30 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import HeadingText from "./HeadingText";
-import { images } from "../constants";
+import { FONTSIZES, images } from "../constants";
 import PropTypes, { arrayOf, oneOfType } from "prop-types";
+import CustomText from "./CustomText";
 
 const ScreenHeader = (props) => {
   return (
     <View style={[props.style, { alignItems: "center" }]}>
       <Image style={styles.logo} source={images.basketLogo} />
       <HeadingText style={styles.title}>{props.children}</HeadingText>
+      {props.subtitle !== null && (
+        <CustomText style={styles.subtitle}>{props.subtitle}</CustomText>
+      )}
     </View>
   );
 };
 
 ScreenHeader.propTypes = {
+  subtitle: PropTypes.string,
   style: Text.propTypes.style,
   children: oneOfType([arrayOf(PropTypes.string), PropTypes.string]),
+};
+
+ScreenHeader.defaultProps = {
+  subtitle: null,
 };
 
 export default ScreenHeader;
@@ -30,5 +39,11 @@ const styles = StyleSheet.create({
   title: {
     textAlign: "center",
     width: 360,
+  },
+
+  subtitle: {
+    textAlign: "center",
+    fontSize: FONTSIZES.size24,
+    marginTop:"-1.5%",
   },
 });

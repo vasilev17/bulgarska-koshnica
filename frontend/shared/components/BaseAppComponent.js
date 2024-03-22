@@ -61,7 +61,9 @@ const BaseAppScreen = (props) => {
         <View
           style={[styles.screenContentContainer, { top: props.contentOffset }]}
         >
-          <ScreenHeader>{props.screenHeaderTitle}</ScreenHeader>
+          <ScreenHeader subtitle={props.screenHeaderSubtitle}>
+            {props.screenHeaderTitle}
+          </ScreenHeader>
           {props.children}
         </View>
 
@@ -74,11 +76,12 @@ const BaseAppScreen = (props) => {
 };
 
 BaseAppScreen.propTypes = {
-  onContinuePress:PropTypes.func,
   footerWaveType: PropTypes.number.isRequired,
   hasBackButton: PropTypes.bool.isRequired,
   hasContinueButton: PropTypes.bool.isRequired,
   screenHeaderTitle: PropTypes.string.isRequired,
+  screenHeaderSubtitle: PropTypes.string,
+  onContinuePress: PropTypes.func,
   contentOffset: oneOfType([PropTypes.number, PropTypes.string]),
   children: oneOfType([arrayOf(PropTypes.node), PropTypes.node]),
 };
@@ -87,6 +90,7 @@ BaseAppScreen.defaultProps = {
   footerWaveType: FOOTERSTYLES.footerWithContent,
   hasBackButton: true,
   hasContinueButton: true,
+  screenHeaderSubtitle: null,
   contentOffset: 0,
 };
 

@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput } from "react-native";
+import { TextInput } from "react-native";
 import React from "react";
 import BaseAppComponent from "../shared/components/BaseAppComponent";
 import { globalStyles } from "../shared/globalStyles";
@@ -36,4 +36,3 @@ const DeliveryAndPaymentScreen = () => {
 };
 
 export default DeliveryAndPaymentScreen;
-const styles = StyleSheet.create({});
