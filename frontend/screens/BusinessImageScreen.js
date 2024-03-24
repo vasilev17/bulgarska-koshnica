@@ -23,5 +23,3 @@ const BusinessImageScreen = () => {
 };
 
 export default BusinessImageScreen;
-
-const styles = StyleSheet.create({});

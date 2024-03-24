@@ -1,6 +1,6 @@
 import { Image, ImageBackground, StyleSheet, View } from "react-native";
 import React, { useState } from "react";
-import { COLORS, FONTSIZES, icons, images } from "../constants";
+import { COLORS, FONTSIZES, icons } from "../constants";
 import CustomText from "./CustomText";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
