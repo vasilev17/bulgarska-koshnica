@@ -4,6 +4,7 @@ import { COLORS, images } from "../constants";
 import ProductTile from "./ProductTile";
 import { Dimensions } from "react-native";
 import { FlashList } from "@shopify/flash-list";
+import AddNewProductTile from "./AddNewProductTile";
 
 const ProductsDisplay = (props) => {
   const vh = Dimensions.get("window").height;
@@ -66,10 +67,10 @@ const ProductsDisplay = (props) => {
       <View style={styles.topBorder} />
       <View style={{ flex: 1 }}>
         <FlashList
-        contentContainerStyle={{paddingVertical:vh / 75}}
+          contentContainerStyle={{ paddingVertical: vh / 75 }}
           // showsVerticalScrollIndicator={false}
           data={Products}
-          // NewProductTile
+          ListHeaderComponent={<AddNewProductTile />}
           renderItem={({ item }) => (
             <ProductTile
               title={item.title}
