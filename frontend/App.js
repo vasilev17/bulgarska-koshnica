@@ -12,6 +12,7 @@ import DeliveryAndPaymentScreen from "./screens/DeliveryAndPaymentScreen";
 import BusinessImageScreen from "./screens/BusinessImageScreen";
 import NewProductsScreen from "./screens/NewProductsScreen";
 import AddProductScreen from "./screens/AddProductScreen";
+import BusinessKeyWordsScreen from "./screens/BusinessKeyWordsScreen";
 
 
 import { useFonts } from "expo-font";
@@ -30,7 +31,7 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <AddProductScreen />
+      <BusinessKeyWordsScreen />
     </GestureHandlerRootView>
   );
 }
