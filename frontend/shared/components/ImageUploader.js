@@ -1,9 +1,10 @@
-import { Image, ImageBackground, StyleSheet, View } from "react-native";
+import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import { COLORS, FONTSIZES, icons } from "../constants";
+import { COLORS, FONTSIZES, SIZES, icons } from "../constants";
 import CustomText from "./CustomText";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
+import PropTypes from "prop-types";
 
 const ImageUploader = (props) => {
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -14,7 +15,7 @@ const ImageUploader = (props) => {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
-        aspect: [17, 10], // or 14, 10
+        aspect: props.aspectRatio, // [17, 10] or [14, 10] for shopfront images
         quality: 1,
       });
       if (!result.canceled) {
@@ -28,14 +29,33 @@ const ImageUploader = (props) => {
   return (
     <TouchableOpacity
       onPress={uploadImage}
-      style={[styles.container, props.style]}
+      style={[
+        styles.container,
+        props.size === SIZES.small
+          ? { borderRadius: 25, width: 225 }
+          : { borderRadius: 45, width: 375 },
+        props.style,
+      ]}
     >
       <ImageBackground
         style={styles.imageBackground}
-        imageStyle={{ borderRadius: 43 }}
+        imageStyle={
+          props.size === SIZES.small
+            ? { borderRadius: 23 }
+            : { borderRadius: 43 }
+        }
         source={uploadedImage && { uri: uploadedImage }}
       >
-        {uploadedImage && <View style={styles.overlay} />}
+        {uploadedImage && (
+          <View
+            style={[
+              styles.overlay,
+              props.size === SIZES.small
+                ? { borderRadius: 25 }
+                : { borderRadius: 45 },
+            ]}
+          />
+        )}
 
         <View style={styles.uploaderContent}>
           <Image
@@ -61,14 +81,21 @@ const ImageUploader = (props) => {
   );
 };
 
+ImageUploader.propTypes = {
+  aspectRatio: PropTypes.arrayOf(PropTypes.number).isRequired,
+  style: Text.propTypes.style,
+};
+
+ImageUploader.defaultProps = {
+  aspectRatio: [1, 1],
+};
+
 export default ImageUploader;
 
 const styles = StyleSheet.create({
   container: {
-    width: 375,
     height: 225,
     borderWidth: 2,
-    borderRadius: 45,
     borderColor: COLORS.primary,
   },
   addImageIcon: {
@@ -78,6 +105,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: FONTSIZES.size24,
     color: COLORS.gray,
+    textAlign: "center",
   },
   imageBackground: {
     width: "100%",
@@ -87,7 +115,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     backgroundColor: COLORS.black,
-    borderRadius: 45,
     opacity: 0.25,
     zIndex: 0,
   },

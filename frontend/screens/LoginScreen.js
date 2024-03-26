@@ -12,8 +12,6 @@ const LoginScreen = () => {
     contentOffset={"19.5%"}
       screenHeaderTitle="Влезте в профила си!"
       footerWaveType={FOOTERSTYLES.footerEmpty}
-      hasBackButton={false}
-      hasContinueButton={false}
     >
       <TextInput
         selectionColor={COLORS.primary}

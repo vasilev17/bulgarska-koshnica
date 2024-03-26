@@ -23,7 +23,10 @@ const BaseAppScreen = (props) => {
   };
 
   const renderBackButton = () => {
-    if (props.hasBackButton === true)
+    if (
+      props.hasBackButton === true &&
+      props.footerWaveType !== FOOTERSTYLES.footerEmpty
+    )
       return (
         <CustomButton
           size={SIZES.small}
@@ -38,7 +41,10 @@ const BaseAppScreen = (props) => {
   };
 
   const renderContinueButton = () => {
-    if (props.hasContinueButton === true)
+    if (
+      props.hasContinueButton === true &&
+      props.footerWaveType !== FOOTERSTYLES.footerEmpty
+    )
       return (
         <CustomButton
           size={SIZES.small}

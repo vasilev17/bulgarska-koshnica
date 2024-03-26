@@ -2,7 +2,7 @@ import { StyleSheet, TextInput, View } from "react-native";
 import React from "react";
 import BaseAppComponent from "../shared/components/BaseAppComponent";
 import { globalStyles } from "../shared/globalStyles";
-import { COLORS, FONTSIZES } from "../shared/constants";
+import { COLORS, FONTSIZES, SIZES } from "../shared/constants";
 import DeliveryRadioButtons from "../shared/components/DeliveryRadioButtons";
 import CustomText from "../shared/components/CustomText";
 import SwitchComponent from "../shared/components/SwitchComponent";
@@ -31,6 +31,7 @@ const DeliveryAndPaymentScreen = () => {
           Притежавате ли POS терминал?
         </CustomText>
         <SwitchComponent
+          size={SIZES.large}
           leftOption="Да"
           rightOption="Не"
           style={{ marginTop: "2.5%" }}

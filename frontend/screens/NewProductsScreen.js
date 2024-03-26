@@ -1,7 +1,7 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
 import BaseAppComponent from "../shared/components/BaseAppComponent";
-import ProductsDisplay from '../shared/components/ProductsDisplay';
+import ProductsDisplay from "../shared/components/ProductsDisplay";
 
 const NewProductsScreen = () => {
   return (
@@ -10,15 +10,9 @@ const NewProductsScreen = () => {
       screenHeaderSubtitle="(по желание)"
       contentOffset={"12%"}
     >
-
-<ProductsDisplay style={{marginTop:'4%',}}>
-
-
-</ProductsDisplay>
-
-        
+      <ProductsDisplay style={{ marginTop: "4%" }}></ProductsDisplay>
     </BaseAppComponent>
-  )
-}
+  );
+};
 
-export default NewProductsScreen
+export default NewProductsScreen;

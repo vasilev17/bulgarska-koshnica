@@ -9,11 +9,9 @@ import BaseAppComponent from "../shared/components/BaseAppComponent";
 const SignUpScreen = () => {
   return (
     <BaseAppComponent
-    contentOffset={"14.5%"}
+      contentOffset={"14.5%"}
       screenHeaderTitle="Добър ден!"
       footerWaveType={FOOTERSTYLES.footerEmpty}
-      hasBackButton={false}
-      hasContinueButton={false}
     >
       <CustomText
         style={[globalStyles.infoText, { marginTop: "5%", marginBottom: "3%" }]}
@@ -21,13 +19,20 @@ const SignUpScreen = () => {
         Ако желаете профил, моля въведете името си
       </CustomText>
 
-      <TextInput selectionColor={COLORS.primary} style={[globalStyles.textInput, globalStyles.textTile]}>
+      <TextInput
+        selectionColor={COLORS.primary}
+        style={[globalStyles.textInput, globalStyles.textTile]}
+      >
         Име
       </TextInput>
 
       <TextInput
         selectionColor={COLORS.primary}
-        style={[globalStyles.textInput, globalStyles.textTile, { marginBottom: "6%" }]}
+        style={[
+          globalStyles.textInput,
+          globalStyles.textTile,
+          { marginBottom: "6%" },
+        ]}
       >
         Фамилия
       </TextInput>
