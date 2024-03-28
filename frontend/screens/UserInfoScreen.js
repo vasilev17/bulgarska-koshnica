@@ -23,23 +23,32 @@ const UserInfoScreen = () => {
       key={0}
     >
       <TextInput
+        placeholder="Имейл"
         selectionColor={COLORS.primary}
-        style={[globalStyles.textInput, globalStyles.textTile, { marginTop: "5%" }]}
-      >
-        Имейл
-      </TextInput>
+        style={[
+          globalStyles.textInput,
+          globalStyles.textTile,
+          { marginTop: "5%" },
+        ]}
+      />
 
-      <TextInput selectionColor={COLORS.primary} style={[globalStyles.textInput, globalStyles.textTile]}>
-        Телефонен номер
-      </TextInput>
+      <TextInput
+        placeholder="Телефонен номер"
+        selectionColor={COLORS.primary}
+        style={[globalStyles.textInput, globalStyles.textTile]}
+      />
 
-      <TextInput selectionColor={COLORS.primary} style={[globalStyles.textInput, globalStyles.textTile]}>
-        Парола
-      </TextInput>
+      <TextInput
+        placeholder="Парола"
+        selectionColor={COLORS.primary}
+        style={[globalStyles.textInput, globalStyles.textTile]}
+      />
 
-      <TextInput selectionColor={COLORS.primary} style={[globalStyles.textInput, globalStyles.textTile]}>
-        Повторете паролата
-      </TextInput>
+      <TextInput
+        placeholder="Повторете паролата"
+        selectionColor={COLORS.primary}
+        style={[globalStyles.textInput, globalStyles.textTile]}
+      />
 
       <CheckBoxPrompt
         style={{ marginTop: "3%" }}
@@ -57,6 +66,7 @@ const UserInfoScreen = () => {
       ref={termsAndConditionsBottomSheetModalRef}
       title={"Общи условия"}
     >
+      {/* Change to real terms and conditions instead of: */}
       <CustomText>
         Това са общите условия за ползване на приложението!{"\n"}
         {"\n"}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu
@@ -85,6 +95,7 @@ const UserInfoScreen = () => {
       ref={privacyPolicyBottomSheetModalRef}
       title={"Защита на личните данни"}
     >
+      {/* Change to real privacy policy instead of: */}
       <CustomText>
         Това са условията за защита на личните данни!{"\n"}
         {"\n"}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu

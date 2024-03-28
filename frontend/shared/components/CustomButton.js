@@ -101,8 +101,8 @@ const styles = StyleSheet.create({
   },
 
   buttonSizeMedium: {
-    width: 225,
-    height: 45,
+    width: 240,
+    height: 60,
   },
 
   buttonSizeLarge: {
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
 
   textSizeMedium: {
-    fontSize: FONTSIZES.size24,
+    fontSize: FONTSIZES.size25,
   },
 
   textSizeLarge: {

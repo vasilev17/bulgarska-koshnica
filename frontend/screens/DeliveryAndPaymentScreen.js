@@ -14,15 +14,14 @@ const DeliveryAndPaymentScreen = () => {
       contentOffset={"7.5%"}
     >
       <TextInput
+        placeholder="Уеб сайт (по желание)"
         selectionColor={COLORS.primary}
         style={[
           globalStyles.textInput,
           globalStyles.textTile,
           { marginVertical: "3.5%" },
         ]}
-      >
-        Уеб сайт (по желание)
-      </TextInput>
+      />
 
       <DeliveryRadioButtons />
 

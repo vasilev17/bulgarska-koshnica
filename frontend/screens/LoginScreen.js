@@ -9,23 +9,29 @@ import BaseAppComponent from "../shared/components/BaseAppComponent";
 const LoginScreen = () => {
   return (
     <BaseAppComponent
-    contentOffset={"19.5%"}
+      contentOffset={"19.5%"}
       screenHeaderTitle="Влезте в профила си!"
       footerWaveType={FOOTERSTYLES.footerEmpty}
     >
       <TextInput
+        placeholder="Имейл или тел. номер"
         selectionColor={COLORS.primary}
-        style={[globalStyles.textInput, globalStyles.textTile, { marginTop: "5%" }]}
-      >
-        Имейл или тел. номер
-      </TextInput>
+        style={[
+          globalStyles.textInput,
+          globalStyles.textTile,
+          { marginTop: "5%" },
+        ]}
+      />
 
       <TextInput
+        placeholder="Парола"
         selectionColor={COLORS.primary}
-        style={[globalStyles.textInput, globalStyles.textTile, { marginBottom: "10%" }]}
-      >
-        Парола
-      </TextInput>
+        style={[
+          globalStyles.textInput,
+          globalStyles.textTile,
+          { marginBottom: "10%" },
+        ]}
+      />
 
       <CustomButton
         size={SIZES.small}

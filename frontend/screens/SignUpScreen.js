@@ -20,22 +20,20 @@ const SignUpScreen = () => {
       </CustomText>
 
       <TextInput
+        placeholder="Име"
         selectionColor={COLORS.primary}
         style={[globalStyles.textInput, globalStyles.textTile]}
-      >
-        Име
-      </TextInput>
+      />
 
       <TextInput
+        placeholder="Фамилия"
         selectionColor={COLORS.primary}
         style={[
           globalStyles.textInput,
           globalStyles.textTile,
           { marginBottom: "6%" },
         ]}
-      >
-        Фамилия
-      </TextInput>
+      />
 
       <CustomButton
         size={SIZES.small}

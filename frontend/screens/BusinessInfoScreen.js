@@ -13,39 +13,38 @@ const BusinessInfoScreen = () => {
       contentOffset={"9.5%"}
     >
       <TextInput
+        placeholder="Име на бизнеса"
         selectionColor={COLORS.primary}
         style={[
           globalStyles.textInput,
           globalStyles.textTile,
           { marginTop: "5%" },
         ]}
-      >
-        Име на бизнеса
-      </TextInput>
+      />
+
       <TextInput
+        placeholder="Адрес"
         selectionColor={COLORS.primary}
         style={[globalStyles.textInput, globalStyles.textTile]}
-      >
-        Адрес
-      </TextInput>
+      />
+
       <TextInput
+        placeholder="Област"
         selectionColor={COLORS.primary}
         style={[globalStyles.textInput, globalStyles.textTile]}
-      >
-        Област
-      </TextInput>
+      />
+
       <TextInput
+        placeholder="Служебен тел. номер"
         selectionColor={COLORS.primary}
         style={[globalStyles.textInput, globalStyles.textTile]}
-      >
-        Служебен тел. номер
-      </TextInput>
+      />
+
       <TextInput
+        placeholder="Електронна поща"
         selectionColor={COLORS.primary}
         style={[globalStyles.textInput, globalStyles.textTile]}
-      >
-        Електронна поща
-      </TextInput>
+      />
 
       <CustomText style={[globalStyles.infoText, { marginTop: "2%" }]}>
         Тази информация ще бъде публична. Чрез нея хората ще достигат до Вас.

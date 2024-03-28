@@ -21,25 +21,23 @@ const AddProductScreen = () => {
       footerWaveType={FOOTERSTYLES.footerEmpty}
     >
       <TextInput
+        placeholder="Име на продукта"
         selectionColor={COLORS.primary}
         style={[
           globalStyles.textInput,
           globalStyles.textTile,
           { marginTop: "5%", marginBottom: "5%" },
         ]}
-      >
-        Име на продукта
-      </TextInput>
+      />
 
       <View style={styles.priceSectionContainer}>
         <TextInput
           keyboardType="numeric"
+          placeholder="Цена"
           maxLength={7}
           selectionColor={COLORS.primary}
           style={[styles.priceInput, { marginRight: "3%" }]}
-        >
-          Цена
-        </TextInput>
+        />
 
         <SwitchComponent
           size={SIZES.small}
