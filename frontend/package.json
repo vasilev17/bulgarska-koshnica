@@ -23,7 +23,8 @@
     "react-native-maps": "1.10.0",
     "react-native-reanimated": "~3.6.2",
     "expo-image-picker": "~14.7.1",
-    "@shopify/flash-list": "1.6.3"
+    "@shopify/flash-list": "1.6.3",
+    "expo-constants": "~15.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
