@@ -1,5 +1,5 @@
 import images from "./images";
 import icons from "./icons";
-import { COLORS, FONT, FONTSIZES, SIZES, FOOTERSTYLES, SHADOWS } from "./theme";
+import { COLORS, FONT, FONTSIZES, SIZES, FOOTERSTYLES, SHADOWS, BULGARIA_BOUNDARIES, MAP_INITIAL_REGION } from "./theme";
 
-export { images, icons, COLORS, FONT, FONTSIZES, SIZES, FOOTERSTYLES, SHADOWS };
+export { images, icons, COLORS, FONT, FONTSIZES, SIZES, FOOTERSTYLES, SHADOWS, BULGARIA_BOUNDARIES, MAP_INITIAL_REGION };

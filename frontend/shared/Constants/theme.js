@@ -80,4 +80,17 @@ const SHADOWS = {
   },
 };
 
-export { COLORS, FONT, FONTSIZES, SIZES, FOOTERSTYLES, SHADOWS };
+const BULGARIA_BOUNDARIES = {
+  northEast: { latitude: 44.22501876753331, longitude: 28.602242578947614 },
+  southWest: { latitude: 41.231853961326166, longitude: 22.293343826295025 },
+};
+
+const MAP_INITIAL_REGION = {
+  latitude: 42.6294024271361,
+  longitude: 25.276131942786883,
+  latitudeDelta: 4.5,
+  longitudeDelta: 4.5,
+};
+
+
+export { COLORS, FONT, FONTSIZES, SIZES, FOOTERSTYLES, SHADOWS, BULGARIA_BOUNDARIES, MAP_INITIAL_REGION };

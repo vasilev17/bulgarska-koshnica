@@ -1,29 +1,19 @@
 import { View, StyleSheet, ImageBackground, Image } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import BaseAppComponent from "../shared/components/BaseAppComponent";
-import { COLORS, FONT, FONTSIZES, icons, images } from "../shared/constants";
+import { BULGARIA_BOUNDRIES, COLORS, FONT, FONTSIZES, MAP_INITIAL_REGION, icons, images } from "../shared/constants";
 import MapView from "react-native-maps";
 import CustomText from "../shared/components/CustomText";
 import { TouchableOpacity } from "react-native";
 import * as Location from "expo-location";
 
 const ChooseLocationScreen = () => {
-  const bulgariaBoundaries = {
-    northEast: { latitude: 44.22501876753331, longitude: 28.602242578947614 },
-    southWest: { latitude: 41.231853961326166, longitude: 22.293343826295025 },
-  };
-  const mapInitialRegion = {
-    latitude: 42.6294024271361,
-    longitude: 25.276131942786883,
-    latitudeDelta: 4.5,
-    longitudeDelta: 4.5,
-  };
 
   const mapRef = useRef(null);
   const [mapType, setMapType] = useState("standard");
   const [selectedRegion, setSelectedRegion] = useState({
-    latitude: mapInitialRegion.latitude,
-    longitude: mapInitialRegion.longitude,
+    latitude: MAP_INITIAL_REGION.latitude,
+    longitude: MAP_INITIAL_REGION.longitude,
   });
 
   useEffect(() => {
@@ -61,15 +51,15 @@ const ChooseLocationScreen = () => {
           }
           onMapLoaded={() =>
             mapRef.current.setMapBoundaries(
-              bulgariaBoundaries.northEast,
-              bulgariaBoundaries.southWest
+              BULGARIA_BOUNDRIES.northEast,
+              BULGARIA_BOUNDRIES.southWest
             )
           }
           //provider={PROVIDER_GOOGLE}
           minZoomLevel={6.5}
           mapType={mapType}
           style={{ ...StyleSheet.absoluteFillObject }}
-          initialRegion={mapInitialRegion}
+          initialRegion={MAP_INITIAL_REGION}
           showsMyLocationButton={false}
           //  showsUserLocation={true}
           rotateEnabled={false}
@@ -78,7 +68,7 @@ const ChooseLocationScreen = () => {
           loadingEnabled={true}
           loadingBackgroundColor={COLORS.lightGray}
           loadingIndicatorColor={COLORS.primary}
-        ></MapView>
+        />
 
         <Image style={styles.mapMarker} source={icons.mapMarker} />
 
