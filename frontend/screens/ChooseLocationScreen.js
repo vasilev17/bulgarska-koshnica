@@ -1,14 +1,22 @@
 import { View, StyleSheet, ImageBackground, Image } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import BaseAppComponent from "../shared/components/BaseAppComponent";
-import { BULGARIA_BOUNDRIES, COLORS, FONT, FONTSIZES, MAP_INITIAL_REGION, icons, images } from "../shared/constants";
+import {
+  BULGARIA_BOUNDARIES,
+  COLORS,
+  FONT,
+  FONTSIZES,
+  MAP_INITIAL_REGION,
+  icons,
+  images,
+} from "../shared/constants";
 import MapView from "react-native-maps";
 import CustomText from "../shared/components/CustomText";
 import { TouchableOpacity } from "react-native";
 import * as Location from "expo-location";
+import MapViewSwitch from "../shared/components/MapViewSwitch";
 
 const ChooseLocationScreen = () => {
-
   const mapRef = useRef(null);
   const [mapType, setMapType] = useState("standard");
   const [selectedRegion, setSelectedRegion] = useState({
@@ -51,8 +59,8 @@ const ChooseLocationScreen = () => {
           }
           onMapLoaded={() =>
             mapRef.current.setMapBoundaries(
-              BULGARIA_BOUNDRIES.northEast,
-              BULGARIA_BOUNDRIES.southWest
+              BULGARIA_BOUNDARIES.northEast,
+              BULGARIA_BOUNDARIES.southWest
             )
           }
           //provider={PROVIDER_GOOGLE}
@@ -72,23 +80,12 @@ const ChooseLocationScreen = () => {
 
         <Image style={styles.mapMarker} source={icons.mapMarker} />
 
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.mapTypePicker}
-          onPress={toggleMapType}
-        >
-          <ImageBackground
-            style={styles.mapTypeImage}
-            source={
-              mapType === "standard" ? images.satelliteMap : images.standardMap
-            }
-          >
-            <View style={styles.overlay} />
-            <CustomText style={styles.mapTypeText}>
-              {mapType === "standard" ? "Сателит" : "Основна"}
-            </CustomText>
-          </ImageBackground>
-        </TouchableOpacity>
+        <MapViewSwitch
+          mapType={mapType}
+          toggleMapType={toggleMapType}
+          activeOpacity={0.8}
+          style={{ top: "82.5%", left: "1%" }}
+        />
       </View>
     </BaseAppComponent>
   );
@@ -105,43 +102,6 @@ const styles = StyleSheet.create({
     borderColor: COLORS.graySecondary,
     borderWidth: 2,
     elevation: 5,
-  },
-  mapTypePicker: {
-    backgroundColor: COLORS.white,
-    width: 61,
-    aspectRatio: 1,
-    borderRadius: 8,
-    borderColor: COLORS.primary,
-    borderWidth: 2,
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
-    top: "82.5%",
-    left: "1%",
-  },
-  mapTypeImage: {
-    width: 54,
-    aspectRatio: 1,
-    borderRadius: 8,
-    overflow: "hidden",
-  },
-
-  overlay: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: COLORS.black,
-    opacity: 0.4,
-    borderRadius: 8,
-  },
-  mapTypeText: {
-    textAlign: "center",
-    position: "absolute",
-    top: "33%",
-    left: 0,
-    right: 0,
-    fontSize: FONTSIZES.size12,
-    color: COLORS.white,
-    fontFamily: FONT.bold,
   },
   mapMarker: {
     width: 33,

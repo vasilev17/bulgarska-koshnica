@@ -16,7 +16,6 @@ import BusinessKeyWordsScreen from "./screens/BusinessKeyWordsScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import MapScreen from "./screens/MapScreen";
 
-
 import { useFonts } from "expo-font";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 

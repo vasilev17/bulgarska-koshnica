@@ -12,6 +12,7 @@ import closeCard from "../../assets/icons/closeCardIcon.png";
 import closeSearch from "../../assets/icons/closeSearchIcon.png";
 import closeSection from "../../assets/icons/closeSectionIcon.png";
 import closeTag from "../../assets/icons/closeTagIcon.png";
+import userCurrentLocation from "../../assets/icons/userCurrentLocationIcon.png";
 import currentLocation from "../../assets/icons/currentLocationIcon.png";
 import danger from "../../assets/icons/dangerIcon.png";
 import deleteBin from "../../assets/icons/deleteBinIcon.png";
@@ -59,6 +60,7 @@ export default {
   closeSearch,
   closeSection,
   closeTag,
+  userCurrentLocation,
   currentLocation,
   danger,
   deleteBin,
