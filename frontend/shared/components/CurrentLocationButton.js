@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 const CurrentLocationButton = (props) => {
   const handleButtonPress = () => {
     try {
+      if (props.currentLocation === null) props.getUserLocation();
+
       props.mapRef.current.animateToRegion({
         latitude: props.currentLocation.latitude,
         longitude: props.currentLocation.longitude,
@@ -14,7 +16,7 @@ const CurrentLocationButton = (props) => {
         longitudeDelta: 0.01,
       });
     } catch (err) {
-      console.log("Error animating to current location!");
+      console.warn("Couldn't animate to current location!", err);
     }
   };
 
@@ -33,6 +35,7 @@ const CurrentLocationButton = (props) => {
 };
 
 CurrentLocationButton.propTypes = {
+  getUserLocation: PropTypes.func.isRequired,
   mapRef: PropTypes.object.isRequired,
   currentLocation: PropTypes.object,
 };
