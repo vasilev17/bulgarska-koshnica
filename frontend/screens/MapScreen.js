@@ -5,18 +5,42 @@ import {
   BULGARIA_BOUNDARIES,
   COLORS,
   MAP_INITIAL_REGION,
+  icons,
+  images,
 } from "../shared/constants";
 import * as Location from "expo-location";
 import MapViewSwitch from "../shared/components/MapViewSwitch";
 import CurrentLocationButton from "../shared/components/CurrentLocationButton";
-import icons from "../shared/constants/icons";
 import SearchBar from "../shared/components/SearchBar";
 import DismissKeyboardView from "../shared/components/DismissKeyboardView";
+import { ScrollView } from "react-native-gesture-handler";
+import FilterTag from "../shared/components/FilterTag";
+import { FlashList } from "@shopify/flash-list";
 
 export default function MapScreen() {
   const mapRef = useRef(null);
   const [location, setLocation] = useState(null);
   const [mapType, setMapType] = useState("standard");
+
+  //Fetch Filter Tags from API instead of:
+  const filterTags = [
+    {
+      icon: images.basketLogo,
+      title: "Хранителни продукти",
+    },
+    {
+      icon: images.basketLogo,
+      title: "Дрехи",
+    },
+    {
+      icon: images.basketLogo,
+      title: "Изделия",
+    },
+    {
+      icon: images.basketLogo,
+      title: "Семена",
+    },
+  ];
 
   useEffect(() => {
     Location.requestForegroundPermissionsAsync();
@@ -70,7 +94,7 @@ export default function MapScreen() {
           )}
         </MapView>
 
-        <SearchBar />
+        <SearchBar filterTags={filterTags} />
 
         <CurrentLocationButton
           mapRef={mapRef}
@@ -89,3 +113,9 @@ export default function MapScreen() {
     </DismissKeyboardView>
   );
 }
+
+const styles = StyleSheet.create({
+  filterTags: {
+    position: "absolute",
+  },
+});

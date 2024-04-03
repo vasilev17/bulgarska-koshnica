@@ -10,7 +10,7 @@ const NewProductsScreen = () => {
       screenHeaderSubtitle="(по желание)"
       contentOffset={"12%"}
     >
-      <ProductsDisplay style={{ marginTop: "4%" }}></ProductsDisplay>
+      <ProductsDisplay style={{ marginTop: "4%" }}/>
     </BaseAppComponent>
   );
 };
