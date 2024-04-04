@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     borderRadius: 100,
     position: "absolute",
-    bottom: "8%",
-    right: "4.5%",
+    bottom: "15.5%",
+    right: "1%",
 
     shadowColor: COLORS.shadowPrimary,
     elevation: 10,

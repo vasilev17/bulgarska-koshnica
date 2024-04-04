@@ -21,7 +21,7 @@ export default BottomSheetHandleComponent;
 
 const styles = StyleSheet.create({
   bottomSheetTitle: {
-    width: 212,
+    width: 210,
     marginTop: "10%",
     marginLeft: "7%",
     fontSize: FONTSIZES.size24,
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
 
   headerWave: {
     width: "100%",
-    height: 135,
     zIndex: -1,
     overflow: "hidden",
     borderTopLeftRadius: 10,

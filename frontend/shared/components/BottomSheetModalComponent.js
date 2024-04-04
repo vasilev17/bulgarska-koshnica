@@ -56,7 +56,7 @@ BottomSheetModalComponent.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.arrayOf(number),
   ]).isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   hasFooter: PropTypes.bool.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
