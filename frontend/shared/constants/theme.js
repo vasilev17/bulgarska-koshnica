@@ -15,6 +15,7 @@ const COLORS = {
   whiteDarker: "#F4F5FA",
 
   red: "#FF0000",
+  yellow: "#FFB554",
 
   black: "#000000",
 };

@@ -29,7 +29,9 @@ const BottomSheetModalComponent = forwardRef((props, ref) => {
       <BottomSheetModal
         ref={ref}
         snapPoints={snapPoints}
-        backdropComponent={bottomsheetModalBackrop}
+        backdropComponent={
+          props.hasBackdrop === true && bottomsheetModalBackrop
+        }
         handleComponent={() => (
           <BottomSheetHandleComponent title={props.title} />
         )}
@@ -58,6 +60,7 @@ BottomSheetModalComponent.propTypes = {
   ]).isRequired,
   title: PropTypes.string,
   hasFooter: PropTypes.bool.isRequired,
+  hasBackdrop: PropTypes.bool.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -66,6 +69,7 @@ BottomSheetModalComponent.propTypes = {
 
 BottomSheetModalComponent.defaultProps = {
   hasFooter: true,
+  hasBackdrop: true,
 };
 
 export default BottomSheetModalComponent;
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   contentContainer: {
-    paddingHorizontal: "6%",
+    paddingHorizontal: "4%",
   },
   footerWave: {
     width: "100%",

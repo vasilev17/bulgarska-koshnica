@@ -18,6 +18,7 @@ import FilterTag from "../shared/components/FilterTag";
 import { FlashList } from "@shopify/flash-list";
 import BottomSheetModalComponent from "../shared/components/BottomSheetModalComponent";
 import CustomText from "../shared/components/CustomText";
+import ShopLocationBottomSheet from "../shared/components/ShopLocationBottomSheet";
 
 export default function MapScreen() {
   const mapRef = useRef(null);
@@ -51,37 +52,78 @@ export default function MapScreen() {
   const shops = [
     {
       title: "Локация Магазин Пловдив 1",
+      categories: ["Хранителни Продукти", "Други"],
+      rating: 4,
+      usersRated: 402,
+      image: images.producer,
+      contactNumber: "+359 888 888 888",
+      businessHours: {
+        monday: "08:00ч. - 20:00ч.",
+        tuesday: "08:00ч. - 20:00ч.",
+        wednesday: "08:00ч. - 20:00ч.",
+        thursday: "08:00ч. - 20:00ч.",
+        friday: "08:00ч. - 20:00ч.",
+        saturday: "08:00ч. - 20:00ч.",
+        sunday: "08:00ч. - 20:00ч.",
+      },
+      website: "istinskimed.bg",
+      delivery: "Да, в радиус от 20км",
+      hasCardPayment: true,
+      products: [
+        { image: images.buyer, price: 4.0 },
+        { image: images.buyer, price: 155.0 },
+      ],
+      adress: "Баня Мадара, Булевард Прага 23, 1000 Петте Кюшета, София",
+      reviews: [
+        {
+          user: "Бонавентура Балестриери",
+          rating: 4,
+          date: "13/10/2023",
+          comment:
+            "С Polenity истински мед сме в партньорски отношения повече от 2 години. До момента сме успели да извървим доста дълъг път заедно и надявам се занапред да продължим да сме заедно в мисията по опазване на пчелите и осигуряване на истински качествени пчелни продукти!",
+        },
+      ],
       coordinate: {
-        latitude: 42.16419970972591,
-        longitude: 24.739422035052804,
+        latitude: 42.12219224316601,
+        longitude: 24.737273375719596,
       },
     },
     {
-      title: "Локация Магазин Пловдив 2",
-      coordinate: {
-        latitude: 42.14889737233893,
-        longitude: 24.73239116289792,
+      title: "Мед и медни продукти Бояжиеви",
+      categories: ["Хранителни Продукти", "Други", "Семена"],
+      rating: 4,
+      usersRated: 402,
+      image: images.producer,
+      contactNumber: "+359 888 888 888",
+      businessHours: {
+        monday: "08:00ч. - 20:00ч.",
+        tuesday: "08:00ч. - 20:00ч.",
+        wednesday: "08:00ч. - 20:00ч.",
+        thursday: "08:00ч. - 20:00ч.",
+        friday: "08:00ч. - 20:00ч.",
+        saturday: "08:00ч. - 20:00ч.",
+        sunday: "08:00ч. - 20:00ч.",
       },
-    },
-    {
-      title: "Локация Магазин Варна",
+      website: "istinskimed.bg",
+      delivery: "Да, в радиус от 20км",
+      hasCardPayment: true,
+      products: [
+        { image: images.buyer, price: 4.0 },
+        { image: images.buyer, price: 155.0 },
+      ],
+      adress: "Баня Мадара, Булевард Прага 23, 1000 Петте Кюшета, София",
+      reviews: [
+        {
+          user: "Бонавентура Балестриери",
+          rating: 4,
+          date: "13/10/2023",
+          comment:
+            "С Polenity истински мед сме в партньорски отношения повече от 2 години. До момента сме успели да извървим доста дълъг път заедно и надявам се занапред да продължим да сме заедно в мисията по опазване на пчелите и осигуряване на истински качествени пчелни продукти!",
+        },
+      ],
       coordinate: {
-        latitude: 43.237982054953974,
-        longitude: 27.91447072795025,
-      },
-    },
-    {
-      title: "Локация Магазин Плевен",
-      coordinate: {
-        latitude: 43.453698724518794,
-        longitude: 24.60758610316779,
-      },
-    },
-    {
-      title: "Локация Магазин София",
-      coordinate: {
-        latitude: 42.70744896555424,
-        longitude: 23.311199439631807,
+        latitude: 42.6910439913755,
+        longitude: 23.311293253307266,
       },
     },
   ];
@@ -110,7 +152,7 @@ export default function MapScreen() {
 
   const onMarkerPress = (index) => {
     console.log("Marker : ", index);
-    setSelectedShopLocation(shops[index])
+    setSelectedShopLocation(shops[index]);
     locationBottomSheetModalRef.current?.present();
   };
 
@@ -155,7 +197,7 @@ export default function MapScreen() {
                   source={icons.mapMarker}
                   style={{ width: 22, height: 32 }}
                 />
-                <CustomText style={{ fontSize: 12 }}>Your text here</CustomText>
+                <CustomText style={{ fontSize: 12 }}>Marker Title</CustomText>
               </View>
             </Marker>
           ))}
@@ -181,30 +223,15 @@ export default function MapScreen() {
 
     // -- Shop Location BottomSheetModal --
 
-    <BottomSheetModalComponent
+    <ShopLocationBottomSheet
       key={1}
-      snapPoints={["80%"]}
       ref={locationBottomSheetModalRef}
       title={selectedShopLocation?.title}
-    >
-      <CustomText>
-        Това са общите условия за ползване на приложението!{"\n"}
-        {"\n"}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu
-        justo augue. Pellentesque vel tincidunt metus. Suspendisse a erat
-        dictum, porta nisl non, imperdiet tellus. Proin fermentum placerat quam
-        ut facilisis. Nulla eu condimentum odio. Sed gravida bibendum suscipit.
-        Aenean venenatis sagittis tortor. Quisque nisl lorem, posuere nec lorem
-        at, ullamcorper facilisis urna. Nullam bibendum, neque dapibus ultrices
-        aliquet, massa tellus volutpat mi, et congue mi lacus quis ante. Donec
-        in massa id enim commodo placerat. Maecenas in sem velit. Fusce
-        efficitur volutpat posuere. Sed eu dui quis neque aliquam finibus.
-        Curabitur non ligula ac lorem convallis blandit quis a enim. Etiam
-        dictum massa non sagittis scelerisque. Nulla molestie, nunc vel semper
-        pellentesque, justo augue semper diam, eu fermentum nunc nisl vel
-        sapien. Sed in elit varius, malesuada felis vel, cursus urna. Praesent
-        in finibus purus, vel maximus lectus. Nullam erat sem, posuere eu
-        malesuada aliquet, volutpat ac mi. Vestibulum.
-      </CustomText>
-    </BottomSheetModalComponent>,
+      rating={selectedShopLocation?.rating}
+      usersRated={selectedShopLocation?.usersRated}
+      categories={selectedShopLocation?.categories}
+      hasCardPayment = {selectedShopLocation?.hasCardPayment}
+      delivery = {selectedShopLocation?.delivery}
+    />,
   ];
 }
