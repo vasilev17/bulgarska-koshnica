@@ -214,7 +214,7 @@ export default function MapScreen() {
         <MapViewSwitch
           mapType={mapType}
           toggleMapType={toggleMapType}
-          style={{ bottom: "7.5%", right: "2%" }}
+          style={{ bottom: "8%", right: "2%" }}
         />
 
         {/* <StatusBar backgroundColor={COLORS.primary} barStyle="default" /> */}
@@ -232,6 +232,7 @@ export default function MapScreen() {
       categories={selectedShopLocation?.categories}
       hasCardPayment = {selectedShopLocation?.hasCardPayment}
       delivery = {selectedShopLocation?.delivery}
+      image={selectedShopLocation?.image}
     />,
   ];
 }

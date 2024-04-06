@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 import { COLORS, FONT, FONTSIZES, icons } from "../constants";
 import BottomSheetModalComponent from "./BottomSheetModalComponent";
 import CustomText from "./CustomText";
-import Tooltip from 'rn-tooltip';
+import Tooltip from "rn-tooltip";
 
 const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const constructCategoriesString = () => {
@@ -37,7 +37,7 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
   return (
     <BottomSheetModalComponent
       hasBackdrop={false}
-      snapPoints={["40%", "15%", "100%"]}
+      snapPoints={["40%", "15.5%", "100%"]}
       ref={ref}
       title={props.title}
     >
@@ -53,29 +53,46 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
           {constructCategoriesString()}
         </CustomText>
         {props.hasCardPayment && (
-          <Tooltip 
-          popover={<CustomText style={{color:COLORS.white, fontSize:FONTSIZES.size14, textAlign:"center"}}>Плащане с карта</CustomText>}
-          backgroundColor={COLORS.primary}
-          
-          height={60}
-          width={100}
-          withOverlay={false}
+          <Tooltip
+            popover={
+              <CustomText
+                style={{
+                  color: COLORS.white,
+                  fontSize: FONTSIZES.size14,
+                  textAlign: "center",
+                }}
+              >
+                Плащане с карта
+              </CustomText>
+            }
+            backgroundColor={COLORS.primary}
+            height={55}
+            width={100}
+            withOverlay={false}
           >
-          <Image source={icons.cardPayment} style={styles.card} />
+            <Image source={icons.cardPayment} style={styles.card} />
           </Tooltip>
         )}
         {props.delivery !== "Не" && (
-          <Tooltip 
-          popover={<CustomText style={{color:COLORS.white, fontSize:FONTSIZES.size14}}>Предлага доставка</CustomText>}
-          backgroundColor={COLORS.primary}
-          height={60}
-          width={100}
-          withOverlay={false}
+          <Tooltip
+            popover={
+              <CustomText
+                style={{ color: COLORS.white, fontSize: FONTSIZES.size14 }}
+              >
+                Предлага доставка
+              </CustomText>
+            }
+            backgroundColor={COLORS.primary}
+            height={55}
+            width={100}
+            withOverlay={false}
           >
-          <Image source={icons.deliveryTruck} style={styles.delivery} />
+            <Image source={icons.deliveryTruck} style={styles.delivery} />
           </Tooltip>
         )}
       </View>
+
+      <Image source={props.image} style={styles.shopImage} />
 
       <CustomText style={{ marginTop: 40 }}>
         Това са общите условия за ползване на приложението!{"\n"}
@@ -123,8 +140,8 @@ const styles = StyleSheet.create({
   },
   categoryText: {
     marginRight: 20,
-    width: "75%",
-    fontSize:FONTSIZES.size17,
+    width: "77%",
+    fontSize: FONTSIZES.size17,
   },
   card: {
     height: 20,
@@ -136,5 +153,11 @@ const styles = StyleSheet.create({
     height: 20,
     width: 25,
     resizeMode: "contain",
+  },
+  shopImage: {
+    width: "100%",
+    height:'25%',
+    borderRadius: 10,
+    marginTop:'3%',
   },
 });

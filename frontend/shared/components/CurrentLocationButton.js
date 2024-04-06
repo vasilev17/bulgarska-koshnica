@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     borderRadius: 100,
     position: "absolute",
-    bottom: "15.5%",
+    bottom: "16%",
     right: "1%",
 
     shadowColor: COLORS.shadowPrimary,

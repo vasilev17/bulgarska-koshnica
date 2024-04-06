@@ -23,7 +23,7 @@ export default BottomSheetHandleComponent;
 const styles = StyleSheet.create({
   bottomSheetTitle: {
     width: 270,
-    minHeight: 100,
+    minHeight: 75,
     marginBottom: "3%",
     marginLeft: "4%",
     marginTop: "15%",
@@ -32,12 +32,13 @@ const styles = StyleSheet.create({
     textShadowColor: "rgba(22, 91, 16, 0.25)",
     textShadowOffset: { width: 0, height: 4 },
     textShadowRadius: 5,
+    
   },
 
   headerWave: {
     width: "100%",
     height: 145,
-    zIndex: -1,
+    zIndex: -99,
     overflow: "hidden",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
