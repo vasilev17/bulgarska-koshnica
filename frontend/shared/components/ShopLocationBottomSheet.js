@@ -3,6 +3,7 @@ import React, { forwardRef } from "react";
 import { COLORS, FONT, FONTSIZES, icons } from "../constants";
 import BottomSheetModalComponent from "./BottomSheetModalComponent";
 import CustomText from "./CustomText";
+import Tooltip from 'rn-tooltip';
 
 const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const constructCategoriesString = () => {
@@ -52,10 +53,27 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
           {constructCategoriesString()}
         </CustomText>
         {props.hasCardPayment && (
+          <Tooltip 
+          popover={<CustomText style={{color:COLORS.white, fontSize:FONTSIZES.size14, textAlign:"center"}}>Плащане с карта</CustomText>}
+          backgroundColor={COLORS.primary}
+          
+          height={60}
+          width={100}
+          withOverlay={false}
+          >
           <Image source={icons.cardPayment} style={styles.card} />
+          </Tooltip>
         )}
         {props.delivery !== "Не" && (
+          <Tooltip 
+          popover={<CustomText style={{color:COLORS.white, fontSize:FONTSIZES.size14}}>Предлага доставка</CustomText>}
+          backgroundColor={COLORS.primary}
+          height={60}
+          width={100}
+          withOverlay={false}
+          >
           <Image source={icons.deliveryTruck} style={styles.delivery} />
+          </Tooltip>
         )}
       </View>
 
