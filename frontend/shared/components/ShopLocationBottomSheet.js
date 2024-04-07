@@ -1,13 +1,21 @@
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { forwardRef } from "react";
 import { COLORS, FONT, FONTSIZES, icons } from "../constants";
 import BottomSheetModalComponent from "./BottomSheetModalComponent";
 import CustomText from "./CustomText";
 import Tooltip from "rn-tooltip";
-import { Shadow } from 'react-native-shadow-2';
+import { Shadow } from "react-native-shadow-2";
 
 const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const vh = Dimensions.get("window").height;
+  const vw = Dimensions.get("window").width;
 
   const constructCategoriesString = () => {
     if (
@@ -97,7 +105,10 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
           )}
         </View>
 
-        <Image source={props.image} style={[styles.shopImage, {height: vh * 0.33,}]} />
+        <Image
+          source={props.image}
+          style={[styles.shopImage, { height: vh * 0.33 }]}
+        />
 
         <TouchableOpacity activeOpacity={0.7} style={styles.descriptionButton}>
           <CustomText style={styles.descriptionButtonText}>Описание</CustomText>
@@ -107,10 +118,21 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
           />
         </TouchableOpacity>
       </View>
-      
-      <Shadow style={{height:2}} distance={5} startColor={'#e3e8e3'} endColor={'#ffffff'} offset={[0, 1.5]}>
-      <View style={styles.topBorder} >
-      </View>
+
+      <Shadow
+        distance={5}
+        startColor={"#e3e8e3"}
+        endColor={"#ffffff"}
+        offset={[0, 2]}
+      >
+        <View
+          style={[
+            styles.topBorder,
+            {
+              width: vw,
+            },
+          ]}
+        />
       </Shadow>
 
       <CustomText style={{ marginTop: 40 }}>
@@ -203,9 +225,7 @@ const styles = StyleSheet.create({
     top: 1.5,
   },
   topBorder: {
-    backgroundColor: '#cfdace',
+    backgroundColor: "#d4ded3",
     height: 2,
-    width:510,
-    zIndex:99999,
   },
 });
