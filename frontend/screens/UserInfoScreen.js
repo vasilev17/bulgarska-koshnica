@@ -67,7 +67,7 @@ const UserInfoScreen = () => {
       title={"Общи условия"}
     >
       {/* Change to real terms and conditions instead of: */}
-      <CustomText>
+      <CustomText style={{ paddingHorizontal: "4%" }}>
         Това са общите условия за ползване на приложението!{"\n"}
         {"\n"}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu
         justo augue. Pellentesque vel tincidunt metus. Suspendisse a erat
@@ -96,7 +96,7 @@ const UserInfoScreen = () => {
       title={"Защита на личните данни"}
     >
       {/* Change to real privacy policy instead of: */}
-      <CustomText>
+      <CustomText style={{ paddingHorizontal: "4%" }}>
         Това са условията за защита на личните данни!{"\n"}
         {"\n"}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu
         justo augue. Pellentesque vel tincidunt metus. Suspendisse a erat

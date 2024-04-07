@@ -33,16 +33,14 @@ const BottomSheetModalComponent = forwardRef((props, ref) => {
           props.hasBackdrop === true && bottomsheetModalBackrop
         }
         handleComponent={() => (
-          <BottomSheetHandleComponent title={props.title} />
+          <BottomSheetHandleComponent title={props.title} titleWidth={props.titleWidth}/>
         )}
       >
         <BottomSheetScrollView
           contentContainerStyle={styles.sheetContainer}
           showsVerticalScrollIndicator={false}
         >
-          <BottomSheetView style={styles.contentContainer}>
-            {props.children}
-          </BottomSheetView>
+          <BottomSheetView>{props.children}</BottomSheetView>
 
           {props.hasFooter && (
             <Image style={styles.footerWave} source={images.footerWaveEmpty} />
@@ -61,6 +59,7 @@ BottomSheetModalComponent.propTypes = {
   title: PropTypes.string,
   hasFooter: PropTypes.bool.isRequired,
   hasBackdrop: PropTypes.bool.isRequired,
+  titleWidth: PropTypes.number.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -70,6 +69,7 @@ BottomSheetModalComponent.propTypes = {
 BottomSheetModalComponent.defaultProps = {
   hasFooter: true,
   hasBackdrop: true,
+  titleWidth: 210,
 };
 
 export default BottomSheetModalComponent;
@@ -79,9 +79,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     flexDirection: "column",
     justifyContent: "space-between",
-  },
-  contentContainer: {
-    paddingHorizontal: "4%",
   },
   footerWave: {
     width: "100%",

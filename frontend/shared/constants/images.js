@@ -7,15 +7,13 @@ import producer from "../../assets/images/producer.png";
 import standardMap from "../../assets/images/standardMap.png";
 import satelliteMap from "../../assets/images/satelliteMap.png";
 
-
-
 export default {
-    headerWave,
-    footerWaveEmpty,
-    footerWaveWithContent,
-    basketLogo,
-    buyer,
-    producer,
-    standardMap,
-    satelliteMap,
+  headerWave,
+  footerWaveEmpty,
+  footerWaveWithContent,
+  basketLogo,
+  buyer,
+  producer,
+  standardMap,
+  satelliteMap,
 };

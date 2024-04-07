@@ -36,6 +36,7 @@ import shop from "../../assets/icons/shopIcon.png";
 import websitePlanet from "../../assets/icons/websitePlanetIcon.png";
 import tickIcon from "../../assets/icons/tickIcon.png";
 import xIcon from "../../assets/icons/xIcon.png";
+import arrowDown from "../../assets/icons/arrowDownIcon.png";
 
 const ratings = {
   1: rating1,
@@ -80,4 +81,5 @@ export default {
   websitePlanet,
   tickIcon,
   xIcon,
+  arrowDown,
 };

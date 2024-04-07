@@ -4,10 +4,12 @@ import CustomText from "./CustomText";
 import { COLORS, FONT, FONTSIZES, images } from "../constants";
 import PropTypes from "prop-types";
 
-const BottomSheetHandleComponent = ({ title }) => {
+const BottomSheetHandleComponent = ({ title, titleWidth }) => {
   return (
     <View>
-      <CustomText style={styles.bottomSheetTitle}>{title}</CustomText>
+      <CustomText style={[styles.bottomSheetTitle, { width: titleWidth }]}>
+        {title}
+      </CustomText>
       <Image style={styles.headerWave} source={images.headerWave} />
       <View style={styles.handleIndicator} />
     </View>
@@ -22,7 +24,6 @@ export default BottomSheetHandleComponent;
 
 const styles = StyleSheet.create({
   bottomSheetTitle: {
-    width: 270,
     minHeight: 75,
     marginBottom: "3%",
     marginLeft: "4%",
@@ -32,7 +33,6 @@ const styles = StyleSheet.create({
     textShadowColor: "rgba(22, 91, 16, 0.25)",
     textShadowOffset: { width: 0, height: 4 },
     textShadowRadius: 5,
-    
   },
 
   headerWave: {

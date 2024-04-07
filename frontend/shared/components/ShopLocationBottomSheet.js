@@ -1,11 +1,14 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { forwardRef } from "react";
 import { COLORS, FONT, FONTSIZES, icons } from "../constants";
 import BottomSheetModalComponent from "./BottomSheetModalComponent";
 import CustomText from "./CustomText";
 import Tooltip from "rn-tooltip";
+import { Shadow } from 'react-native-shadow-2';
 
 const ShopLocationBottomSheet = forwardRef((props, ref) => {
+  const vh = Dimensions.get("window").height;
+
   const constructCategoriesString = () => {
     if (
       props.categories?.length !== undefined &&
@@ -40,59 +43,75 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
       snapPoints={["40%", "15.5%", "100%"]}
       ref={ref}
       title={props.title}
+      titleWidth={270}
     >
-      <View style={styles.ratingContainer}>
-        <Image source={icons.ratings[props.rating]} style={styles.rating} />
-        <CustomText style={styles.usersRatedText}>
-          ({props.usersRated})
-        </CustomText>
-      </View>
+      <View style={{ paddingHorizontal: "4%" }}>
+        <View style={styles.ratingContainer}>
+          <Image source={icons.ratings[props.rating]} style={styles.rating} />
+          <CustomText style={styles.usersRatedText}>
+            ({props.usersRated})
+          </CustomText>
+        </View>
 
-      <View style={styles.categoryContainer}>
-        <CustomText style={styles.categoryText}>
-          {constructCategoriesString()}
-        </CustomText>
-        {props.hasCardPayment && (
-          <Tooltip
-            popover={
-              <CustomText
-                style={{
-                  color: COLORS.white,
-                  fontSize: FONTSIZES.size14,
-                  textAlign: "center",
-                }}
-              >
-                Плащане с карта
-              </CustomText>
-            }
-            backgroundColor={COLORS.primary}
-            height={55}
-            width={100}
-            withOverlay={false}
-          >
-            <Image source={icons.cardPayment} style={styles.card} />
-          </Tooltip>
-        )}
-        {props.delivery !== "Не" && (
-          <Tooltip
-            popover={
-              <CustomText
-                style={{ color: COLORS.white, fontSize: FONTSIZES.size14 }}
-              >
-                Предлага доставка
-              </CustomText>
-            }
-            backgroundColor={COLORS.primary}
-            height={55}
-            width={100}
-            withOverlay={false}
-          >
-            <Image source={icons.deliveryTruck} style={styles.delivery} />
-          </Tooltip>
-        )}
-      </View>
+        <View style={styles.categoryContainer}>
+          <CustomText style={styles.categoryText}>
+            {constructCategoriesString()}
+          </CustomText>
+          {props.hasCardPayment && (
+            <Tooltip
+              popover={
+                <CustomText
+                  style={{
+                    color: COLORS.white,
+                    fontSize: FONTSIZES.size14,
+                    textAlign: "center",
+                  }}
+                >
+                  Плащане с карта
+                </CustomText>
+              }
+              backgroundColor={COLORS.primary}
+              height={55}
+              width={100}
+              withOverlay={false}
+            >
+              <Image source={icons.cardPayment} style={styles.card} />
+            </Tooltip>
+          )}
+          {props.delivery !== "Не" && (
+            <Tooltip
+              popover={
+                <CustomText
+                  style={{ color: COLORS.white, fontSize: FONTSIZES.size14 }}
+                >
+                  Предлага доставка
+                </CustomText>
+              }
+              backgroundColor={COLORS.primary}
+              height={55}
+              width={100}
+              withOverlay={false}
+            >
+              <Image source={icons.deliveryTruck} style={styles.delivery} />
+            </Tooltip>
+          )}
+        </View>
 
-      <Image source={props.image} style={styles.shopImage} />
+        <Image source={props.image} style={[styles.shopImage, {height: vh * 0.33,}]} />
+
+        <TouchableOpacity activeOpacity={0.7} style={styles.descriptionButton}>
+          <CustomText style={styles.descriptionButtonText}>Описание</CustomText>
+          <Image
+            source={icons.arrowDown}
+            style={styles.descriptionButtonIcon}
+          />
+        </TouchableOpacity>
+      </View>
+      
+      <Shadow style={{height:2}} distance={5} startColor={'#e3e8e3'} endColor={'#ffffff'} offset={[0, 1.5]}>
+      <View style={styles.topBorder} >
+      </View>
+      </Shadow>
 
       <CustomText style={{ marginTop: 40 }}>
         Това са общите условия за ползване на приложението!{"\n"}
@@ -156,8 +175,37 @@ const styles = StyleSheet.create({
   },
   shopImage: {
     width: "100%",
-    height:'25%',
+    // height: "43%",
     borderRadius: 10,
-    marginTop:'3%',
+    marginTop: "3%",
+  },
+  descriptionButton: {
+    backgroundColor: "#80CC90",
+    borderRadius: 10,
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    gap: 7,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 10,
+    paddingVertical: 2,
+    shadowColor: COLORS.primary,
+    elevation: 5,
+    marginTop: "3%",
+    marginBottom: "5%",
+  },
+  descriptionButtonText: {
+    color: COLORS.white,
+  },
+  descriptionButtonIcon: {
+    width: 18,
+    aspectRatio: 1,
+    top: 1.5,
+  },
+  topBorder: {
+    backgroundColor: '#cfdace',
+    height: 2,
+    width:510,
+    zIndex:99999,
   },
 });
