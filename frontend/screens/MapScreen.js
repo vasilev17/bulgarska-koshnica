@@ -53,6 +53,8 @@ export default function MapScreen() {
     {
       title: "Локация Магазин Пловдив 1",
       categories: ["Хранителни Продукти", "Други"],
+      description:
+        "Това е магазин в Пловдив",
       rating: 4,
       usersRated: 402,
       image: images.producer,
@@ -91,6 +93,8 @@ export default function MapScreen() {
     {
       title: "Мед и медни продукти Бояжиеви",
       categories: ["Хранителни Продукти", "Други", "Семена"],
+      description:
+        "Медни продукти Бояджиеви е място от където всеки може да купува мед за себе си и своите близки без да се притеснява за качеството на продуктите. Те са от домашни пчели отглеждани в перфектни условия от професионалисти.",
       rating: 4,
       usersRated: 402,
       image: images.producer,
@@ -230,9 +234,10 @@ export default function MapScreen() {
       rating={selectedShopLocation?.rating}
       usersRated={selectedShopLocation?.usersRated}
       categories={selectedShopLocation?.categories}
-      hasCardPayment = {selectedShopLocation?.hasCardPayment}
-      delivery = {selectedShopLocation?.delivery}
+      hasCardPayment={selectedShopLocation?.hasCardPayment}
+      delivery={selectedShopLocation?.delivery}
       image={selectedShopLocation?.image}
+      description={selectedShopLocation?.description}
     />,
   ];
 }

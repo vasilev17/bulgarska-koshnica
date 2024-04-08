@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import { COLORS, FONT, FONTSIZES, icons } from "../constants";
 import BottomSheetModalComponent from "./BottomSheetModalComponent";
 import CustomText from "./CustomText";
@@ -16,6 +16,7 @@ import { Shadow } from "react-native-shadow-2";
 const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const vh = Dimensions.get("window").height;
   const vw = Dimensions.get("window").width;
+  const [isDescriptionShown, setIsDescriptionShown] = useState(false);
 
   const constructCategoriesString = () => {
     if (
@@ -48,7 +49,7 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
   return (
     <BottomSheetModalComponent
       hasBackdrop={false}
-      snapPoints={["40%", "15.5%", "100%"]}
+      snapPoints={["40%", "15.5%", "95%"]}
       ref={ref}
       title={props.title}
       titleWidth={270}
@@ -105,18 +106,41 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
           )}
         </View>
 
-        <Image
-          source={props.image}
-          style={[styles.shopImage, { height: vh * 0.33 }]}
-        />
+        {props.image && (
+          <Image
+            source={props.image}
+            style={[styles.shopImage, { height: vh * 0.33 }]}
+          />
+        )}
 
-        <TouchableOpacity activeOpacity={0.7} style={styles.descriptionButton}>
+        <TouchableOpacity
+          onPress={() => setIsDescriptionShown(!isDescriptionShown)}
+          activeOpacity={0.7}
+          style={[
+            styles.descriptionButton,
+            isDescriptionShown && {
+              borderBottomLeftRadius: 0,
+              borderBottomRightRadius: 0,
+            },
+          ]}
+        >
           <CustomText style={styles.descriptionButtonText}>Описание</CustomText>
           <Image
             source={icons.arrowDown}
-            style={styles.descriptionButtonIcon}
+            style={[
+              styles.descriptionButtonIcon,
+              isDescriptionShown && { transform: [{ rotate: "180deg" }] },
+            ]}
           />
         </TouchableOpacity>
+
+        {isDescriptionShown && (
+          <View style={styles.descriptionContainer}>
+            <CustomText style={styles.descriptionText}>
+              {props.description}
+            </CustomText>
+          </View>
+        )}
       </View>
 
       <Shadow
@@ -202,7 +226,7 @@ const styles = StyleSheet.create({
     marginTop: "3%",
   },
   descriptionButton: {
-    backgroundColor: "#80CC90",
+    backgroundColor: COLORS.lightPrimary,
     borderRadius: 10,
     alignSelf: "flex-start",
     flexDirection: "row",
@@ -213,7 +237,7 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     shadowColor: COLORS.primary,
     elevation: 5,
-    marginTop: "3%",
+    marginTop: "4%",
     marginBottom: "5%",
   },
   descriptionButtonText: {
@@ -227,5 +251,21 @@ const styles = StyleSheet.create({
   topBorder: {
     backgroundColor: "#d4ded3",
     height: 2,
+  },
+  descriptionContainer: {
+    backgroundColor: COLORS.lightPrimary,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopRightRadius: 10,
+    paddingHorizontal:'2.5%',
+    paddingBottom:'4%',
+    paddingTop:'2.5%',
+    marginTop: "-5%",
+    marginBottom:'5%',
+    shadowColor: COLORS.primary,
+    elevation: 5,
+  },
+  descriptionText: {
+    color: COLORS.white,
   },
 });
