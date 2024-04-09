@@ -1,6 +1,8 @@
 import {
   Dimensions,
   Image,
+  Linking,
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -159,7 +161,47 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
         />
       </Shadow>
 
-      <CustomText style={{ marginTop: 40 }}>
+      <View style={styles.rowContainer}>
+        <Image source={icons.location} style={styles.locationIcon} />
+        <TouchableOpacity
+          onPress={() =>
+            Linking.openURL(
+              Platform.select({
+                ios: `maps:0,0?q=${props.coordinate.latitude}, ${props.coordinate.longitude}`,
+                android: `geo:0,0?q=${props.coordinate.latitude}, ${props.coordinate.longitude}`,
+              })
+            )
+          }
+        >
+          <CustomText>{props.address}</CustomText>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.rowContainer}>
+        <Image source={icons.phone} style={styles.phoneIcon} />
+        <TouchableOpacity
+          onPress={() => Linking.openURL(`tel:${props.contactNumber}`)}
+        >
+          <CustomText>{props.contactNumber}</CustomText>
+        </TouchableOpacity>
+      </View>
+
+      {/* Business Hours Section 
+      <View style={styles.rowContainer}>
+        <Image source={icons.phone} style={styles.phoneIcon} />
+        <CustomText>{props.contactNumber}</CustomText>
+      </View> */}
+
+      <View style={styles.rowContainer}>
+        <Image source={icons.websitePlanet} style={styles.phoneIcon} />
+        <TouchableOpacity
+          onPress={() => Linking.openURL(`https://${props.website}`)}
+        >
+          <CustomText>{props.website}</CustomText>
+        </TouchableOpacity>
+      </View>
+
+      <CustomText style={{ marginTop: 60 }}>
         Това са общите условия за ползване на приложението!{"\n"}
         {"\n"}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu
         justo augue. Pellentesque vel tincidunt metus. Suspendisse a erat
@@ -257,15 +299,36 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     borderTopRightRadius: 10,
-    paddingHorizontal:'2.5%',
-    paddingBottom:'4%',
-    paddingTop:'2.5%',
+    paddingHorizontal: "2.5%",
+    paddingBottom: "4%",
+    paddingTop: "2.5%",
     marginTop: "-5%",
-    marginBottom:'5%',
+    marginBottom: "5%",
     shadowColor: COLORS.primary,
     elevation: 5,
   },
   descriptionText: {
     color: COLORS.white,
+  },
+  rowContainer: {
+    flexDirection: "row",
+    // backgroundColor: "red",
+    paddingVertical: "5%",
+    borderBottomColor: "#d4ded3",
+    borderBottomWidth: 1,
+    paddingLeft: "4%",
+    paddingRight: "16%",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  locationIcon: {
+    width: 30,
+    height: 40,
+    marginRight: "5%",
+  },
+  phoneIcon: {
+    width: 30,
+    aspectRatio: 1,
+    marginRight: "5%",
   },
 });

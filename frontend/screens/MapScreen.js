@@ -53,8 +53,7 @@ export default function MapScreen() {
     {
       title: "Локация Магазин Пловдив 1",
       categories: ["Хранителни Продукти", "Други"],
-      description:
-        "Това е магазин в Пловдив",
+      description: "Това е магазин в Пловдив",
       rating: 4,
       usersRated: 402,
       image: images.producer,
@@ -75,7 +74,7 @@ export default function MapScreen() {
         { image: images.buyer, price: 4.0 },
         { image: images.buyer, price: 155.0 },
       ],
-      adress: "Баня Мадара, Булевард Прага 23, 1000 Петте Кюшета, София",
+      address: "Баня Мадара, Булевард Прага 23, 1000 Петте Кюшета, София",
       reviews: [
         {
           user: "Бонавентура Балестриери",
@@ -115,7 +114,7 @@ export default function MapScreen() {
         { image: images.buyer, price: 4.0 },
         { image: images.buyer, price: 155.0 },
       ],
-      adress: "Баня Мадара, Булевард Прага 23, 1000 Петте Кюшета, София",
+      address: "Баня Мадара, Булевард Прага 23, 1000 Петте Кюшета, София",
       reviews: [
         {
           user: "Бонавентура Балестриери",
@@ -180,6 +179,7 @@ export default function MapScreen() {
           showsUserLocation={false}
           rotateEnabled={false}
           showsCompass={false}
+          toolbarEnabled={false}
           // -- Loading --
           loadingEnabled={true}
           loadingBackgroundColor={COLORS.white}
@@ -238,6 +238,10 @@ export default function MapScreen() {
       delivery={selectedShopLocation?.delivery}
       image={selectedShopLocation?.image}
       description={selectedShopLocation?.description}
+      address={selectedShopLocation?.address}
+      contactNumber={selectedShopLocation?.contactNumber}
+      website={selectedShopLocation?.website}
+      coordinate={selectedShopLocation?.coordinate}
     />,
   ];
 }
