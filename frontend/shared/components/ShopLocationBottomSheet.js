@@ -14,11 +14,34 @@ import BottomSheetModalComponent from "./BottomSheetModalComponent";
 import CustomText from "./CustomText";
 import Tooltip from "rn-tooltip";
 import { Shadow } from "react-native-shadow-2";
+import ShadowBorder from "./ShadowBorder";
 
 const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const vh = Dimensions.get("window").height;
   const vw = Dimensions.get("window").width;
   const [isDescriptionShown, setIsDescriptionShown] = useState(false);
+
+  const formatDeliveryText = () => {
+    switch (props.delivery) {
+      case "Да, в цяла България":
+        return "Доставка в цяла България";
+      case "Да, в населеното място":
+        return "Доставка в населеното място";
+      default:
+        return (
+          <View style={{ flexDirection: "row" }}>
+            <CustomText
+              style={[styles.sectionText, { marginRight: vw * 0.15 }]}
+            >
+              Доставка в радиус:
+            </CustomText>
+            <CustomText style={styles.sectionText}>
+              {props.delivery?.replace(/^\D+/g, "")}
+            </CustomText>
+          </View>
+        );
+    }
+  };
 
   const constructCategoriesString = () => {
     if (
@@ -145,21 +168,7 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
         )}
       </View>
 
-      <Shadow
-        distance={5}
-        startColor={"#e3e8e3"}
-        endColor={"#ffffff"}
-        offset={[0, 2]}
-      >
-        <View
-          style={[
-            styles.topBorder,
-            {
-              width: vw,
-            },
-          ]}
-        />
-      </Shadow>
+      <ShadowBorder />
 
       <View style={styles.rowContainer}>
         <Image source={icons.location} style={styles.locationIcon} />
@@ -173,7 +182,7 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
             )
           }
         >
-          <CustomText>{props.address}</CustomText>
+          <CustomText style={styles.sectionText}>{props.address}</CustomText>
         </TouchableOpacity>
       </View>
 
@@ -182,7 +191,9 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
         <TouchableOpacity
           onPress={() => Linking.openURL(`tel:${props.contactNumber}`)}
         >
-          <CustomText>{props.contactNumber}</CustomText>
+          <CustomText style={styles.sectionText}>
+            {props.contactNumber}
+          </CustomText>
         </TouchableOpacity>
       </View>
 
@@ -193,13 +204,35 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
       </View> */}
 
       <View style={styles.rowContainer}>
-        <Image source={icons.websitePlanet} style={styles.phoneIcon} />
+        <Image source={icons.websitePlanet} style={styles.websiteIcon} />
         <TouchableOpacity
           onPress={() => Linking.openURL(`https://${props.website}`)}
         >
-          <CustomText>{props.website}</CustomText>
+          <CustomText style={styles.sectionText}>{props.website}</CustomText>
         </TouchableOpacity>
       </View>
+
+      {props.delivery != "Не" && (
+        <View style={styles.rowContainer}>
+          <Image source={icons.deliveryTruck} style={styles.deliveryIcon} />
+          <CustomText style={styles.sectionText}>
+            {formatDeliveryText()}
+          </CustomText>
+        </View>
+      )}
+
+      {props.hasCardPayment && (
+        <View style={styles.rowContainer}>
+          <Image source={icons.cardPayment} style={styles.cardIcon} />
+          <TouchableOpacity>
+            <CustomText style={styles.sectionText}>
+              Приема се плащане с карта
+            </CustomText>
+          </TouchableOpacity>
+        </View>
+      )}
+
+      <ShadowBorder isTopBorder={false} />
 
       <CustomText style={{ marginTop: 60 }}>
         Това са общите условия за ползване на приложението!{"\n"}
@@ -290,10 +323,6 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     top: 1.5,
   },
-  topBorder: {
-    backgroundColor: "#d4ded3",
-    height: 2,
-  },
   descriptionContainer: {
     backgroundColor: COLORS.lightPrimary,
     borderBottomLeftRadius: 10,
@@ -309,6 +338,7 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     color: COLORS.white,
+    fontSize: FONTSIZES.size16,
   },
   rowContainer: {
     flexDirection: "row",
@@ -322,13 +352,31 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   locationIcon: {
-    width: 30,
-    height: 40,
+    width: 24,
+    height: 34,
     marginRight: "5%",
   },
   phoneIcon: {
-    width: 30,
+    width: 28,
     aspectRatio: 1,
     marginRight: "5%",
+  },
+  websiteIcon: {
+    width: 25,
+    aspectRatio: 1,
+    marginRight: "5%",
+  },
+  cardIcon: {
+    width: 25,
+    height: 20,
+    marginRight: "5%",
+  },
+  deliveryIcon: {
+    width: 25,
+    height: 20,
+    marginRight: "5%",
+  },
+  sectionText: {
+    fontSize: FONTSIZES.size16,
   },
 });
