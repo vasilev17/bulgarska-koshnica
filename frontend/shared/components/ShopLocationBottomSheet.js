@@ -30,13 +30,8 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
       default:
         return (
           <View style={{ flexDirection: "row" }}>
-            <CustomText
-              style={[styles.sectionText, { marginRight: vw * 0.15 }]}
-            >
-              Доставка в радиус:
-            </CustomText>
             <CustomText style={styles.sectionText}>
-              {props.delivery?.replace(/^\D+/g, "")}
+              Доставка в радиус: {props.delivery?.replace(/^\D+/g, "")}
             </CustomText>
           </View>
         );
@@ -197,11 +192,31 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
         </TouchableOpacity>
       </View>
 
-      {/* Business Hours Section 
-      <View style={styles.rowContainer}>
-        <Image source={icons.phone} style={styles.phoneIcon} />
-        <CustomText>{props.contactNumber}</CustomText>
-      </View> */}
+      <View style={[styles.rowContainer, { alignItems: "flex-start" }]}>
+        <Image source={icons.clock} style={styles.businessHoursIcon} />
+
+        <View>
+          {props.businessHours &&
+            Object.keys(props.businessHours).map((prop) => (
+              <CustomText
+                style={[styles.sectionText, { marginVertical: "0.5%" }]}
+              >
+                {prop}
+              </CustomText>
+            ))}
+        </View>
+
+        <View style={{ marginLeft: "27%" }}>
+          {props.businessHours &&
+            Object.keys(props.businessHours).map((prop) => (
+              <CustomText
+                style={[styles.sectionText, { marginVertical: "0.5%" }]}
+              >
+                {props.businessHours[prop]}
+              </CustomText>
+            ))}
+        </View>
+      </View>
 
       <View style={styles.rowContainer}>
         <Image source={icons.websitePlanet} style={styles.websiteIcon} />
@@ -224,11 +239,9 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
       {props.hasCardPayment && (
         <View style={styles.rowContainer}>
           <Image source={icons.cardPayment} style={styles.cardIcon} />
-          <TouchableOpacity>
-            <CustomText style={styles.sectionText}>
-              Приема се плащане с карта
-            </CustomText>
-          </TouchableOpacity>
+          <CustomText style={styles.sectionText}>
+            Приема се плащане с карта
+          </CustomText>
         </View>
       )}
 
@@ -372,9 +385,15 @@ const styles = StyleSheet.create({
     marginRight: "5%",
   },
   deliveryIcon: {
-    width: 25,
+    width: 27,
     height: 20,
     marginRight: "5%",
+  },
+  businessHoursIcon: {
+    width: 25,
+    aspectRatio: 1,
+    marginRight: "5%",
+    marginTop: "0.5%",
   },
   sectionText: {
     fontSize: FONTSIZES.size16,

@@ -59,13 +59,13 @@ export default function MapScreen() {
       image: images.producer,
       contactNumber: "+359 888 888 888",
       businessHours: {
-        monday: "08:00ч. - 20:00ч.",
-        tuesday: "08:00ч. - 20:00ч.",
-        wednesday: "08:00ч. - 20:00ч.",
-        thursday: "08:00ч. - 20:00ч.",
-        friday: "08:00ч. - 20:00ч.",
-        saturday: "08:00ч. - 20:00ч.",
-        sunday: "08:00ч. - 20:00ч.",
+        Понеделник: "8:00ч. - 20:00ч.",
+        Вторник: "8:00ч. - 20:00ч.",
+        Сряда: "8:00ч. - 20:00ч.",
+        Четвъртък: "8:00ч. - 20:00ч.",
+        Петък: "8:00ч. - 20:00ч.",
+        Събота: "8:00ч. - 20:00ч.",
+        Неделя: "8:00ч. - 20:00ч.",
       },
       website: "istinskimed.bg",
       delivery: "Да, в радиус от 20км",
@@ -99,13 +99,13 @@ export default function MapScreen() {
       image: images.producer,
       contactNumber: "+359 888 888 888",
       businessHours: {
-        monday: "08:00ч. - 20:00ч.",
-        tuesday: "08:00ч. - 20:00ч.",
-        wednesday: "08:00ч. - 20:00ч.",
-        thursday: "08:00ч. - 20:00ч.",
-        friday: "08:00ч. - 20:00ч.",
-        saturday: "08:00ч. - 20:00ч.",
-        sunday: "08:00ч. - 20:00ч.",
+        Понеделник: "8:00ч. - 20:00ч.",
+        Вторник: "8:00ч. - 20:00ч.",
+        Сряда: "8:00ч. - 20:00ч.",
+        Четвъртък: "8:00ч. - 20:00ч.",
+        Петък: "8:00ч. - 20:00ч.",
+        Събота: "10:00ч. - 20:00ч.",
+        Неделя: "Затворено",
       },
       website: "istinskimed.bg",
       delivery: "Да, в радиус от 20км",
@@ -242,6 +242,7 @@ export default function MapScreen() {
       contactNumber={selectedShopLocation?.contactNumber}
       website={selectedShopLocation?.website}
       coordinate={selectedShopLocation?.coordinate}
+      businessHours={selectedShopLocation?.businessHours}
     />,
   ];
 }
