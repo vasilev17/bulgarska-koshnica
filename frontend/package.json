@@ -26,7 +26,7 @@
     "react-native-maps": "1.10.0",
     "react-native-reanimated": "~3.6.2",
     "react-native-shadow-2": "^7.0.8",
-    "react-native-svg": "X.X.X",
+    "react-native-svg": "14.1.0",
     "rn-tooltip": "^3.0.3"
   },
   "devDependencies": {

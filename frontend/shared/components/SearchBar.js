@@ -2,7 +2,6 @@ import { Image, StyleSheet, TextInput, View } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { COLORS, FONT, FONTSIZES, icons } from "../constants";
-import { globalStyles } from "../globalStyles";
 import { FlashList } from "@shopify/flash-list";
 import FilterTag from "./FilterTag";
 import PropTypes from "prop-types";

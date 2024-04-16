@@ -19,6 +19,7 @@ import { FlashList } from "@shopify/flash-list";
 import BottomSheetModalComponent from "../shared/components/BottomSheetModalComponent";
 import CustomText from "../shared/components/CustomText";
 import ShopLocationBottomSheet from "../shared/components/ShopLocationBottomSheet";
+import { measure } from "react-native-reanimated";
 
 export default function MapScreen() {
   const mapRef = useRef(null);
@@ -71,8 +72,12 @@ export default function MapScreen() {
       delivery: "Да, в радиус от 20км",
       hasCardPayment: true,
       products: [
-        { image: images.buyer, price: 4.0 },
-        { image: images.buyer, price: 155.0 },
+        {
+          name: "Буркан сладък пчелен дъбов мед",
+          image: images.buyer,
+          price: 4.0,
+        },
+        { name: "Пчелна пита", image: images.buyer, price: 155.0 },
       ],
       address: "Баня Мадара, Булевард Прага 23, 1000 Петте Кюшета, София",
       reviews: [
@@ -111,8 +116,42 @@ export default function MapScreen() {
       delivery: "Да, в радиус от 20км",
       hasCardPayment: true,
       products: [
-        { image: images.buyer, price: 4.0 },
-        { image: images.buyer, price: 155.0 },
+        {
+          name: "Буркан сладък пчелен дъбов мед",
+          image: images.buyer,
+          price: "4.00",
+          measurement: "кг",
+        },
+        {
+          name: "Пчелна пита ",
+          image: images.buyer,
+          price: "155.00",
+          measurement: "бр",
+        },
+        {
+          name: "Пчелна пита ",
+          image: images.buyer,
+          price: "12.99",
+          measurement: "бр",
+        },
+        {
+          name: "Пчелна пита ",
+          image: images.buyer,
+          price: 155.0,
+          measurement: "бр",
+        },
+        {
+          name: "Пчелна пита ",
+          image: images.buyer,
+          price: 155.0,
+          measurement: "бр",
+        },
+        {
+          name: "Пчелна пита ",
+          image: images.buyer,
+          price: 155.0,
+          measurement: "бр",
+        },
       ],
       address: "Баня Мадара, Булевард Прага 23, 1000 Петте Кюшета, София",
       reviews: [
@@ -243,6 +282,7 @@ export default function MapScreen() {
       website={selectedShopLocation?.website}
       coordinate={selectedShopLocation?.coordinate}
       businessHours={selectedShopLocation?.businessHours}
+      products={selectedShopLocation?.products}
     />,
   ];
 }

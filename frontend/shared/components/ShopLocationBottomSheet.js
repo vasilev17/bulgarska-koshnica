@@ -15,6 +15,9 @@ import CustomText from "./CustomText";
 import Tooltip from "rn-tooltip";
 import { Shadow } from "react-native-shadow-2";
 import ShadowBorder from "./ShadowBorder";
+import { FlashList } from "@shopify/flash-list";
+import ProductGalleryItem from "./ProductGalleryItem";
+import { ScrollView } from "react-native-gesture-handler";
 
 const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const vh = Dimensions.get("window").height;
@@ -247,7 +250,29 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
 
       <ShadowBorder isTopBorder={false} />
 
-      <CustomText style={{ marginTop: 60 }}>
+      {props.products && (
+        <View style={{ marginTop: "3%" }}>
+          <FlashList
+            contentContainerStyle={{ paddingHorizontal: 15 }}
+            overScrollMode="never"
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            renderScrollComponent={ScrollView}
+            data={props.products}
+            renderItem={({ item }) => (
+              <ProductGalleryItem
+                name={item.name}
+                image={item.image}
+                price={item.price}
+                measurement={item.measurement}
+              />
+            )}
+            estimatedItemSize={10}
+          />
+        </View>
+      )}
+
+      <CustomText style={{ marginTop: 25 }}>
         Това са общите условия за ползване на приложението!{"\n"}
         {"\n"}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu
         justo augue. Pellentesque vel tincidunt metus. Suspendisse a erat
@@ -355,8 +380,7 @@ const styles = StyleSheet.create({
   },
   rowContainer: {
     flexDirection: "row",
-    // backgroundColor: "red",
-    paddingVertical: "5%",
+    paddingVertical: "4%",
     borderBottomColor: "#d4ded3",
     borderBottomWidth: 1,
     paddingLeft: "4%",
