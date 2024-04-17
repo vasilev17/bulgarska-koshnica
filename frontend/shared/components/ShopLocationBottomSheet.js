@@ -1,10 +1,10 @@
 import {
   Dimensions,
+  Easing,
   Image,
   Linking,
   Platform,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -13,16 +13,17 @@ import { COLORS, FONT, FONTSIZES, icons } from "../constants";
 import BottomSheetModalComponent from "./BottomSheetModalComponent";
 import CustomText from "./CustomText";
 import Tooltip from "rn-tooltip";
-import { Shadow } from "react-native-shadow-2";
 import ShadowBorder from "./ShadowBorder";
 import { FlashList } from "@shopify/flash-list";
 import ProductGalleryItem from "./ProductGalleryItem";
 import { ScrollView } from "react-native-gesture-handler";
+import StarRating from "react-native-star-rating-widget";
 
 const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const vh = Dimensions.get("window").height;
-  const vw = Dimensions.get("window").width;
   const [isDescriptionShown, setIsDescriptionShown] = useState(false);
+
+  const [rating, setRating] = useState(0);
 
   const formatDeliveryText = () => {
     switch (props.delivery) {
@@ -272,6 +273,25 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
         </View>
       )}
 
+      <View style={styles.ratingSection}>
+        <CustomText style={styles.ratingText}>Напишете отзив:</CustomText>
+        <StarRating
+          rating={rating}
+          onChange={setRating}
+          color={COLORS.yellow}
+          starSize={50}
+          emptyColor={COLORS.secondary}
+          enableHalfStar={false}
+          starStyle={{ marginRight: -7 }}
+          animationConfig={{
+            scale: 1.2,
+            delay: 150,
+            duration: 150,
+            easing: Easing.elastic(1),
+          }}
+        />
+      </View>
+
       <CustomText style={{ marginTop: 25 }}>
         Това са общите условия за ползване на приложението!{"\n"}
         {"\n"}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu
@@ -420,6 +440,15 @@ const styles = StyleSheet.create({
     marginTop: "0.5%",
   },
   sectionText: {
+    fontSize: FONTSIZES.size16,
+  },
+  ratingSection: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: "5%",
+  },
+  ratingText: {
+    fontFamily: FONT.semiBold,
     fontSize: FONTSIZES.size16,
   },
 });
