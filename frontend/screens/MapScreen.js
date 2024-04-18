@@ -19,6 +19,7 @@ import { FlashList } from "@shopify/flash-list";
 import BottomSheetModalComponent from "../shared/components/BottomSheetModalComponent";
 import CustomText from "../shared/components/CustomText";
 import ShopLocationBottomSheet from "../shared/components/ShopLocationBottomSheet";
+import RatingBottomSheet from "../shared/components/RatingBottomSheet";
 import { measure } from "react-native-reanimated";
 
 export default function MapScreen() {
@@ -26,8 +27,10 @@ export default function MapScreen() {
   const [location, setLocation] = useState(null);
   const [mapType, setMapType] = useState("standard");
   const [selectedShopLocation, setSelectedShopLocation] = useState(null);
+  const [rating, setRating] = useState(0);
 
   const locationBottomSheetModalRef = useRef(null);
+  const ratingBottomSheetModalRef = useRef(null);
 
   //Fetch Filter Tags from API instead of:
   const filterTags = [
@@ -283,6 +286,17 @@ export default function MapScreen() {
       coordinate={selectedShopLocation?.coordinate}
       businessHours={selectedShopLocation?.businessHours}
       products={selectedShopLocation?.products}
+      onRatingEnd={() =>
+        setTimeout(() => {
+          ratingBottomSheetModalRef.current?.present();
+        }, 250)
+      }
+    />,
+
+    <RatingBottomSheet
+      key={2}
+      ref={ratingBottomSheetModalRef}
+      title={selectedShopLocation?.title}
     />,
   ];
 }

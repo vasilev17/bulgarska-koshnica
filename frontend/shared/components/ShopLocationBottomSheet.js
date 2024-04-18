@@ -18,12 +18,15 @@ import { FlashList } from "@shopify/flash-list";
 import ProductGalleryItem from "./ProductGalleryItem";
 import { ScrollView } from "react-native-gesture-handler";
 import StarRating from "react-native-star-rating-widget";
+import { useAtom } from "jotai";
+import { currentLocationRating } from "../globalState";
 
 const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const vh = Dimensions.get("window").height;
   const [isDescriptionShown, setIsDescriptionShown] = useState(false);
 
   const [rating, setRating] = useState(0);
+  const [, setCurrentLocationRating] = useAtom(currentLocationRating);
 
   const formatDeliveryText = () => {
     switch (props.delivery) {
@@ -283,6 +286,10 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
           emptyColor={COLORS.secondary}
           enableHalfStar={false}
           starStyle={{ marginRight: -7 }}
+          onRatingEnd={() => {
+            props.onRatingEnd();
+            setCurrentLocationRating(rating);
+          }}
           animationConfig={{
             scale: 1.2,
             delay: 150,
@@ -291,25 +298,6 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
           }}
         />
       </View>
-
-      <CustomText style={{ marginTop: 25 }}>
-        Това са общите условия за ползване на приложението!{"\n"}
-        {"\n"}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu
-        justo augue. Pellentesque vel tincidunt metus. Suspendisse a erat
-        dictum, porta nisl non, imperdiet tellus. Proin fermentum placerat quam
-        ut facilisis. Nulla eu condimentum odio. Sed gravida bibendum suscipit.
-        Aenean venenatis sagittis tortor. Quisque nisl lorem, posuere nec lorem
-        at, ullamcorper facilisis urna. Nullam bibendum, neque dapibus ultrices
-        aliquet, massa tellus volutpat mi, et congue mi lacus quis ante. Donec
-        in massa id enim commodo placerat. Maecenas in sem velit. Fusce
-        efficitur volutpat posuere. Sed eu dui quis neque aliquam finibus.
-        Curabitur non ligula ac lorem convallis blandit quis a enim. Etiam
-        dictum massa non sagittis scelerisque. Nulla molestie, nunc vel semper
-        pellentesque, justo augue semper diam, eu fermentum nunc nisl vel
-        sapien. Sed in elit varius, malesuada felis vel, cursus urna. Praesent
-        in finibus purus, vel maximus lectus. Nullam erat sem, posuere eu
-        malesuada aliquet, volutpat ac mi. Vestibulum.
-      </CustomText>
     </BottomSheetModalComponent>
   );
 });
@@ -450,5 +438,6 @@ const styles = StyleSheet.create({
   ratingText: {
     fontFamily: FONT.semiBold,
     fontSize: FONTSIZES.size16,
+    marginBottom: "0.5%",
   },
 });
