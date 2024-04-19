@@ -25,8 +25,7 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const vh = Dimensions.get("window").height;
   const [isDescriptionShown, setIsDescriptionShown] = useState(false);
 
-  const [rating, setRating] = useState(0);
-  const [, setCurrentLocationRating] = useAtom(currentLocationRating);
+  const [rating, setRating] = useAtom(currentLocationRating);
 
   const formatDeliveryText = () => {
     switch (props.delivery) {
@@ -286,10 +285,7 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
           emptyColor={COLORS.secondary}
           enableHalfStar={false}
           starStyle={{ marginRight: -7 }}
-          onRatingEnd={() => {
-            props.onRatingEnd();
-            setCurrentLocationRating(rating);
-          }}
+          onRatingEnd={() => props.onRatingEnd()}
           animationConfig={{
             scale: 1.2,
             delay: 150,

@@ -3,16 +3,19 @@ import React from "react";
 import CustomText from "./CustomText";
 import { COLORS, FONT, FONTSIZES, images } from "../constants";
 import PropTypes from "prop-types";
+import DismissKeyboardView from "./DismissKeyboardView";
 
 const BottomSheetHandleComponent = ({ title, titleWidth }) => {
   return (
-    <View>
-      <CustomText style={[styles.bottomSheetTitle, { width: titleWidth }]}>
-        {title}
-      </CustomText>
-      <Image style={styles.headerWave} source={images.headerWave} />
-      <View style={styles.handleIndicator} />
-    </View>
+    <DismissKeyboardView>
+      <View>
+        <CustomText style={[styles.bottomSheetTitle, { width: titleWidth }]}>
+          {title}
+        </CustomText>
+        <Image style={styles.headerWave} source={images.headerWave} />
+        <View style={styles.handleIndicator} />
+      </View>
+    </DismissKeyboardView>
   );
 };
 

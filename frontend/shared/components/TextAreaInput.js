@@ -2,8 +2,9 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import { COLORS, FONT, FONTSIZES } from "../constants";
 import CustomText from "./CustomText";
+import PropTypes from "prop-types";
 
-const DescriptionTextInput = (props) => {
+const TextAreaInput = (props) => {
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [businessDescription, setBusinessDescription] = useState("");
 
@@ -11,7 +12,10 @@ const DescriptionTextInput = (props) => {
     <View style={[styles.container, props.style]}>
       <TextInput
         multiline
-        maxLength={545} //maybe 600 chars is fine
+        placeholder={
+          props.showBigPlaceholder ? "" : "Споделете впечатленията си"
+        }
+        maxLength={props.maxLength}
         onChangeText={(text) => setBusinessDescription(text)}
         onFocus={() => setShowPlaceholder(false)}
         onBlur={() => businessDescription === "" && setShowPlaceholder(true)}
@@ -19,20 +23,25 @@ const DescriptionTextInput = (props) => {
         style={[styles.input]}
       />
 
-      {showPlaceholder && (
-        <CustomText style={styles.placeholder}>
-          Описание на бизнеса (Може да го промените по-късно)
-        </CustomText>
+      {showPlaceholder && props.showBigPlaceholder && (
+        <CustomText style={styles.placeholder}>{props.placeholder}</CustomText>
       )}
     </View>
   );
 };
 
-DescriptionTextInput.propTypes = {
+TextAreaInput.propTypes = {
+  showBigPlaceholder: PropTypes.bool.isRequired,
+  placeholder: PropTypes.string,
+  maxLength: PropTypes.number.isRequired,
   style: Text.propTypes.style,
 };
 
-export default DescriptionTextInput;
+TextAreaInput.defaultProps = {
+  showBigPlaceholder: true,
+};
+
+export default TextAreaInput;
 
 const styles = StyleSheet.create({
   container: {
