@@ -20,12 +20,37 @@ import { ScrollView } from "react-native-gesture-handler";
 import StarRating from "react-native-star-rating-widget";
 import { useAtom } from "jotai";
 import { currentLocationRating } from "../globalState";
+import UserReview from "./UserReview";
 
 const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const vh = Dimensions.get("window").height;
   const [isDescriptionShown, setIsDescriptionShown] = useState(false);
-
   const [rating, setRating] = useAtom(currentLocationRating);
+
+  //Fetch Filter Tags from API instead of:
+  const reviews = [
+    {
+      user: "Бонавентура Балестриери",
+      rating: 4,
+      date: "13/10/2023",
+      comment:
+        "С Polenity/ истински мед сме в партньорски отношения повече от 2 години. До момента сме успели да извървим доста дълъг път заедно и надявам се занапред да продължим да сме заедно в мисията по опазване на пчелите и осигуряване на истински качествени пчелни продукти!",
+    },
+    {
+      user: "Ivan Petrov",
+      rating: 2,
+      date: "05/09/2023",
+      comment:
+        "Въобще не беше хубав медът... Със семейството ми сме много разочаровани.",
+    },
+    {
+      user: "Елен Бобева",
+      rating: 5,
+      date: "25/04/2023",
+      comment:
+        "Много хъбав мед! Поръчвам си вече за 4ти път и съм много доволна.",
+    },
+  ];
 
   const formatDeliveryText = () => {
     switch (props.delivery) {
@@ -294,6 +319,30 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
           }}
         />
       </View>
+
+      {/* <View style={{ flex: 1 }}>
+        <FlashList
+          contentContainerStyle={{ paddingVertical: vh / 75 }}
+          showsVerticalScrollIndicator={false}
+          data={reviews}
+          renderItem={({ item }) => (
+            <UserReview
+              user={item.user}
+              rating={item.rating}
+              date={item.date}
+              comment={item.comment}
+            />
+          )}
+          estimatedItemSize={25}
+        />
+      </View> */}
+
+      <UserReview
+        user={reviews[0].user}
+        rating={reviews[0].rating}
+        date={reviews[0].date}
+        comment={reviews[0].comment}
+      />
     </BottomSheetModalComponent>
   );
 });
