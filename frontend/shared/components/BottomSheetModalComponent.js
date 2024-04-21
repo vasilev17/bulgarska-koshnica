@@ -33,7 +33,10 @@ const BottomSheetModalComponent = forwardRef((props, ref) => {
           props.hasBackdrop === true && bottomsheetModalBackrop
         }
         handleComponent={() => (
-          <BottomSheetHandleComponent title={props.title} titleWidth={props.titleWidth}/>
+          <BottomSheetHandleComponent
+            title={props.title}
+            titleWidth={props.titleWidth}
+          />
         )}
       >
         <BottomSheetScrollView
@@ -45,6 +48,8 @@ const BottomSheetModalComponent = forwardRef((props, ref) => {
           {props.hasFooter && (
             <Image style={styles.footerWave} source={images.footerWaveEmpty} />
           )}
+
+          {props.underFooterComponent && props.underFooterComponent}
         </BottomSheetScrollView>
       </BottomSheetModal>
     </BottomSheetModalProvider>
@@ -60,6 +65,7 @@ BottomSheetModalComponent.propTypes = {
   hasFooter: PropTypes.bool.isRequired,
   hasBackdrop: PropTypes.bool.isRequired,
   titleWidth: PropTypes.number.isRequired,
+  underFooterComponent: PropTypes.node,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

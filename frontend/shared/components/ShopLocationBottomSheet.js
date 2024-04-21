@@ -21,6 +21,7 @@ import StarRating from "react-native-star-rating-widget";
 import { useAtom } from "jotai";
 import { currentLocationRating } from "../globalState";
 import UserReview from "./UserReview";
+import WarningButton from "./WarningButton";
 
 const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const vh = Dimensions.get("window").height;
@@ -104,6 +105,11 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
       ref={ref}
       title={props.title}
       titleWidth={270}
+      underFooterComponent={
+        <WarningButton icon={icons.danger}>
+          Докладвайте този бизнес
+        </WarningButton>
+      }
     >
       <View style={{ paddingHorizontal: "4%" }}>
         <View style={styles.ratingContainer}>
@@ -325,6 +331,12 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
           contentContainerStyle={{ paddingVertical: vh / 75 }}
           showsVerticalScrollIndicator={false}
           data={reviews}
+          //Render load more button in the list footer component
+          ListFooterComponent={
+            <View>
+              <TouchableOpacity>Прочетете още...</TouchableOpacity>
+            </View>
+          }
           renderItem={({ item }) => (
             <UserReview
               user={item.user}

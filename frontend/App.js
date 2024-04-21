@@ -15,6 +15,7 @@ import AddProductScreen from "./screens/AddProductScreen";
 import BusinessKeyWordsScreen from "./screens/BusinessKeyWordsScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import MapScreen from "./screens/MapScreen";
+import VerificationCodeScreen from "./screens/VerificationCodeScreen";
 
 import { useFonts } from "expo-font";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -32,7 +33,7 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <MapScreen />
+      <VerificationCodeScreen />
     </GestureHandlerRootView>
   );
 }

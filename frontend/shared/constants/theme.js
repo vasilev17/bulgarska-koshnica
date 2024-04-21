@@ -16,6 +16,7 @@ const COLORS = {
   whiteDarker: "#F4F5FA",
 
   red: "#FF0000",
+  warningLightRed: "#eee8e9",
   yellow: "#FFB554",
 
   black: "#000000",
@@ -94,5 +95,13 @@ const MAP_INITIAL_REGION = {
   longitudeDelta: 4.5,
 };
 
-
-export { COLORS, FONT, FONTSIZES, SIZES, FOOTERSTYLES, SHADOWS, BULGARIA_BOUNDARIES, MAP_INITIAL_REGION };
+export {
+  COLORS,
+  FONT,
+  FONTSIZES,
+  SIZES,
+  FOOTERSTYLES,
+  SHADOWS,
+  BULGARIA_BOUNDARIES,
+  MAP_INITIAL_REGION,
+};
