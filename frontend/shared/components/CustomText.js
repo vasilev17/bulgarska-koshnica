@@ -5,7 +5,11 @@ import PropTypes, { arrayOf, oneOfType } from "prop-types";
 
 const CustomText = (props) => {
   return (
-    <Text {...props} selectionColor={COLORS.lightPrimary} style={[styles.text, props.style]}>
+    <Text
+      {...props}
+      selectionColor={COLORS.lightPrimary}
+      style={[styles.text, props.style]}
+    >
       {props.children}
     </Text>
   );
@@ -13,7 +17,7 @@ const CustomText = (props) => {
 
 CustomText.propTypes = {
   style: Text.propTypes.style,
-  children: oneOfType([arrayOf(PropTypes.string), PropTypes.string]),
+  // children: oneOfType([arrayOf(PropTypes.string), PropTypes.string]),
 };
 
 export default CustomText;

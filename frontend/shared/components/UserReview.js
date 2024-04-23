@@ -21,7 +21,7 @@ export default UserReview;
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: "4%",
-    marginTop: "5%",
+    marginVertical: "4%",
   },
   reviewText: {
     fontSize: FONTSIZES.size15,

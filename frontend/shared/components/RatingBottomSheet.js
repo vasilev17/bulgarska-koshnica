@@ -13,7 +13,7 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const [rating, setRating] = useAtom(currentLocationRating);
 
   //Fetch username from session or DB instead of:
-  const username = "Валентин Василев";
+  const username = "Иван Петров";
   //Fetch current date from server instead of:
   const date =
     new Date().getDate() < 10

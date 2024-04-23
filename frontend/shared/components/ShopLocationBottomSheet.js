@@ -22,6 +22,7 @@ import { useAtom } from "jotai";
 import { currentLocationRating } from "../globalState";
 import UserReview from "./UserReview";
 import WarningButton from "./WarningButton";
+import LoadMoreButton from "./LoadMoreButton";
 
 const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const vh = Dimensions.get("window").height;
@@ -234,8 +235,9 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
 
         <View>
           {props.businessHours &&
-            Object.keys(props.businessHours).map((prop) => (
+            Object.keys(props.businessHours).map((prop, index) => (
               <CustomText
+                key={index}
                 style={[styles.sectionText, { marginVertical: "0.5%" }]}
               >
                 {prop}
@@ -245,8 +247,9 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
 
         <View style={{ marginLeft: "27%" }}>
           {props.businessHours &&
-            Object.keys(props.businessHours).map((prop) => (
+            Object.keys(props.businessHours).map((prop, index) => (
               <CustomText
+                key={index}
                 style={[styles.sectionText, { marginVertical: "0.5%" }]}
               >
                 {props.businessHours[prop]}
@@ -254,7 +257,7 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
             ))}
         </View>
       </View>
-
+      {/* //--------- */}
       <View style={styles.rowContainer}>
         <Image source={icons.websitePlanet} style={styles.websiteIcon} />
         <TouchableOpacity
@@ -326,17 +329,13 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
         />
       </View>
 
-      {/* <View style={{ flex: 1 }}>
+      <View style={{ marginTop:'2%'}}>
         <FlashList
-          contentContainerStyle={{ paddingVertical: vh / 75 }}
-          showsVerticalScrollIndicator={false}
           data={reviews}
-          //Render load more button in the list footer component
-          ListFooterComponent={
-            <View>
-              <TouchableOpacity>Прочетете още...</TouchableOpacity>
-            </View>
-          }
+          ListFooterComponent={<LoadMoreButton />}
+          ItemSeparatorComponent={() => (
+            <View style={styles.reviewSeparator}></View>
+          )}
           renderItem={({ item }) => (
             <UserReview
               user={item.user}
@@ -347,14 +346,7 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
           )}
           estimatedItemSize={25}
         />
-      </View> */}
-
-      <UserReview
-        user={reviews[0].user}
-        rating={reviews[0].rating}
-        date={reviews[0].date}
-        comment={reviews[0].comment}
-      />
+      </View>
     </BottomSheetModalComponent>
   );
 });
@@ -496,5 +488,9 @@ const styles = StyleSheet.create({
     fontFamily: FONT.semiBold,
     fontSize: FONTSIZES.size16,
     marginBottom: "0.5%",
+  },
+  reviewSeparator: {
+    height: 1,
+    backgroundColor: "#f0f0fc",
   },
 });
