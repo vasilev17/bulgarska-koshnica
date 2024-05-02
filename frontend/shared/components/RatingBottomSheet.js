@@ -16,15 +16,15 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
   const username = "Иван Петров";
   //Fetch current date from server instead of:
   const date =
-    new Date().getDate() < 10
+    (new Date().getDate() < 10
       ? "0" + new Date().getDate()
-      : new Date().getDate() +
-        "/" +
-        (new Date().getMonth() < 10
-          ? "0" + (new Date().getMonth() + 1)
-          : new Date().getMonth() + 1) +
-        "/" +
-        new Date().getFullYear();
+      : new Date().getDate()) +
+    "/" +
+    (new Date().getMonth() < 10
+      ? "0" + (new Date().getMonth() + 1)
+      : new Date().getMonth() + 1) +
+    "/" +
+    new Date().getFullYear();
 
   return (
     <BottomSheetModalComponent

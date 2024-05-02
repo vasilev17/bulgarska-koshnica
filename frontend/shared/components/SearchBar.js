@@ -1,28 +1,47 @@
-import { Image, StyleSheet, TextInput, View } from "react-native";
-import React from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  Image,
+  StyleSheet,
+  TextInput,
+  View,
+  TouchableOpacity,
+} from "react-native";
+import React, { useState } from "react";
 import { COLORS, FONT, FONTSIZES, icons } from "../constants";
 import { FlashList } from "@shopify/flash-list";
 import FilterTag from "./FilterTag";
 import PropTypes from "prop-types";
 
 const SearchBar = (props) => {
+  const [searchString, setSearchString] = useState(null);
+
   return (
     <View style={styles.container}>
       <View style={styles.searchBarContainer}>
         <TouchableOpacity activeOpacity={0.5} style={styles.accountMenuButton}>
-          <Image style={styles.accountMenuIcon} source={icons.accountMenu} />
+          <Image style={styles.searchBarIcon} source={icons.accountMenu} />
         </TouchableOpacity>
 
         <TextInput
           placeholder="Търсене..."
+          value={searchString}
+          onChangeText={setSearchString}
           placeholderTextColor={"rgba(19, 54, 16, 0.35)"}
           selectionColor={COLORS.primary}
           style={[styles.textInputBar, { marginTop: "0%", marginBottom: "0%" }]}
         />
 
+        {searchString && (
+          <TouchableOpacity
+            onPress={() => setSearchString("")}
+            activeOpacity={0.5}
+            style={styles.closeSearchButton}
+          >
+            <Image style={styles.searchBarIcon} source={icons.closeSearch} />
+          </TouchableOpacity>
+        )}
+
         <TouchableOpacity activeOpacity={0.5} style={styles.filtersButton}>
-          <Image style={styles.filtersIcon} source={icons.filters} />
+          <Image style={styles.searchBarIcon} source={icons.filters} />
         </TouchableOpacity>
       </View>
 
@@ -69,7 +88,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 13,
     padding: 7,
   },
-  accountMenuIcon: {
+  searchBarIcon: {
     height: 25,
     aspectRatio: 1,
   },
@@ -83,15 +102,16 @@ const styles = StyleSheet.create({
     color: COLORS.text,
     width: "80%",
   },
-  filtersIcon: {
-    height: 25,
-    aspectRatio: 1,
-  },
   filtersButton: {
     backgroundColor: COLORS.primary,
     borderTopRightRadius: 13,
     borderBottomRightRadius: 13,
     padding: 7,
+  },
+  closeSearchButton: {
+    position: "absolute",
+    zIndex: 999,
+    right: "13%",
   },
   filterTagsContainer: {
     width: "90%",
