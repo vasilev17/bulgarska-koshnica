@@ -13,14 +13,10 @@ import MapViewSwitch from "../shared/components/MapViewSwitch";
 import CurrentLocationButton from "../shared/components/CurrentLocationButton";
 import SearchBar from "../shared/components/SearchBar";
 import DismissKeyboardView from "../shared/components/DismissKeyboardView";
-import { ScrollView } from "react-native-gesture-handler";
-import FilterTag from "../shared/components/FilterTag";
-import { FlashList } from "@shopify/flash-list";
-import BottomSheetModalComponent from "../shared/components/BottomSheetModalComponent";
 import CustomText from "../shared/components/CustomText";
 import ShopLocationBottomSheet from "../shared/components/ShopLocationBottomSheet";
 import RatingBottomSheet from "../shared/components/RatingBottomSheet";
-import { measure } from "react-native-reanimated";
+import SearchBottomSheet from "../shared/components/SearchBottomSheet";
 
 export default function MapScreen() {
   const mapRef = useRef(null);
@@ -31,6 +27,7 @@ export default function MapScreen() {
 
   const locationBottomSheetModalRef = useRef(null);
   const ratingBottomSheetModalRef = useRef(null);
+  const searchBottomSheetModalRef = useRef(null);
 
   //Fetch Filter Tags from API instead of:
   const filterTags = [
@@ -249,7 +246,10 @@ export default function MapScreen() {
           ))}
         </MapView>
 
-        <SearchBar filterTags={filterTags} />
+        <SearchBar
+          filterTags={filterTags}
+          onSubmit={() => searchBottomSheetModalRef.current?.present()}
+        />
 
         <CurrentLocationButton
           mapRef={mapRef}
@@ -298,5 +298,9 @@ export default function MapScreen() {
       ref={ratingBottomSheetModalRef}
       title={selectedShopLocation?.title}
     />,
+
+    // -- Search BottomSheetModal --
+
+    <SearchBottomSheet key={3} ref={searchBottomSheetModalRef} />,
   ];
 }

@@ -329,7 +329,7 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
         />
       </View>
 
-      <View style={{ marginTop:'2%'}}>
+      <View style={{ marginTop: "2%" }}>
         <FlashList
           data={reviews}
           ListFooterComponent={<LoadMoreButton />}
