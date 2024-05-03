@@ -170,6 +170,39 @@ export default function MapScreen() {
     },
   ];
 
+  //Fetch Regional Search Results from API instead of:
+  const regionalSearchResults = [
+    {
+      icon: icons.shop,
+      title: "Мед и медни продукти Бояджиеви",
+      address: "София, Баня Мадара, Булевард Прага 23, 1000 София",
+    },
+    {
+      icon: icons.shop,
+      title: 'Мед "При Баба"',
+      address: "София, бул. „Черни връх“ 49, 1407 Хладилника, 1407 София",
+    },
+    {
+      icon: icons.shop,
+      title: 'Мед "Бацето"',
+      address: "София, бул. „Константин Величков“ 4, 130, 1309 София",
+    },
+  ];
+
+  //Fetch More Search Results from API instead of:
+  const moreSearchResults = [
+    {
+      icon: icons.shop,
+      title: "Пчелен мед от производител гр. ВЪРШЕЦ",
+      address: "Монтана, ул. Христо Ботев 43, 3540 Вършец",
+    },
+    {
+      icon: icons.shop,
+      title: "КумановМед",
+      address: "Стара Загора, ул. „Братя Жекови“ 62, 6002 Стара Загора",
+    },
+  ];
+
   useEffect(() => {
     Location.requestForegroundPermissionsAsync();
     getUserLocation();
@@ -301,6 +334,11 @@ export default function MapScreen() {
 
     // -- Search BottomSheetModal --
 
-    <SearchBottomSheet key={3} ref={searchBottomSheetModalRef} />,
+    <SearchBottomSheet
+      key={3}
+      ref={searchBottomSheetModalRef}
+      regionalResults={regionalSearchResults}
+      moreResults={moreSearchResults}
+    />,
   ];
 }

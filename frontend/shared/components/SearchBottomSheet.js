@@ -14,6 +14,12 @@ const SearchBottomSheet = forwardRef((props, ref) => {
     >
       <View style={{ paddingHorizontal: "4%" }}>
         <CustomText>Търсене</CustomText>
+
+        <CustomText>В района:</CustomText>
+        <CustomText>{props.regionalResults[0].title}</CustomText>
+
+        <CustomText>Още:</CustomText>
+        <CustomText>{props.moreResults[0].title}</CustomText>
       </View>
     </BottomSheetModalComponent>
   );
