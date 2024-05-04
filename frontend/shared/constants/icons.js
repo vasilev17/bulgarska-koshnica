@@ -31,7 +31,7 @@ import rating2 from "../../assets/icons/rating2Icon.png";
 import rating3 from "../../assets/icons/rating3Icon.png";
 import rating4 from "../../assets/icons/rating4Icon.png";
 import rating5 from "../../assets/icons/rating5Icon.png";
-import refreshLocation from "../../assets/icons/refreshLocationIcon.png";
+import refreshSearchResults from "../../assets/icons/refreshSearchResultsIcon.png";
 import shop from "../../assets/icons/shopIcon.png";
 import websitePlanet from "../../assets/icons/websitePlanetIcon.png";
 import tickIcon from "../../assets/icons/tickIcon.png";
@@ -76,7 +76,7 @@ export default {
   newImage,
   phone,
   ratings,
-  refreshLocation,
+  refreshSearchResults,
   shop,
   websitePlanet,
   tickIcon,

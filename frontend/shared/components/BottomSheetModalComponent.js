@@ -36,6 +36,7 @@ const BottomSheetModalComponent = forwardRef((props, ref) => {
           <BottomSheetHandleComponent
             title={props.title}
             titleWidth={props.titleWidth}
+            icon={props.icon}
           />
         )}
       >

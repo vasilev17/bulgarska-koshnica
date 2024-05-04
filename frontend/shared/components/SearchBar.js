@@ -28,7 +28,7 @@ const SearchBar = (props) => {
           placeholderTextColor={"rgba(19, 54, 16, 0.35)"}
           selectionColor={COLORS.primary}
           style={[styles.textInputBar, { marginTop: "0%", marginBottom: "0%" }]}
-          onSubmitEditing={props.onSubmit}
+          onSubmitEditing={searchString ? props.onSubmit : null}
         />
 
         {searchString && (

@@ -228,6 +228,7 @@ export default function MapScreen() {
   const onMarkerPress = (index) => {
     console.log("Marker : ", index);
     setSelectedShopLocation(shops[index]);
+    searchBottomSheetModalRef.current?.close();
     locationBottomSheetModalRef.current?.present();
   };
 
@@ -281,7 +282,10 @@ export default function MapScreen() {
 
         <SearchBar
           filterTags={filterTags}
-          onSubmit={() => searchBottomSheetModalRef.current?.present()}
+          onSubmit={() => {
+            locationBottomSheetModalRef.current?.close();
+            searchBottomSheetModalRef.current?.present();
+          }}
         />
 
         <CurrentLocationButton
