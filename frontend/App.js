@@ -22,9 +22,12 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    "Inter-Regular": require("./assets/fonts/Inter-Regular.ttf"),
-    "Inter-SemiBold": require("./assets/fonts/Inter-SemiBold.ttf"),
-    "Inter-Bold": require("./assets/fonts/Inter-Bold.ttf"),
+    "Inter-Regular": require("./assets/fonts/Inter-Regular.otf"),
+    "Inter-Italic": require("./assets/fonts/Inter-Italic.otf"),
+    "Inter-BoldItalic": require("./assets/fonts/Inter-BoldItalic.otf"),
+    "Inter-ThinItalic": require("./assets/fonts/Inter-ThinItalic-BETA.otf"),
+    "Inter-SemiBold": require("./assets/fonts/Inter-SemiBold.otf"),
+    "Inter-Bold": require("./assets/fonts/Inter-Bold.otf"),
   });
 
   if (!fontsLoaded) {

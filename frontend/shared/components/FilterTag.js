@@ -15,9 +15,9 @@ const FilterTag = (props) => {
 };
 
 FilterTag.propTypes = {
-    icon:PropTypes.node.isRequired,
-    title:PropTypes.string.isRequired,
-  };
+  icon: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 export default FilterTag;
 
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 1,
+    paddingVertical: 2,
     paddingHorizontal: 7,
     marginHorizontal: "1%",
     elevation: 20,

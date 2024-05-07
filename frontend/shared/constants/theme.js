@@ -24,6 +24,9 @@ const COLORS = {
 
 const FONT = {
   regular: "Inter-Regular",
+  italic: "Inter-Italic",
+  boldItalic: "Inter-BoldItalic",
+  thinItalic: "Inter-ThinItalic",
   semiBold: "Inter-SemiBold",
   bold: "Inter-Bold",
 };

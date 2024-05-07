@@ -4,6 +4,7 @@ import MapView, { Marker } from "react-native-maps";
 import {
   BULGARIA_BOUNDARIES,
   COLORS,
+  FONT,
   MAP_INITIAL_REGION,
   icons,
   images,
@@ -274,7 +275,18 @@ export default function MapScreen() {
                   source={icons.mapMarker}
                   style={{ width: 22, height: 32 }}
                 />
-                <CustomText style={{ fontSize: 12 }}>Marker Title</CustomText>
+
+                {/* Make it so that the name is displayed only after a certain zoom level (map coordinate delta) */}
+                <CustomText
+                  style={{
+                    fontSize: 12,
+                    maxWidth: 150,
+                    textAlign: "center",
+                    fontFamily: FONT.semiBold,
+                  }}
+                >
+                  {marker.title}
+                </CustomText>
               </View>
             </Marker>
           ))}
@@ -284,6 +296,7 @@ export default function MapScreen() {
           filterTags={filterTags}
           onSubmit={() => {
             locationBottomSheetModalRef.current?.close();
+            //Update the results that are sent to the searchBottomSheetModal before presenting it
             searchBottomSheetModalRef.current?.present();
           }}
         />
