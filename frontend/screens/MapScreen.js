@@ -1,4 +1,11 @@
-import { Image, SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import MapView, { Marker } from "react-native-maps";
 import {
@@ -18,13 +25,14 @@ import CustomText from "../shared/components/CustomText";
 import ShopLocationBottomSheet from "../shared/components/ShopLocationBottomSheet";
 import RatingBottomSheet from "../shared/components/RatingBottomSheet";
 import SearchBottomSheet from "../shared/components/SearchBottomSheet";
+import SideDrawer from "../shared/components/SideDrawer";
 
 export default function MapScreen() {
   const mapRef = useRef(null);
   const [location, setLocation] = useState(null);
   const [mapType, setMapType] = useState("standard");
   const [selectedShopLocation, setSelectedShopLocation] = useState(null);
-  const [rating, setRating] = useState(0);
+  const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
 
   const locationBottomSheetModalRef = useRef(null);
   const ratingBottomSheetModalRef = useRef(null);
@@ -234,88 +242,98 @@ export default function MapScreen() {
   };
 
   return [
-    <DismissKeyboardView key={0}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <MapView
-          ref={mapRef}
-          onMapLoaded={() =>
-            mapRef.current.setMapBoundaries(
-              BULGARIA_BOUNDARIES.northEast,
-              BULGARIA_BOUNDARIES.southWest
-            )
-          }
-          //provider={PROVIDER_GOOGLE}
-          minZoomLevel={6.5}
-          mapType={mapType}
-          style={{ ...StyleSheet.absoluteFillObject }}
-          initialRegion={MAP_INITIAL_REGION}
-          showsMyLocationButton={false}
-          showsUserLocation={false}
-          rotateEnabled={false}
-          showsCompass={false}
-          toolbarEnabled={false}
-          // -- Loading --
-          loadingEnabled={true}
-          loadingBackgroundColor={COLORS.white}
-          loadingIndicatorColor={COLORS.primary}
-        >
-          {location !== null && (
-            <Marker coordinate={location} image={icons.userCurrentLocation} />
-          )}
+    <SideDrawer
+      key={0}
+      open={sideDrawerOpen}
+      onOpen={() => setSideDrawerOpen(true)}
+      onClose={() => setSideDrawerOpen(false)}
+    >
+      <DismissKeyboardView>
+        <SafeAreaView style={{ flex: 1 }}>
+          <MapView
+            ref={mapRef}
+            onMapLoaded={() =>
+              mapRef.current.setMapBoundaries(
+                BULGARIA_BOUNDARIES.northEast,
+                BULGARIA_BOUNDARIES.southWest
+              )
+            }
+            //provider={PROVIDER_GOOGLE}
+            minZoomLevel={6.5}
+            mapType={mapType}
+            style={{ ...StyleSheet.absoluteFillObject }}
+            initialRegion={MAP_INITIAL_REGION}
+            showsMyLocationButton={false}
+            showsUserLocation={false}
+            rotateEnabled={false}
+            showsCompass={false}
+            toolbarEnabled={false}
+            // -- Loading --
+            loadingEnabled={true}
+            loadingBackgroundColor={COLORS.white}
+            loadingIndicatorColor={COLORS.primary}
+          >
+            {location !== null && (
+              <Marker coordinate={location} image={icons.userCurrentLocation} />
+            )}
 
-          {shops.map((marker, index) => (
-            <Marker
-              key={index}
-              coordinate={marker.coordinate}
-              // image={icons.mapMarker}
-              onPress={() => onMarkerPress(index)}
-            >
-              <View style={{ alignItems: "center", overflow: "visible" }}>
-                <Image
-                  source={icons.mapMarker}
-                  style={{ width: 22, height: 32 }}
-                />
+            {shops.map((marker, index) => (
+              <Marker
+                key={index}
+                coordinate={marker.coordinate}
+                // image={icons.mapMarker}
+                onPress={() => onMarkerPress(index)}
+              >
+                <View style={{ alignItems: "center", overflow: "visible" }}>
+                  <Image
+                    source={icons.mapMarker}
+                    style={{ width: 22, height: 32 }}
+                  />
 
-                {/* Make it so that the name is displayed only after a certain zoom level (map coordinate delta) */}
-                <CustomText
-                  style={{
-                    fontSize: 12,
-                    maxWidth: 150,
-                    textAlign: "center",
-                    fontFamily: FONT.semiBold,
-                  }}
-                >
-                  {marker.title}
-                </CustomText>
-              </View>
-            </Marker>
-          ))}
-        </MapView>
+                  {/* Make it so that the name is displayed only after a certain zoom level (map coordinate delta) */}
+                  <CustomText
+                    style={{
+                      fontSize: 12,
+                      maxWidth: 150,
+                      textAlign: "center",
+                      fontFamily: FONT.semiBold,
+                    }}
+                  >
+                    {marker.title}
+                  </CustomText>
+                </View>
+              </Marker>
+            ))}
+          </MapView>
 
-        <SearchBar
-          filterTags={filterTags}
-          onSubmit={() => {
-            locationBottomSheetModalRef.current?.close();
-            //Update the results that are sent to the searchBottomSheetModal before presenting it
-            searchBottomSheetModalRef.current?.present();
-          }}
-        />
+          <View style={styles.mapDrawerOverlay} />
 
-        <CurrentLocationButton
-          mapRef={mapRef}
-          currentLocation={location}
-          getUserLocation={getUserLocation}
-        />
+          <SearchBar
+            filterTags={filterTags}
+            onAccountButtonClick={() => setSideDrawerOpen(true)}
+            onSubmit={() => {
+              locationBottomSheetModalRef.current?.close();
+              //Update the results that are sent to the searchBottomSheetModal before presenting it
+              searchBottomSheetModalRef.current?.present();
+            }}
+          />
 
-        <MapViewSwitch
-          mapType={mapType}
-          toggleMapType={toggleMapType}
-          style={{ bottom: "8%", right: "2%" }}
-        />
+          <CurrentLocationButton
+            mapRef={mapRef}
+            currentLocation={location}
+            getUserLocation={getUserLocation}
+          />
 
-        {/* <StatusBar backgroundColor={COLORS.primary} barStyle="default" /> */}
-      </SafeAreaView>
-    </DismissKeyboardView>,
+          <MapViewSwitch
+            mapType={mapType}
+            toggleMapType={toggleMapType}
+            style={{ bottom: "8%", right: "2%" }}
+          />
+
+          {/* <StatusBar backgroundColor={COLORS.primary} barStyle="default" /> */}
+        </SafeAreaView>
+      </DismissKeyboardView>
+    </SideDrawer>,
 
     // -- Shop Location BottomSheetModal --
 
@@ -359,3 +377,14 @@ export default function MapScreen() {
     />,
   ];
 }
+
+const styles = StyleSheet.create({
+  mapDrawerOverlay: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    opacity: 0.0,
+    height: Dimensions.get("window").height,
+    width: 10,
+  },
+});

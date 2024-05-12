@@ -17,7 +17,7 @@ const SearchBar = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.searchBarContainer}>
-        <TouchableOpacity activeOpacity={0.5} style={styles.accountMenuButton}>
+        <TouchableOpacity onPress={props.onAccountButtonClick} activeOpacity={0.5} style={styles.accountMenuButton}>
           <Image style={styles.searchBarIcon} source={icons.accountMenu} />
         </TouchableOpacity>
 
