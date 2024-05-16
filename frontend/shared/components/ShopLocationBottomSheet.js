@@ -107,7 +107,7 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
       title={props.title}
       titleWidth={270}
       underFooterComponent={
-        <WarningButton icon={icons.danger}>
+        <WarningButton onPress={() => props.onReportPress()} icon={icons.danger}>
           Докладвайте този бизнес
         </WarningButton>
       }

@@ -22,9 +22,9 @@ const BaseAppScreen = (props) => {
       );
   };
 
-  const renderBackButton = () => {
+  const renderLeftButton = () => {
     if (
-      props.hasBackButton === true &&
+      props.hasLeftButton === true &&
       props.footerWaveType !== FOOTERSTYLES.footerEmpty
     )
       return (
@@ -33,9 +33,9 @@ const BaseAppScreen = (props) => {
           buttonColor={COLORS.white}
           fontColor={COLORS.text}
           hasShadow={false}
-          style={styles.backButton}
+          style={styles.leftButton}
         >
-          Назад
+          {props.leftButtonText}
         </CustomButton>
       );
   };
@@ -74,7 +74,7 @@ const BaseAppScreen = (props) => {
         </View>
 
         {renderFooter()}
-        {renderBackButton()}
+        {renderLeftButton()}
         {renderContinueButton()}
       </SafeAreaView>
     </DismissKeyboardView>
@@ -83,7 +83,8 @@ const BaseAppScreen = (props) => {
 
 BaseAppScreen.propTypes = {
   footerWaveType: PropTypes.number.isRequired,
-  hasBackButton: PropTypes.bool.isRequired,
+  hasLeftButton: PropTypes.bool.isRequired,
+  leftButtonText: PropTypes.string.isRequired,
   hasContinueButton: PropTypes.bool.isRequired,
   screenHeaderTitle: PropTypes.string.isRequired,
   screenHeaderSubtitle: PropTypes.string,
@@ -94,7 +95,8 @@ BaseAppScreen.propTypes = {
 
 BaseAppScreen.defaultProps = {
   footerWaveType: FOOTERSTYLES.footerWithContent,
-  hasBackButton: true,
+  hasLeftButton: true,
+  leftButtonText: "Назад",
   hasContinueButton: true,
   screenHeaderSubtitle: null,
   contentOffset: 0,
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
     zIndex: -1,
   },
 
-  backButton: {
+  leftButton: {
     position: "absolute",
     left: "3.5%",
     bottom: "6%",

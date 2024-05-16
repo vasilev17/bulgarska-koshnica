@@ -13,7 +13,7 @@ const TextAreaInput = (props) => {
       <TextInput
         multiline
         placeholder={
-          props.showBigPlaceholder ? "" : "Споделете впечатленията си"
+          props.showBigPlaceholder ? "" : props.placeholder
         }
         maxLength={props.maxLength}
         onChangeText={(text) => setBusinessDescription(text)}

@@ -15,7 +15,7 @@ const COLORS = {
   white: "#FFFFFF",
   whiteDarker: "#F4F5FA",
 
-  red: "#FF0000",
+  red: "#E04040",
   warningLightRed: "#eee8e9",
   yellow: "#FFB554",
 
@@ -52,8 +52,9 @@ const FONTSIZES = {
 
 const SIZES = {
   small: 0,
-  medium: 1,
-  large: 2,
+  smallPlus: 1,
+  medium: 2,
+  large: 3,
 };
 
 const FOOTERSTYLES = {

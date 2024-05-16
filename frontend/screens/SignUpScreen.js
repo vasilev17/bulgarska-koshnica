@@ -1,7 +1,7 @@
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { globalStyles } from "../shared/globalStyles";
-import { COLORS, SIZES, FOOTERSTYLES } from "../shared/constants";
+import { COLORS, SIZES, FOOTERSTYLES, FONT } from "../shared/constants";
 import CustomButton from "../shared/components/CustomButton";
 import CustomText from "../shared/components/CustomText";
 import BaseAppComponent from "../shared/components/BaseAppComponent";
@@ -16,7 +16,9 @@ const SignUpScreen = () => {
       <CustomText
         style={[globalStyles.infoText, { marginTop: "5%", marginBottom: "3%" }]}
       >
-        Ако желаете профил, моля въведете името си
+        Ако желаете{" "}
+        <CustomText style={{ fontFamily: FONT.bold }}>нов профил</CustomText>,
+        моля въведете името си
       </CustomText>
 
       <TextInput
@@ -36,12 +38,12 @@ const SignUpScreen = () => {
       />
 
       <CustomButton
-        size={SIZES.small}
+        size={SIZES.smallPlus}
         buttonColor={COLORS.primary}
         fontColor={COLORS.white}
         hasShadow={true}
       >
-        Напред
+        Регистрация
       </CustomButton>
 
       <CustomText style={{ marginVertical: "3%" }}>Или</CustomText>

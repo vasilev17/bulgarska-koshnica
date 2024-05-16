@@ -1,7 +1,13 @@
 import { View, Text } from "react-native";
 import React from "react";
 import BaseAppComponent from "../shared/components/BaseAppComponent";
-import { COLORS, FONTSIZES, FOOTERSTYLES, SIZES } from "../shared/constants";
+import {
+  COLORS,
+  FONT,
+  FONTSIZES,
+  FOOTERSTYLES,
+  SIZES,
+} from "../shared/constants";
 import CustomText from "../shared/components/CustomText";
 import { globalStyles } from "../shared/globalStyles";
 import CustomButton from "../shared/components/CustomButton";
@@ -19,8 +25,23 @@ const WelcomeScreen = () => {
       <CustomText
         style={[
           globalStyles.infoText,
-          { fontSize: FONTSIZES.size24, textAlign: "center", width: 360 },
-          { marginTop: "5%", marginBottom: "3%" },
+          {
+            fontSize: FONTSIZES.size24,
+            textAlign: "center",
+            color: COLORS.primary,
+            fontFamily: FONT.italic,
+          },
+          { marginVertical: "3%" },
+        ]}
+      >
+        Вашият профил беше създаден успешно!
+      </CustomText>
+
+      <CustomText
+        style={[
+          globalStyles.infoText,
+          { fontSize: FONTSIZES.size22, textAlign: "center", width: 360 },
+          { marginBottom: "3%" },
         ]}
       >
         Надяваме се това приложение от българи за българи да помогне, както на

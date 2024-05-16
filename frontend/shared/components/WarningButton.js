@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 const WarningButton = (props) => {
   return (
     <TouchableOpacity
+      {...props}
       activeOpacity={0.4}
       style={[styles.container, props.style]}
     >

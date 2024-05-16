@@ -26,6 +26,7 @@ import ShopLocationBottomSheet from "../shared/components/ShopLocationBottomShee
 import RatingBottomSheet from "../shared/components/RatingBottomSheet";
 import SearchBottomSheet from "../shared/components/SearchBottomSheet";
 import SideDrawer from "../shared/components/SideDrawer";
+import ReportBottomSheet from "../shared/components/ReportBottomSheet";
 
 export default function MapScreen() {
   const mapRef = useRef(null);
@@ -35,8 +36,9 @@ export default function MapScreen() {
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
 
   const locationBottomSheetModalRef = useRef(null);
-  const ratingBottomSheetModalRef = useRef(null);
   const searchBottomSheetModalRef = useRef(null);
+  const ratingBottomSheetModalRef = useRef(null);
+  const reportBottomSheetModalRef = useRef(null);
 
   //Fetch Filter Tags from API instead of:
   const filterTags = [
@@ -359,21 +361,32 @@ export default function MapScreen() {
           ratingBottomSheetModalRef.current?.present();
         }, 250)
       }
-    />,
-
-    <RatingBottomSheet
-      key={2}
-      ref={ratingBottomSheetModalRef}
-      title={selectedShopLocation?.title}
+      onReportPress={() => reportBottomSheetModalRef.current?.present()}
     />,
 
     // -- Search BottomSheetModal --
 
     <SearchBottomSheet
-      key={3}
+      key={2}
       ref={searchBottomSheetModalRef}
       regionalResults={regionalSearchResults}
       moreResults={moreSearchResults}
+    />,
+
+    // -- Rating BottomSheetModal --
+
+    <RatingBottomSheet
+      key={3}
+      ref={ratingBottomSheetModalRef}
+      title={selectedShopLocation?.title}
+    />,
+
+    // -- Report BottomSheetModal --
+
+    <ReportBottomSheet
+      key={4}
+      ref={reportBottomSheetModalRef}
+      title={selectedShopLocation?.title}
     />,
   ];
 }

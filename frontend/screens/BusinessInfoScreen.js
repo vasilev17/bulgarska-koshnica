@@ -11,6 +11,7 @@ const BusinessInfoScreen = () => {
     <BaseAppComponent
       screenHeaderTitle={"Моля попълнете следните полета"}
       contentOffset={"9.5%"}
+      leftButtonText="Пропусни"
     >
       <TextInput
         placeholder="Име на бизнеса"

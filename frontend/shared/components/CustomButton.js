@@ -29,7 +29,7 @@ const CustomButton = (props) => {
 };
 
 CustomButton.propTypes = {
-  onPress:PropTypes.func,
+  onPress: PropTypes.func,
   buttonColor: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
   hasShadow: PropTypes.bool.isRequired,
@@ -52,11 +52,13 @@ export default CustomButton;
 setButtonSize = (size) => {
   switch (size) {
     case SIZES.small:
-      return styles.buttonSizeSmall;
+      return { width: 145, height: 45 };
+    case SIZES.smallPlus:
+      return { width: 205, height: 50 };
     case SIZES.medium:
-      return styles.buttonSizeMedium;
+      return { width: 240, height: 60 };
     case SIZES.large:
-      return styles.buttonSizeLarge;
+      return { width: 305, height: 60 };
     default:
       console.error(`Wrong size for button component!`);
   }
@@ -65,11 +67,13 @@ setButtonSize = (size) => {
 setFontSize = (size) => {
   switch (size) {
     case SIZES.small:
-      return styles.textSizeMedium;
+      return { fontSize: FONTSIZES.size25 };
+    case SIZES.smallPlus:
+      return { fontSize: FONTSIZES.size25 };
     case SIZES.medium:
-      return styles.textSizeSmall;
+      return { fontSize: FONTSIZES.size22 };
     case SIZES.large:
-      return styles.textSizeLarge;
+      return { fontSize: FONTSIZES.size25 };
     default:
       console.error(`Wrong size for button component!`);
   }
@@ -93,32 +97,5 @@ const styles = StyleSheet.create({
     shadowRadius: 4.65,
 
     elevation: 7,
-  },
-
-  buttonSizeSmall: {
-    width: 145,
-    height: 45,
-  },
-
-  buttonSizeMedium: {
-    width: 240,
-    height: 60,
-  },
-
-  buttonSizeLarge: {
-    width: 305,
-    height: 60,
-  },
-
-  textSizeSmall: {
-    fontSize: FONTSIZES.size22,
-  },
-
-  textSizeMedium: {
-    fontSize: FONTSIZES.size25,
-  },
-
-  textSizeLarge: {
-    fontSize: FONTSIZES.size25,
   },
 });

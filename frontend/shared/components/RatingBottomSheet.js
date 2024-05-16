@@ -57,7 +57,7 @@ const ShopLocationBottomSheet = forwardRef((props, ref) => {
 
         <TextAreaInput
           showBigPlaceholder={false}
-          placeholder={"Споделете\n впечатленията си"}
+          placeholder={"Споделете впечатленията си"}
           maxLength={450}
           style={{ marginTop: "5%", height: 295 }}
         />
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "3%",
+    top: "3%",
   },
   userAndDateText: {
     fontFamily: FONT.semiBold,
