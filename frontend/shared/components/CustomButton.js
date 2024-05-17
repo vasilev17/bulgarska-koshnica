@@ -8,6 +8,7 @@ import PropTypes, { arrayOf, oneOfType } from "prop-types";
 const CustomButton = (props) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.5}
       style={[
         { backgroundColor: props.buttonColor },
         styles.buttonContainer,

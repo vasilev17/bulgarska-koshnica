@@ -67,7 +67,7 @@ const BaseAppScreen = (props) => {
         <View
           style={[styles.screenContentContainer, { top: props.contentOffset }]}
         >
-          <ScreenHeader subtitle={props.screenHeaderSubtitle}>
+          <ScreenHeader subtitle={props.screenHeaderSubtitle} hasIcon={props.hasHeaderIcon} isBold={props.isHeaderBold}>
             {props.screenHeaderTitle}
           </ScreenHeader>
           {props.children}
@@ -87,6 +87,8 @@ BaseAppScreen.propTypes = {
   leftButtonText: PropTypes.string.isRequired,
   hasContinueButton: PropTypes.bool.isRequired,
   screenHeaderTitle: PropTypes.string.isRequired,
+  hasHeaderIcon:PropTypes.bool.isRequired,
+  isHeaderBold:PropTypes.bool.isRequired,
   screenHeaderSubtitle: PropTypes.string,
   onContinuePress: PropTypes.func,
   contentOffset: oneOfType([PropTypes.number, PropTypes.string]),
@@ -100,6 +102,8 @@ BaseAppScreen.defaultProps = {
   hasContinueButton: true,
   screenHeaderSubtitle: null,
   contentOffset: 0,
+  hasHeaderIcon:true,
+  isHeaderBold:false,
 };
 
 export default BaseAppScreen;

@@ -1,5 +1,8 @@
 import "react-native-gesture-handler";
-import { StyleSheet, Text } from "react-native";
+import { View } from "react-native";
+import { useFonts } from "expo-font";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { COLORS } from "./shared/constants";
 import SignUpScreen from "./screens/SignUpScreen";
 import LoginScreen from "./screens/LoginScreen";
 import UserTypeScreen from "./screens/UserTypeScreen";
@@ -17,9 +20,8 @@ import BusinessKeyWordsScreen from "./screens/BusinessKeyWordsScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import MapScreen from "./screens/MapScreen";
 import VerificationCodeScreen from "./screens/VerificationCodeScreen";
-
-import { useFonts } from "expo-font";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import BusinessSuccessScreen from "./screens/BusinessSuccessScreen";
+import CustomText from "./shared/components/CustomText";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -32,12 +34,22 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    return <Text>Loading...</Text>;
+    return (
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <CustomText style={{ color: COLORS.primary }}>Loading...</CustomText>
+      </View>
+    );
   }
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <MapScreen />
+      <BusinessSuccessScreen />
     </GestureHandlerRootView>
   );
 }
