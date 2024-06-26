@@ -16,11 +16,6 @@
       "userInterfaceStyle": "light",
       "supportsTablet": true
     },
-    "updates": {
-      "enabled": false,
-      "fallbackToCacheTimeout": 0,
-      "checkAutomatically": "ON_ERROR_RECOVERY"
-    },
     "android": {
       "softwareKeyboardLayoutMode": "pan",
       "userInterfaceStyle": "light",

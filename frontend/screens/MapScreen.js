@@ -335,43 +335,43 @@ export default function MapScreen() {
           {/* <StatusBar backgroundColor={COLORS.primary} barStyle="default" /> */}
         </SafeAreaView>
       </DismissKeyboardView>
+
+      {/* Shop Location BottomSheetModal */}
+
+      <ShopLocationBottomSheet
+        key={1}
+        ref={locationBottomSheetModalRef}
+        title={selectedShopLocation?.title}
+        rating={selectedShopLocation?.rating}
+        usersRated={selectedShopLocation?.usersRated}
+        categories={selectedShopLocation?.categories}
+        hasCardPayment={selectedShopLocation?.hasCardPayment}
+        delivery={selectedShopLocation?.delivery}
+        image={selectedShopLocation?.image}
+        description={selectedShopLocation?.description}
+        address={selectedShopLocation?.address}
+        contactNumber={selectedShopLocation?.contactNumber}
+        website={selectedShopLocation?.website}
+        coordinate={selectedShopLocation?.coordinate}
+        businessHours={selectedShopLocation?.businessHours}
+        products={selectedShopLocation?.products}
+        onRatingEnd={() =>
+          setTimeout(() => {
+            ratingBottomSheetModalRef.current?.present();
+          }, 250)
+        }
+        onReportPress={() => reportBottomSheetModalRef.current?.present()}
+      />
+
+      {/* Search BottomSheetModal */}
+
+      <SearchBottomSheet
+        key={2}
+        ref={searchBottomSheetModalRef}
+        regionalResults={regionalSearchResults}
+        moreResults={moreSearchResults}
+      />
     </SideDrawer>,
-
-    // -- Shop Location BottomSheetModal --
-
-    <ShopLocationBottomSheet
-      key={1}
-      ref={locationBottomSheetModalRef}
-      title={selectedShopLocation?.title}
-      rating={selectedShopLocation?.rating}
-      usersRated={selectedShopLocation?.usersRated}
-      categories={selectedShopLocation?.categories}
-      hasCardPayment={selectedShopLocation?.hasCardPayment}
-      delivery={selectedShopLocation?.delivery}
-      image={selectedShopLocation?.image}
-      description={selectedShopLocation?.description}
-      address={selectedShopLocation?.address}
-      contactNumber={selectedShopLocation?.contactNumber}
-      website={selectedShopLocation?.website}
-      coordinate={selectedShopLocation?.coordinate}
-      businessHours={selectedShopLocation?.businessHours}
-      products={selectedShopLocation?.products}
-      onRatingEnd={() =>
-        setTimeout(() => {
-          ratingBottomSheetModalRef.current?.present();
-        }, 250)
-      }
-      onReportPress={() => reportBottomSheetModalRef.current?.present()}
-    />,
-
-    // -- Search BottomSheetModal --
-
-    <SearchBottomSheet
-      key={2}
-      ref={searchBottomSheetModalRef}
-      regionalResults={regionalSearchResults}
-      moreResults={moreSearchResults}
-    />,
 
     // -- Rating BottomSheetModal --
 

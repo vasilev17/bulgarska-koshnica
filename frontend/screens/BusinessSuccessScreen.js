@@ -19,8 +19,8 @@ const BusinessSuccessScreen = () => {
 
   return (
     <BaseAppComponent
-      contentOffset={"17%"}
-      screenHeaderTitle="Бизнесът беше създаден успешно!"
+      contentOffset={"15%"}
+      screenHeaderTitle="Обектът Ви беше изпратен за одобрение успешно!"
       footerWaveType={FOOTERSTYLES.footerEmpty}
       hasHeaderIcon={false}
       isHeaderBold={true}
