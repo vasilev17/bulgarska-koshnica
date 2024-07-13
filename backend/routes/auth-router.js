@@ -21,6 +21,6 @@ authRouter.post(
 );
 
 authRouter.post("/logout", security.verifyJWT, authControllers.logout);
-authRouter.post("/refresh", security.verifyJWT, authControllers.refresh);
+authRouter.post("/refresh", authControllers.refresh);
 
 module.exports = authRouter;

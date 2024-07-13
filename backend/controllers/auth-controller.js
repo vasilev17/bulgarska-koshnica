@@ -11,7 +11,10 @@ const {
 } = require("../error_handling/exceptions");
 
 const register = (req, res) => {
-  const { name, email, password, phone_number } = req.body;
+  // WARNING
+  // userType is not implemented in DB neither in backend and so is omitted
+  // in THIS function. It can be implemented at later stage.
+  const { name, userType, email, password, phone_number } = req.body;
 
   const user = {
     user_id: -1,
@@ -49,7 +52,7 @@ async function login(req, res) {
   await storage.addRefreshToken(user.user_id, refreshToken);
 
   // Respond with email, name and token
-  res.json({
+  res.status(200).json({
     email: user.email,
     name: user.name,
     accessToken,
