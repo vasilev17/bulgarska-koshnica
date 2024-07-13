@@ -2,7 +2,7 @@ const BaseException = require("./baseException");
 
 class UserNotFoundException extends BaseException {
   constructor() {
-    super(410, "User not found");
+    super(404, "User not found");
   }
 }
 

@@ -8,21 +8,66 @@ const {
   UnauthenticatedException,
   InvalidRefreshTokenException,
   UserNotFoundException,
+  UserAlreadyExistsException,
 } = require("../error_handling/exceptions");
 
-const register = (req, res) => {
-  const { name, email, password, phone_number } = req.body;
+async function register(req, res) {
+  // WARNING
+  // userType is not implemented in DB neither in backend and so is omitted
+  // in THIS function. It can be implemented at later stage.
+  const { name, userType, email, password, phone_number } = req.body;
 
   const user = {
-    user_id: -1,
     name: name,
     email: email,
     password: password,
     phone_number: phone_number,
   };
 
-  return res.status(200).json(user);
-};
+  // Check if user already exists
+  try {
+    // By email
+    await storage.findUserByEmail(user.email);
+
+    // If no "Not found" exception occured until this point a user already exists, so exception is thrown
+    throw new UserAlreadyExistsException();
+  } catch (err) {
+    if (err instanceof UserNotFoundException) {
+      try {
+        // If not found by email check by phone number
+        await storage.findUserByPhoneNumber(user.phone_number);
+
+        // If no "Not found" exception occured until this point a user already exists, so exception is thrown
+        throw new UserAlreadyExistsException();
+      } catch (err) {
+        if (err instanceof UserNotFoundException) {
+          try {
+            // At this point user does not exists and user creation is allowed
+            await storage.createUser(user);
+          } catch (error) {
+            if (err instanceof UnsuccessfulInsertQueryException) {
+              throw new IncorrectCredentialsException(); // Hide UnsuccessfulInsertQueryException exception from client
+            } else {
+              throw err; // Rethrow unexpected exceptions
+            }
+          }
+        } else if (err instanceof UserAlreadyExistsException) {
+          // User is found by phone number
+          throw new IncorrectCredentialsException(); // Hide UserAlreadyExistsException from client
+        } else {
+          throw err; // Rethrow unexpected exceptions
+        }
+      }
+    } else if (err instanceof UserAlreadyExistsException) {
+      // User is found by email
+      throw new IncorrectCredentialsException(); // Hide UserAlreadyExistsException exception from client
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.sendStatus(200);
+}
 
 async function login(req, res) {
   // Get username and password from login attempt
@@ -49,7 +94,7 @@ async function login(req, res) {
   await storage.addRefreshToken(user.user_id, refreshToken);
 
   // Respond with email, name and token
-  res.json({
+  res.status(200).json({
     email: user.email,
     name: user.name,
     accessToken,

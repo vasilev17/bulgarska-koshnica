@@ -3,6 +3,7 @@ const db = require("./database");
 const {
   UserNotFoundException,
   InvalidRefreshTokenException,
+  UnsuccessfulInsertQueryException,
 } = require("../error_handling/exceptions.js");
 
 async function findUserById(id) {
@@ -31,12 +32,37 @@ async function findUserByEmail(email) {
   return rows[0];
 }
 
+async function findUserByPhoneNumber(phone_number) {
+  const [rows] = await db.executeQuery(
+    "SELECT * FROM users WHERE phone_number = ?",
+    [phone_number] // Comment for autoformat
+  );
+
+  if (rows[0] === undefined) {
+    throw new UserNotFoundException();
+  }
+
+  return rows[0];
+}
+
+async function createUser(user) {
+  const [result] = await db.executeQuery(
+    "INSERT INTO users(name, email, password, phone_number) VALUES (?,?,?,?)",
+    [user.name, user.email, user.password, user.phone_number]
+  );
+
+  if (result.affectedRows === 0) {
+    throw new UnsuccessfulInsertQueryException();
+  }
+}
+
 async function addRefreshToken(id, token) {
   const [result] = await db.executeQuery(
     "UPDATE users SET refresh_token = ? WHERE user_id = ?",
     [token, id] // Comment for autoformat
   );
 
+  // TODO check for update error when doing the insert
   return result.affectedRows !== 0;
 }
 
@@ -65,6 +91,8 @@ async function removeRefreshToken(token) {
 module.exports = {
   findUserById,
   findUserByEmail,
+  findUserByPhoneNumber,
+  createUser,
   addRefreshToken,
   findRefreshToken,
   removeRefreshToken,
