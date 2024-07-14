@@ -9,58 +9,48 @@ const {
   InvalidRefreshTokenException,
   UserNotFoundException,
   UserAlreadyExistsException,
+  UnsuccessfulInsertQueryException,
 } = require("../error_handling/exceptions");
 
 async function register(req, res) {
-  // WARNING
-  // userType is not implemented in DB neither in backend and so is omitted
-  // in THIS function. It can be implemented at later stage.
-  const { name, userType, email, password, phone_number } = req.body;
-
-  const user = {
-    name: name,
-    email: email,
-    password: password,
-    phone_number: phone_number,
-  };
+  const user = req.body;
 
   // Check if user already exists
   try {
     // By email
-    await storage.findUserByEmail(user.email);
+    try {
+      await storage.findUserByEmail(user.email);
 
-    // If no "Not found" exception occured until this point a user already exists, so exception is thrown
-    throw new UserAlreadyExistsException();
-  } catch (err) {
-    if (err instanceof UserNotFoundException) {
-      try {
-        // If not found by email check by phone number
-        await storage.findUserByPhoneNumber(user.phone_number);
-
-        // If no "Not found" exception occured until this point a user already exists, so exception is thrown
-        throw new UserAlreadyExistsException();
-      } catch (err) {
-        if (err instanceof UserNotFoundException) {
-          try {
-            // At this point user does not exists and user creation is allowed
-            await storage.createUser(user);
-          } catch (error) {
-            if (err instanceof UnsuccessfulInsertQueryException) {
-              throw new IncorrectCredentialsException(); // Hide UnsuccessfulInsertQueryException exception from client
-            } else {
-              throw err; // Rethrow unexpected exceptions
-            }
-          }
-        } else if (err instanceof UserAlreadyExistsException) {
-          // User is found by phone number
-          throw new IncorrectCredentialsException(); // Hide UserAlreadyExistsException from client
-        } else {
-          throw err; // Rethrow unexpected exceptions
-        }
+      // If no "Not found" exception occured until this point a user already exists
+      throw new UserAlreadyExistsException();
+    } catch (err) {
+      // If err is UserNotFoundException ignore
+      if (!(err instanceof UserNotFoundException)) {
+        throw err; // Rethrow unexpected exceptions
       }
-    } else if (err instanceof UserAlreadyExistsException) {
-      // User is found by email
-      throw new IncorrectCredentialsException(); // Hide UserAlreadyExistsException exception from client
+    }
+
+    // By phone number
+    try {
+      await storage.findUserByPhoneNumber(user.phone_number);
+
+      // If no "Not found" exception occured until this point a user already exists
+      throw new UserAlreadyExistsException();
+    } catch (err) {
+      // If err is UserNotFoundException ignore
+      if (!(err instanceof UserNotFoundException)) {
+        throw err; // Rethrow unexpected exceptions
+      }
+    }
+
+    // At this point the user does not exist and is ready to be created
+    await storage.createUser(user);
+  } catch (err) {
+    if (
+      err instanceof UserAlreadyExistsException ||
+      err instanceof UnsuccessfulInsertQueryException
+    ) {
+      throw new IncorrectCredentialsException(); // Hide those exceptions from client
     } else {
       throw err; // Rethrow unexpected exceptions
     }

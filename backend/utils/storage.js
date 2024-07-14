@@ -46,6 +46,10 @@ async function findUserByPhoneNumber(phone_number) {
 }
 
 async function createUser(user) {
+  // !!! WARNING !!!
+  // userType is not implemented in DB neither in backend and so is
+  // omitted in THIS function. It can be implemented at later stage
+
   const [result] = await db.executeQuery(
     "INSERT INTO users(name, email, password, phone_number) VALUES (?,?,?,?)",
     [user.name, user.email, user.password, user.phone_number]

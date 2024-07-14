@@ -12,6 +12,8 @@ returns status x json: {accessToken, refreshToken}
 
 
 UserSignUp(fullName, userType, email, phoneNumber, pass) 
+// WARNING
+// userType is not implemented in DB neither in backend and so is omitted
 POST ->  "/api/auth/register" 
 expects json: {name, userType, email, password, phone_number},
 returns status x
