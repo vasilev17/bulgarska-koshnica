@@ -82,7 +82,7 @@ async function login(req, res) {
     if (err instanceof UserNotFoundException) {
       throw new IncorrectCredentialsException(); // Hide UserNotFound exception from client
     } else {
-      throw err; // Rethrow exception
+      throw err; // Rethrow unexpected exceptions
     }
   }
 
@@ -95,8 +95,6 @@ async function login(req, res) {
 
   // Respond with email, name and token
   res.status(200).json({
-    email: user.email,
-    name: user.name,
     accessToken,
     refreshToken,
   });
