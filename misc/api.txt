@@ -1,0 +1,139 @@
+status x stands for returns status 200 or 200 with json or status 4xx for error whitout json
+-> stands for URL to query
+json: stands for properly formatted json
+* stands for unimplemented but existing api endpoint
+Some parameters might be optional, if they are not present empty value will be provided instead
+
+
+UserLogIn(email, pass) 
+POST -> "/api/auth/login" 
+expects json: {email, password},
+returns status x json: {accessToken, refreshToken}
+
+
+UserSignUp(fullName, userType, email, phoneNumber, pass) 
+POST ->  "/api/auth/register" 
+expects json: {name, userType, email, password, phone_number},
+returns status x
+
+
+*CreateLocation(user_id, name, address, phoneNumber, business_email, coordinates, description,
+               List<categories>, workingHours, website, delivery, cardPayment, 
+               image, List<products>, List<keywords>) 
+// fill absolute minimum to create location and other can be NULL
+POST -> "/api/locations/create_location" /auth required/
+expects json: {address, business_email, business_name, category(?int?), delivery, description, image, keywords, location_latitude, 
+               location_longtitude, location_region(int), phone_number, pos_terminal, schedule, user_id, website }
+returns status x
+
+
+*GetMapLocations()
+// Give all locations in a sqare between loc1 and loc2 in a square 
+POST -> "/api/locations/get_locations"
+expects json: {location1_longtitude, location1_latitude, location2_longtitude, location2_latitude}
+returns json: {{business_id, category, business_name, location_longtitude, location_latitude}}
+
+
+*GetLocationInfo(id)
+GET -> "/api/locations/:locationId"
+returns json: {address, business_email, delivery, description, image, keywords, location_region,
+               phone_number, pos_terminal, rating_average, rating_count, schedule, website, review(first) }
+
+
+*GetLocationReviews(locationID, lastReviewID)
+// Get the next 5 reviews starting from reviewId for a location
+GET -> "/api/locations/:locationId/reviews/:reviewId"
+returns json: {5x{review_id, users.name, comment, rating}}
+
+
+*ReportLocation(phoneNumber, locationID, reportType, message)
+POST -> "/api/locations/:locationId/reports" /auth required/
+expects json: {user_id, report_type, content}
+returns x
+
+
+*PostUserReview(userID, locationID, rating, comment)
+POST -> "/api/locations/:locationId/reviews" /auth required/
+expects json: {user_id, business_id, rating, comment}
+returns x
+
+
+*SearchLocation(searchString)
+POST -> "/api/locations/search"
+expects json: {search_string}
+returns json: {{business_id, business_name, address, category, location_longtitude, location_latitude}}
+
+
+*GetUserLocations(userID)
+GET -> "/api/users/:userId/locations" /auth required/
+returns json: {{business_id, business_name, address, image, verified}}
+
+
+*GetUserName(sessionToken)
+// TODO change?
+// Probably a bad idea to pass around access/refresh token in order to obtain username?
+// Also the JWT token CONTAINS the user id in unencrypted variant. 
+// So we can use getUserName(userID)
+// Also a function that gives ALL user data and saves it in the device sounds better?
+GET -> "/api/users/:userId/name" /auth required/
+returns json: {name}
+
+*GetUserInfo(sessionToken)
+// Again same as GetUserName comment
+GET -> "/api/users/:userId/info" /auth required/
+returns json: {phone_number, email}
+
+
+*UpdateUserPassword(oldPass, newPass)
+POST -> "/api/users/:userId/password" /auth required/
+expects json: { old_password, new_password }
+returns x
+
+
+*GetLocationContacts(locationID)
+GET -> "/api/locations/:locationId/contacts"
+returns json: {business_email(nullable), phone_number}
+
+
+*GetLocationDeliveryAndPaymentInfo(locationID)
+GET -> "/api/locations/:locationId/delivery_and_pos_info"
+returns json: {delivery, pos_terminal, website(optional)}
+
+
+*GetLocationWorkingHours(locationID)
+GET -> "/api/locations/:locationId/schedule"
+returns json: {schedule}
+
+
+*GetLocationProducts(locationID)
+GET -> "/api/locations/:locationId/products"
+returns json: {{product_id, image, product_name, price, price_measurement}}
+
+
+*GetLocationCategories(locationID)
+GET -> "/api/locations/:locationId/category"
+returns json: {category}
+
+
+*GetLocationCoordinates(locationID)
+GET -> "/api/locations/:locationId/coordinates"
+returns json: {location_latitude, location_longtitude}
+
+*GetLocationCoordinates(locationID)
+GET -> "/api/locations/:locationId/description"
+returns json: {description}
+
+
+*GetLocationKeyWords(locationID)
+GET -> "/api/locations/:locationId/keywords"
+returns json: {keywords}
+
+
+*UpdateProductInfo(productID, name, price, measurement, image)
+PUT -> "/api/locations/:locationId/products/:productId"
+returns x
+
+
+Yet unused from frontend:
+POST -> "/api/auth/logout" /auth required/
+POST -> "/api/auth/refresh" - refresh token
