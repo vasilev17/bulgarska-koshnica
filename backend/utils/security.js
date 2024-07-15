@@ -6,6 +6,7 @@ const {
   IncorrectCredentialsException,
   UnauthenticatedException,
   InvalidAccessTokenException,
+  AccessDeniedException,
 } = require("../error_handling/exceptions.js");
 
 const dotenv = require("dotenv");
@@ -33,6 +34,17 @@ const verifyJWT = (req, res, next) => {
   } else {
     // If auth is not present
     throw new UnauthenticatedException();
+  }
+};
+
+// Verify that the token [user_id] is the same as the url request [user_id]
+const verifyUserId = (req, res, next) => {
+  // Check if user is asking for his own data
+  if (req.tokenPayload.id == req.params.userId) {
+    next();
+  } else {
+    // User is asking for data, that does not belong to him
+    throw new AccessDeniedException();
   }
 };
 
@@ -71,6 +83,7 @@ const generateRefreshToken = (uid) => {
 
 module.exports = {
   verifyJWT,
+  verifyUserId,
   validateUser,
   generateAccessToken,
   generateRefreshToken,

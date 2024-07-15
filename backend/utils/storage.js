@@ -19,6 +19,10 @@ async function findUserById(id) {
   return rows[0];
 }
 
+async function findUserNameById(id) {
+  return (await findUserById(id)).name;
+}
+
 async function findUserByEmail(email) {
   const [rows] = await db.executeQuery(
     "SELECT * FROM users WHERE email = ?",
@@ -100,4 +104,5 @@ module.exports = {
   addRefreshToken,
   findRefreshToken,
   removeRefreshToken,
+  findUserNameById,
 };

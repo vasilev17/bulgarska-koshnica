@@ -14,6 +14,7 @@ returns status x json: {accessToken, refreshToken}
 UserSignUp(fullName, userType, email, phoneNumber, pass) 
 // WARNING
 // userType is not implemented in DB neither in backend and so is omitted
+// in storage.createUser
 POST ->  "/api/auth/register" 
 expects json: {name, userType, email, password, phone_number},
 returns status x
@@ -71,19 +72,19 @@ GET -> "/api/users/:userId/locations" /auth required/
 returns json: {{business_id, business_name, address, image, verified}}
 
 
-*GetUserName(sessionToken)
+GetUserName(sessionToken)
 // TODO change?
 // Probably a bad idea to pass around access/refresh token in order to obtain username?
 // Also the JWT token CONTAINS the user id in unencrypted variant. 
 // So we can use getUserName(userID)
-// Also a function that gives ALL user data and saves it in the device sounds better?
+// Also a function that gives ALL user data and saves it in the device sounds better? (done)
 GET -> "/api/users/:userId/name" /auth required/
 returns json: {name}
 
-*GetUserInfo(sessionToken)
+GetUserInfo(sessionToken)
 // Again same as GetUserName comment
-GET -> "/api/users/:userId/info" /auth required/
-returns json: {phone_number, email}
+GET -> "/api/users/:userId" /auth required/
+returns json: {user_id, name, phone_number, email}
 
 
 *UpdateUserPassword(oldPass, newPass)
