@@ -64,6 +64,47 @@ async function createUser(user) {
   }
 }
 
+async function createMetrics() {
+  const [result] = await db.executeQuery("INSERT INTO metrics() values()");
+
+  if (result.affectedRows === 0) {
+    throw new UnsuccessfulInsertQueryException();
+  }
+
+  return result.insertId;
+}
+
+async function createLocation(location) {
+  const [result] = await db.executeQuery(
+    "INSERT INTO locations(address, email, name, category, delivery, " +
+      "description, keywords, latitude, longtitude, region, phone_number, " +
+      "pos_terminal, schedule, user_id, website, metrics_id) " +
+      " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    [
+      location.address,
+      location.email,
+      location.name,
+      location.category,
+      location.delivery,
+      location.description,
+      location.keywords,
+      location.latitude,
+      location.longtitude,
+      location.region,
+      location.phone_number,
+      location.pos_terminal,
+      location.schedule,
+      location.user_id,
+      location.website,
+      await createMetrics(),
+    ]
+  );
+
+  if (result.affectedRows === 0) {
+    throw new UnsuccessfulInsertQueryException();
+  }
+}
+
 async function addRefreshToken(id, token) {
   const [result] = await db.executeQuery(
     "UPDATE users SET refresh_token = ? WHERE user_id = ?",
@@ -105,4 +146,5 @@ module.exports = {
   findRefreshToken,
   removeRefreshToken,
   findUserNameById,
+  createLocation,
 };

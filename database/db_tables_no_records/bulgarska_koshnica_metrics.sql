@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `bulgarska_koshnica` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `bulgarska_koshnica`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: localhost    Database: bulgarska_koshnica
@@ -24,16 +26,13 @@ DROP TABLE IF EXISTS `metrics`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `metrics` (
   `metrics_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `business_id` int unsigned NOT NULL,
-  `visit_count` int unsigned NOT NULL,
-  `phone_copy_count` int unsigned NOT NULL,
-  `phone_open_count` int unsigned NOT NULL,
-  `address_copy_count` int unsigned NOT NULL,
-  `address_open_count` int unsigned NOT NULL,
-  PRIMARY KEY (`metrics_id`),
-  KEY `business_id` (`business_id`),
-  CONSTRAINT `metrics_ibfk_1` FOREIGN KEY (`business_id`) REFERENCES `locations` (`location_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `visit_count` int unsigned NOT NULL DEFAULT '0',
+  `phone_copy_count` int unsigned NOT NULL DEFAULT '0',
+  `phone_open_count` int unsigned NOT NULL DEFAULT '0',
+  `address_copy_count` int unsigned NOT NULL DEFAULT '0',
+  `address_open_count` int unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`metrics_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -45,4 +44,4 @@ CREATE TABLE `metrics` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-16 13:54:17
+-- Dump completed on 2024-07-17  0:13:08

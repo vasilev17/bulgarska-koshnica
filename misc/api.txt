@@ -20,13 +20,13 @@ expects json: {name, userType, email, password, phone_number},
 returns status x
 
 
-*CreateLocation(user_id, name, address, phoneNumber, business_email, coordinates, description,
+CreateLocation(user_id, name, address, phoneNumber, business_email, coordinates, description,
                List<categories>, workingHours, website, delivery, cardPayment, 
                image, List<products>, List<keywords>) 
 // fill absolute minimum to create location and other can be NULL
 POST -> "/api/locations/create_location" /auth required/
-expects json: {address, business_email, business_name, category(?int?), delivery, description, image, keywords, location_latitude, 
-               location_longtitude, location_region(int), phone_number, pos_terminal, schedule, user_id, website }
+expects json: {address, email, name, category(?int?), delivery, description, image, keywords, latitude, 
+               longtitude, region(int), phone_number, pos_terminal, schedule, user_id, website }
 returns status x
 
 
@@ -34,12 +34,12 @@ returns status x
 // Give all locations in a sqare between loc1 and loc2 in a square 
 POST -> "/api/locations/get_locations"
 expects json: {location1_longtitude, location1_latitude, location2_longtitude, location2_latitude}
-returns json: {{business_id, category, business_name, location_longtitude, location_latitude}}
+returns json: {{business_id, category, name, longtitude, latitude}}
 
 
 *GetLocationInfo(id)
 GET -> "/api/locations/:locationId"
-returns json: {address, business_email, delivery, description, image, keywords, location_region,
+returns json: {address, business_email, delivery, description, image, keywords, region,
                phone_number, pos_terminal, rating_average, rating_count, schedule, website, review(first) }
 
 
@@ -57,19 +57,19 @@ returns x
 
 *PostUserReview(userID, locationID, rating, comment)
 POST -> "/api/locations/:locationId/reviews" /auth required/
-expects json: {user_id, business_id, rating, comment}
+expects json: {user_id, location_id, rating, comment}
 returns x
 
 
 *SearchLocation(searchString)
 POST -> "/api/locations/search"
 expects json: {search_string}
-returns json: {{business_id, business_name, address, category, location_longtitude, location_latitude}}
+returns json: {{location_id, business_name, address, category, longtitude, latitude}}
 
 
 *GetUserLocations(userID)
 GET -> "/api/users/:userId/locations" /auth required/
-returns json: {{business_id, business_name, address, image, verified}}
+returns json: {{location_id, name, address, image, verified}}
 
 
 GetUserName(sessionToken)
@@ -120,7 +120,7 @@ returns json: {category}
 
 *GetLocationCoordinates(locationID)
 GET -> "/api/locations/:locationId/coordinates"
-returns json: {location_latitude, location_longtitude}
+returns json: {latitude, longtitude}
 
 *GetLocationCoordinates(locationID)
 GET -> "/api/locations/:locationId/description"

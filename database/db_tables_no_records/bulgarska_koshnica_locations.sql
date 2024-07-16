@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `bulgarska_koshnica` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `bulgarska_koshnica`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: localhost    Database: bulgarska_koshnica
@@ -37,7 +39,7 @@ CREATE TABLE `locations` (
   `latitude` decimal(9,6) NOT NULL,
   `longtitude` decimal(9,6) NOT NULL,
   `category` int NOT NULL,
-  `verified` tinyint(1) NOT NULL,
+  `verified` tinyint(1) NOT NULL DEFAULT '0',
   `rating_average` decimal(2,1) DEFAULT NULL,
   `rating_count` int DEFAULT NULL,
   `region` int NOT NULL,
@@ -45,9 +47,9 @@ CREATE TABLE `locations` (
   `keywords` varchar(500) DEFAULT NULL,
   `metrics_id` int unsigned NOT NULL,
   PRIMARY KEY (`location_id`),
-  KEY `metrics_id` (`metrics_id`),
+  UNIQUE KEY `metrics_id_UNIQUE` (`metrics_id`),
   CONSTRAINT `locations_ibfk_1` FOREIGN KEY (`metrics_id`) REFERENCES `metrics` (`metrics_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -59,4 +61,4 @@ CREATE TABLE `locations` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-16 13:54:17
+-- Dump completed on 2024-07-17  0:13:09
