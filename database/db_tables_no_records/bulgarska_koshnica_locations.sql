@@ -16,48 +16,39 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `businesses`
+-- Table structure for table `locations`
 --
 
-DROP TABLE IF EXISTS `businesses`;
+DROP TABLE IF EXISTS `locations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `businesses` (
-  `business_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `business_name` varchar(50) NOT NULL,
+CREATE TABLE `locations` (
+  `location_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
   `user_id` int unsigned NOT NULL,
   `phone_number` varchar(14) NOT NULL,
-  `business_email` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `schedule` varchar(28) DEFAULT NULL,
   `website` varchar(100) DEFAULT NULL,
   `description` varchar(1000) NOT NULL,
   `delivery` int NOT NULL,
   `pos_terminal` tinyint(1) NOT NULL,
   `address` varchar(100) NOT NULL,
-  `location_latitude` decimal(9,6) NOT NULL,
-  `location_longtitude` decimal(9,6) NOT NULL,
+  `latitude` decimal(9,6) NOT NULL,
+  `longtitude` decimal(9,6) NOT NULL,
   `category` int NOT NULL,
   `verified` tinyint(1) NOT NULL,
   `rating_average` decimal(2,1) DEFAULT NULL,
   `rating_count` int DEFAULT NULL,
-  `location_region` int NOT NULL,
+  `region` int NOT NULL,
   `image` varchar(500) DEFAULT NULL,
   `keywords` varchar(500) DEFAULT NULL,
   `metrics_id` int unsigned NOT NULL,
-  PRIMARY KEY (`business_id`),
+  PRIMARY KEY (`location_id`),
   KEY `metrics_id` (`metrics_id`),
-  CONSTRAINT `businesses_ibfk_1` FOREIGN KEY (`metrics_id`) REFERENCES `metrics` (`metrics_id`)
+  CONSTRAINT `locations_ibfk_1` FOREIGN KEY (`metrics_id`) REFERENCES `metrics` (`metrics_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `businesses`
---
-
-LOCK TABLES `businesses` WRITE;
-/*!40000 ALTER TABLE `businesses` DISABLE KEYS */;
-/*!40000 ALTER TABLE `businesses` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -68,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-30 22:47:50
+-- Dump completed on 2024-07-16 13:54:17

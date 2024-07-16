@@ -35,19 +35,10 @@ CREATE TABLE `reports` (
   KEY `review_id_idx` (`review_id`),
   KEY `reports_ibfk_2` (`business_id`),
   CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`business_id`) REFERENCES `businesses` (`business_id`),
+  CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`business_id`) REFERENCES `locations` (`location_id`),
   CONSTRAINT `review_id` FOREIGN KEY (`review_id`) REFERENCES `reviews` (`review_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `reports`
---
-
-LOCK TABLES `reports` WRITE;
-/*!40000 ALTER TABLE `reports` DISABLE KEYS */;
-/*!40000 ALTER TABLE `reports` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -58,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-30 22:47:51
+-- Dump completed on 2024-07-16 13:54:17
