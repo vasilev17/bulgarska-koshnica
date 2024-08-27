@@ -27,7 +27,7 @@ async function createLocation(req, res) {
     throw new AccessDeniedException();
   }
 
-  storage.createLocation(location);
+  await storage.createLocation(location);
 
   return res.status(200).json("Not finished yet");
 }
