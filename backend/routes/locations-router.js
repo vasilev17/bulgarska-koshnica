@@ -15,4 +15,9 @@ locationsRouter.post(
   locationsController.createLocation
 );
 
+locationsRouter.get(
+  "/:locationId/reviews/:reviewId",
+  locationsController.getLocations
+);
+
 module.exports = locationsRouter;

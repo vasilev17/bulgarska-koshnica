@@ -27,9 +27,34 @@ async function createLocation(req, res) {
     throw new AccessDeniedException();
   }
 
-  storage.createLocation(location);
+  await storage.createLocation(location);
 
-  return res.status(200).json("Not finished yet");
+  return res.status(501).json("Not finished yet");
 }
 
-module.exports = { createLocation };
+async function getLocations(req, res) {
+  // Take note that locationId and reviewId might be bigger than the biggest
+  // value for primary key and it could overflow the integer in mysql.
+  // TODO: WHEN IMPLEMENTING CHECK FOR INTEGER OVERFLOW BUGS!!!!!
+  // ALSO NOTE THAT THEY CAN BOTH BE ARBIRARY VALUE (NOT JUST INTEGER),
+  // SO TAKE APPROPRIATE ACTIONS TO VALIDATE THE DATA INCOMING BY THIS REQUEST
+  if (
+    isNaN(parseInt(req.params.locationId)) ||
+    req.params.locationId < 1 ||
+    req.params.locationId > 2147483646
+  ) {
+    return res.status(400).json("Location ID is invalid");
+  }
+
+  if (
+    isNaN(parseInt(req.params.reviewId)) ||
+    req.params.reviewId < 1 ||
+    req.params.reviewId > 2147483646
+  ) {
+    return res.status(400).json("Review ID is invalid");
+  }
+
+  return res.status(501).json("Unimplemented");
+}
+
+module.exports = { createLocation, getLocations };
