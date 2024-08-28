@@ -1,7 +1,5 @@
 const storage = require("../utils/storage.js");
 
-const { AccessDeniedException } = require("../error_handling/exceptions.js");
-
 // Sravni idto ot tokena s idto podadeno v post requesta
 async function createLocation(req, res) {
   const location = {
@@ -22,11 +20,6 @@ async function createLocation(req, res) {
     website: String(req.body.website),
   };
 
-  // Check if user is trying to create business for himself
-  if (location.user_id !== req.tokenPayload.id) {
-    throw new AccessDeniedException();
-  }
-
   await storage.createLocation(location);
 
   return res.status(501).json("Not finished yet");
@@ -42,4 +35,9 @@ async function getLocationReviews(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
-module.exports = { createLocation, getLocationReviews };
+async function reportLocation(req, res) {
+  // TODO A validation should be made in the controller for the content of a report
+  return res.status(501).json("Unimplemented");
+}
+
+module.exports = { createLocation, getLocationReviews, reportLocation };

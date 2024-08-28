@@ -59,6 +59,16 @@ const verifyUserId = (req, res, next) => {
   }
 };
 
+// Verify if a user_id in a body corresponds to uid in token
+const verifyUserBusinessOwnership = (req, res, next) => {
+  // Check if user is trying to access business, accessable by him
+  if (parseInt(req.tokenPayload.id) !== parseInt(req.body.user_id)) {
+    throw new AccessDeniedException();
+  }
+
+  next();
+};
+
 // Verify that the location ID from URL is in valid format
 const verifyLocationId = (req, res, next) => {
   // Check if it's a valid number, compatible with database types
@@ -130,4 +140,5 @@ module.exports = {
   generateRefreshToken,
   verifyLocationId,
   verifyReviewId,
+  verifyUserBusinessOwnership,
 };

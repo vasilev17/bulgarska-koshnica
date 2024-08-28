@@ -12,6 +12,7 @@ locationsRouter.post(
   jsonValidator.applyCreateLocationRules,
   jsonValidator.checkRules,
   security.verifyJWT,
+  security.verifyUserBusinessOwnership,
   locationsController.createLocation
 );
 
@@ -20,6 +21,16 @@ locationsRouter.get(
   security.verifyLocationId,
   security.verifyReviewId,
   locationsController.getLocationReviews
+);
+
+locationsRouter.post(
+  "/:locationId/reports",
+  security.verifyLocationId,
+  jsonValidator.applyReportLocationRules,
+  jsonValidator.checkRules,
+  security.verifyJWT,
+  security.verifyUserBusinessOwnership,
+  locationsController.reportLocation
 );
 
 module.exports = locationsRouter;

@@ -26,7 +26,10 @@ const scheduleChain = body("schedule")
   .isLength({ min: 28, max: 28 });
 const posTerminalChain = body("pos_terminal").isInt({ min: 0, max: 1 });
 const websiteChain = body("website").isString().isLength({ max: 100 });
-const imageChain = body("image");
+const imageChain = body("image"); // TODO IMPROVE
+const reportTypeChain = body("report_type").isInt({ min: 0 }); // TODO ADD MAX VALUE FOR REPORT TYPE
+// TODO A validation should be made in the controller for the content of a report
+// const reportContentChain = body("content").isString().isLength({ max: 1000 });
 
 const applyRegisterUserRules = [
   nameChain,
@@ -56,6 +59,8 @@ const applyCreateLocationRules = [
   websiteChain,
 ];
 
+const applyReportLocationRules = [userIdChain, reportTypeChain];
+
 const checkRules = (req, res, next) => {
   const errors = validationResult(req);
 
@@ -71,5 +76,6 @@ module.exports = {
   applyRegisterUserRules,
   applyLoginUserRules,
   applyCreateLocationRules,
+  applyReportLocationRules,
   checkRules,
 };
