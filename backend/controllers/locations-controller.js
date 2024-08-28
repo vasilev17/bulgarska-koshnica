@@ -38,21 +38,6 @@ async function getLocationReviews(req, res) {
   // TODO: WHEN IMPLEMENTING CHECK FOR INTEGER OVERFLOW BUGS!!!!!
   // ALSO NOTE THAT THEY CAN BOTH BE ARBIRARY VALUE (NOT JUST INTEGER),
   // SO TAKE APPROPRIATE ACTIONS TO VALIDATE THE DATA INCOMING BY THIS REQUEST
-  if (
-    isNaN(parseInt(req.params.locationId)) ||
-    req.params.locationId < 1 ||
-    req.params.locationId > 2147483646
-  ) {
-    return res.status(400).json("Location ID is invalid");
-  }
-
-  if (
-    isNaN(parseInt(req.params.reviewId)) ||
-    req.params.reviewId < 1 ||
-    req.params.reviewId > 2147483646
-  ) {
-    return res.status(400).json("Review ID is invalid");
-  }
 
   return res.status(501).json("Unimplemented");
 }
