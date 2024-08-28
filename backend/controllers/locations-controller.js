@@ -32,7 +32,7 @@ async function createLocation(req, res) {
   return res.status(501).json("Not finished yet");
 }
 
-async function getLocations(req, res) {
+async function getLocationReviews(req, res) {
   // Take note that locationId and reviewId might be bigger than the biggest
   // value for primary key and it could overflow the integer in mysql.
   // TODO: WHEN IMPLEMENTING CHECK FOR INTEGER OVERFLOW BUGS!!!!!
@@ -57,4 +57,4 @@ async function getLocations(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
-module.exports = { createLocation, getLocations };
+module.exports = { createLocation, getLocationReviews };
