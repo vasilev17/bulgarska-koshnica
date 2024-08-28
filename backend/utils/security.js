@@ -7,6 +7,7 @@ const {
   UnauthenticatedException,
   InvalidAccessTokenException,
   AccessDeniedException,
+  InvalidParamsException,
 } = require("../error_handling/exceptions.js");
 
 const dotenv = require("dotenv");
@@ -39,6 +40,16 @@ const verifyJWT = (req, res, next) => {
 
 // Verify that the token [user_id] is the same as the url request [user_id]
 const verifyUserId = (req, res, next) => {
+  // Check if it's a valid number, compatible with database types
+  if (
+    isNaN(parseInt(req.params.userId)) ||
+    req.params.userId < 1 ||
+    req.params.userId > 2147483646
+  ) {
+    // User is providing invalid ID
+    throw new InvalidParamsException();
+  }
+
   // Check if user is asking for his own data
   if (req.tokenPayload.id == req.params.userId) {
     next();
@@ -46,6 +57,36 @@ const verifyUserId = (req, res, next) => {
     // User is asking for data, that does not belong to him
     throw new AccessDeniedException();
   }
+};
+
+// Verify that the location ID from URL is in valid format
+const verifyLocationId = (req, res, next) => {
+  // Check if it's a valid number, compatible with database types
+  if (
+    isNaN(parseInt(req.params.locationId)) ||
+    req.params.locationId < 1 ||
+    req.params.locationId > 2147483646
+  ) {
+    // User is providing invalid ID
+    throw new InvalidParamsException();
+  }
+
+  next();
+};
+
+// Verify that the review ID from URL is in valid format
+const verifyReviewId = (req, res, next) => {
+  // Check if it's a valid number, compatible with database types
+  if (
+    isNaN(parseInt(req.params.reviewId)) ||
+    req.params.reviewId < 1 ||
+    req.params.reviewId > 2147483646
+  ) {
+    // User is providing invalid ID
+    throw new InvalidParamsException();
+  }
+
+  next();
 };
 
 async function validateUser(email, password) {
@@ -87,4 +128,6 @@ module.exports = {
   validateUser,
   generateAccessToken,
   generateRefreshToken,
+  verifyLocationId,
+  verifyReviewId,
 };

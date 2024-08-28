@@ -17,6 +17,8 @@ locationsRouter.post(
 
 locationsRouter.get(
   "/:locationId/reviews/:reviewId",
+  security.verifyLocationId,
+  security.verifyUserId,
   locationsController.getLocationReviews
 );
 

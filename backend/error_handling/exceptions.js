@@ -6,6 +6,7 @@ const AccessDeniedException = require("./exception_definitions/access-denied-exc
 const UserNotFoundException = require("./exception_definitions/user-not-found-exception");
 const UnsuccessfulInsertQueryException = require("./exception_definitions/unsuccessful-insert-query-exception");
 const UserAlreadyExistsException = require("./exception_definitions/user-already-exists-exception");
+const InvalidParamsException = require("./exception_definitions/invalid-params-request");
 
 module.exports = {
   IncorrectCredentialsException,
@@ -16,4 +17,5 @@ module.exports = {
   UserNotFoundException,
   UnsuccessfulInsertQueryException,
   UserAlreadyExistsException,
+  InvalidParamsException,
 };
