@@ -68,7 +68,7 @@ returns json: {{location_id, business_name, address, category, longtitude, latit
 
 
 *GetUserLocations(userID)
-GET -> "/api/users/:userId/locations" /auth required/
+GET -> "/api/users/locations" /auth required/
 returns json: {{location_id, name, address, image, verified}}
 
 
@@ -78,17 +78,17 @@ GetUserName(sessionToken)
 // Also the JWT token CONTAINS the user id in unencrypted variant. 
 // So we can use getUserName(userID)
 // Also a function that gives ALL user data and saves it in the device sounds better? (done)
-GET -> "/api/users/:userId/name" /auth required/
+GET -> "/api/users/name" /auth required/
 returns json: {name}
 
 GetUserInfo(sessionToken)
 // Again same as GetUserName comment
-GET -> "/api/users/:userId" /auth required/
+GET -> "/api/users" /auth required/
 returns json: {user_id, name, phone_number, email}
 
 
 *UpdateUserPassword(oldPass, newPass)
-POST -> "/api/users/:userId/password" /auth required/
+POST -> "/api/auth/password" /auth required/
 expects json: { old_password, new_password }
 returns x
 
