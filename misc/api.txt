@@ -37,9 +37,9 @@ expects json: {location1_longtitude, location1_latitude, location2_longtitude, l
 returns json: {{business_id, category, name, longtitude, latitude}}
 
 
-*GetLocationInfo(id)
+GetLocationInfo(id)
 GET -> "/api/locations/:locationId"
-returns json: {address, business_email, delivery, description, image, keywords, region,
+returns json: {address, email, delivery, description, image, keywords, region,
                phone_number, pos_terminal, rating_average, rating_count, schedule, website, review(first) }
 
 

@@ -48,10 +48,18 @@ async function searchLocations(req, res) {
   return res.status(501).json("Unimplemented, search query: " + req.query.str);
 }
 
+async function getLocationInfo(req, res) {
+  const location = await storage.getLocationInfo(
+    parseInt(req.params.locationId)
+  );
+  return res.status(200).json(location);
+}
+
 module.exports = {
   createLocation,
   getLocationReviews,
   reportLocation,
   createUserReview,
   searchLocations,
+  getLocationInfo,
 };
