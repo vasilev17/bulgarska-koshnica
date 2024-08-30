@@ -17,4 +17,8 @@ async function getUserName(req, res) {
     .json({ name: await storage.findUserNameById(req.params.userId) });
 }
 
-module.exports = { getUserData, getUserName };
+async function getUserLocations(req, res) {
+  return res.status(501).json("Not finished yet");
+}
+
+module.exports = { getUserData, getUserName, getUserLocations };

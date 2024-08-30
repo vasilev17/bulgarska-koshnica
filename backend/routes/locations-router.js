@@ -40,4 +40,6 @@ locationsRouter.post(
   locationsController.createUserReview
 );
 
+locationsRouter.get("/search", locationsController.searchLocations);
+
 module.exports = locationsRouter;

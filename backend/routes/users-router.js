@@ -19,4 +19,10 @@ usersRouter.get(
   usersControllers.getUserName
 );
 
+usersRouter.get(
+  "/:userId/locations",
+  security.verifyJWT,
+  usersControllers.getUserLocations
+);
+
 module.exports = usersRouter;
