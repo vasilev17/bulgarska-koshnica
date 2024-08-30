@@ -40,6 +40,12 @@ locationsRouter.post(
   locationsController.createUserReview
 );
 
+locationsRouter.get(
+  "/:locationId/contacts",
+  security.verifyLocationId,
+  locationsController.getLocationContacts
+);
+
 locationsRouter.get("/search", locationsController.searchLocations);
 
 module.exports = locationsRouter;

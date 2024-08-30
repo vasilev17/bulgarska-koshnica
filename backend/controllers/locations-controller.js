@@ -20,6 +20,8 @@ async function createLocation(req, res) {
     website: String(req.body.website),
   };
 
+  // TODO 1 of the reasons to not be finishes is exception
+  // is not general enough. Rethrow
   await storage.createLocation(location);
 
   return res.status(501).json("Not finished yet");
@@ -48,10 +50,15 @@ async function searchLocations(req, res) {
   return res.status(501).json("Unimplemented, search query: " + req.query.str);
 }
 
+async function getLocationContacts(req, res) {
+  return res.status(501).json("Unimplemented");
+}
+
 module.exports = {
   createLocation,
   getLocationReviews,
   reportLocation,
   createUserReview,
   searchLocations,
+  getLocationContacts,
 };
