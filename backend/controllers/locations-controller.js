@@ -43,9 +43,15 @@ async function createUserReview(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
+async function searchLocations(req, res) {
+  // TODO check if query is adequate and watch out for injections
+  return res.status(501).json("Unimplemented, search query: " + req.query.str);
+}
+
 module.exports = {
   createLocation,
   getLocationReviews,
   reportLocation,
   createUserReview,
+  searchLocations,
 };

@@ -62,7 +62,7 @@ returns x
 
 
 *SearchLocation(searchString)
-POST -> "/api/locations/search"
+GET -> "/api/locations/search?"
 expects json: {search_string}
 returns json: {{location_id, business_name, address, category, longtitude, latitude}}
 
