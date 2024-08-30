@@ -64,6 +64,10 @@ async function getCategory(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
+async function getCoordinates(req, res) {
+  return res.status(501).json("Unimplemented");
+}
+
 module.exports = {
   createLocation,
   getReviews,
@@ -75,4 +79,5 @@ module.exports = {
   getSchedule,
   getProducts,
   getCategory,
+  getCoordinates,
 };

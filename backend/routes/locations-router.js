@@ -70,6 +70,12 @@ locationsRouter.get(
   locationsController.getCategory
 );
 
+locationsRouter.get(
+  "/:locationId/coordinates",
+  security.verifyLocationId,
+  locationsController.getCoordinates
+);
+
 locationsRouter.get("/search", locationsController.searchLocations);
 
 module.exports = locationsRouter;
