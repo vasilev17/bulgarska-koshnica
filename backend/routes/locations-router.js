@@ -52,6 +52,12 @@ locationsRouter.get(
   locationsController.getDeliveryPosInfo
 );
 
+locationsRouter.get(
+  "/:locationId/schedule",
+  security.verifyLocationId,
+  locationsController.getSchedule
+);
+
 locationsRouter.get("/search", locationsController.searchLocations);
 
 module.exports = locationsRouter;
