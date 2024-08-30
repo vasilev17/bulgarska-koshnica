@@ -44,7 +44,7 @@ async function searchLocations(req, res) {
   return res.status(501).json("Unimplemented, search query: " + req.query.str);
 }
 
-async function getLocationContacts(req, res) {
+async function getContacts(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
@@ -60,14 +60,19 @@ async function getProducts(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
+async function getCategory(req, res) {
+  return res.status(501).json("Unimplemented");
+}
+
 module.exports = {
   createLocation,
   getReviews,
   reportLocation,
   createReview,
   searchLocations,
-  getLocationContacts,
+  getContacts,
   getDeliveryPosInfo,
   getSchedule,
   getProducts,
+  getCategory,
 };

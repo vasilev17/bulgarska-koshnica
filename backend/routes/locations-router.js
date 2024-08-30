@@ -43,7 +43,7 @@ locationsRouter.post(
 locationsRouter.get(
   "/:locationId/contacts",
   security.verifyLocationId,
-  locationsController.getLocationContacts
+  locationsController.getContacts
 );
 
 locationsRouter.get(
@@ -62,6 +62,12 @@ locationsRouter.get(
   "/:locationId/products",
   security.verifyLocationId,
   locationsController.getProducts
+);
+
+locationsRouter.get(
+  "/:locationId/category",
+  security.verifyLocationId,
+  locationsController.getCategory
 );
 
 locationsRouter.get("/search", locationsController.searchLocations);
