@@ -81,6 +81,9 @@ const verifyLocationId = (req, res, next) => {
     throw new InvalidParamsException();
   }
 
+  // TODO MIGHT CHANGE
+  req.params.locationId = parseInt(req.params.locationId);
+
   next();
 };
 
@@ -95,6 +98,9 @@ const verifyReviewId = (req, res, next) => {
     // User is providing invalid ID
     throw new InvalidParamsException();
   }
+
+  // TODO MIGHT CHANGE
+  req.params.reviewId = parseInt(req.params.reviewId);
 
   next();
 };

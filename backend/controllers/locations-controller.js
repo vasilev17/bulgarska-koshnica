@@ -28,12 +28,6 @@ async function createLocation(req, res) {
 }
 
 async function getLocationReviews(req, res) {
-  // Take note that locationId and reviewId might be bigger than the biggest
-  // value for primary key and it could overflow the integer in mysql.
-  // TODO: WHEN IMPLEMENTING CHECK FOR INTEGER OVERFLOW BUGS!!!!!
-  // ALSO NOTE THAT THEY CAN BOTH BE ARBIRARY VALUE (NOT JUST INTEGER),
-  // SO TAKE APPROPRIATE ACTIONS TO VALIDATE THE DATA INCOMING BY THIS REQUEST
-
   return res.status(501).json("Unimplemented");
 }
 
