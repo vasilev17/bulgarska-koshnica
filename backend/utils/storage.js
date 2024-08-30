@@ -141,24 +141,24 @@ async function removeRefreshToken(token) {
 async function getLocationInfo(id) {
   const [rows] = await db.executeQuery(
     `SELECT *
-FROM (
-    SELECT address, email, delivery, description, image, keywords, region, phone_number, pos_terminal, rating_average,
+     FROM (
+     SELECT address, email, delivery, description, image, keywords, region, phone_number, pos_terminal, rating_average,
            rating_count, schedule, website
-    FROM locations
-    WHERE location_id = ?
-    LIMIT 1
-) AS loc
+     FROM locations
+     WHERE location_id = ?
+     LIMIT 1
+     ) AS loc
 
-CROSS JOIN (
-    SELECT 
-    review_id,
-    user_id AS review_user_id,
-    comment,
-    rating
-    FROM reviews
-    WHERE business_id = ?
-    LIMIT 1
-) AS rev;`,
+     CROSS JOIN (
+     SELECT 
+     review_id,
+     user_id AS review_user_id,
+     comment,
+     rating
+     FROM reviews
+     WHERE business_id = ?
+     LIMIT 1
+     ) AS rev;`,
     [id, id]
   );
 
