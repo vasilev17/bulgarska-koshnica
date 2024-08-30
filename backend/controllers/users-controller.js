@@ -18,7 +18,7 @@ async function getUserName(req, res) {
 }
 
 async function getUserLocations(req, res) {
-  return res.status(501).json("Not finished yet");
+  return res.status(501).json("Unimplemented");
 }
 
 module.exports = { getUserData, getUserName, getUserLocations };
