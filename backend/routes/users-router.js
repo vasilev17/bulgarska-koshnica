@@ -5,22 +5,12 @@ const security = require("../utils/security.js");
 const usersRouter = express.Router();
 const usersControllers = require("../controllers/users-controller.js");
 
-usersRouter.get(
-  "/:userId",
-  security.verifyJWT,
-  security.verifyUserId,
-  usersControllers.getUserData
-);
+usersRouter.get("/", security.verifyJWT, usersControllers.getUserData);
+
+usersRouter.get("/name", security.verifyJWT, usersControllers.getUserName);
 
 usersRouter.get(
-  "/:userId/name",
-  security.verifyJWT,
-  security.verifyUserId,
-  usersControllers.getUserName
-);
-
-usersRouter.get(
-  "/:userId/locations",
+  "/locations",
   security.verifyJWT,
   usersControllers.getUserLocations
 );

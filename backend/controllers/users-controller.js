@@ -14,7 +14,7 @@ async function getUserData(req, res) {
 async function getUserName(req, res) {
   return res
     .status(200)
-    .json({ name: await storage.findUserNameById(req.params.userId) });
+    .json({ name: await storage.findUserNameById(req.tokenPayload.id) });
 }
 
 async function getUserLocations(req, res) {
