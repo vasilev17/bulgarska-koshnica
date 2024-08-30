@@ -49,6 +49,8 @@ async function getLocationInfo(req, res) {
     parseInt(req.params.locationId)
   );
   return res.status(200).json(location);
+}
+
 async function getContacts(req, res) {
   return res.status(501).json("Unimplemented");
 }
