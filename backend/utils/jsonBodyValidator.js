@@ -3,6 +3,12 @@ const { body, validationResult } = require("express-validator");
 const nameChain = body("name").isString().isLength({ min: 5, max: 50 });
 
 const passwordChain = body("password").isString().isLength({ min: 5, max: 50 });
+const old_passwordChain = body("old_password")
+  .isString()
+  .isLength({ min: 5, max: 50 });
+const new_passwordChain = body("new_password")
+  .isString()
+  .isLength({ min: 5, max: 50 });
 
 const emailChain = body("email").isEmail().isLength({ min: 5, max: 50 });
 const businessEmailChain = body("business_email")
@@ -86,6 +92,8 @@ const applyReportLocationRules = [reportTypeChain, reportContentChain];
 
 const applyUserReviewRules = [reviewCommentChain, ratingChain];
 
+const applyUpdatePasswordRules = [old_passwordChain, new_passwordChain];
+
 const checkRules = (req, res, next) => {
   const errors = validationResult(req);
 
@@ -103,5 +111,6 @@ module.exports = {
   applyCreateLocationRules,
   applyReportLocationRules,
   applyUserReviewRules,
+  applyUpdatePasswordRules,
   checkRules,
 };

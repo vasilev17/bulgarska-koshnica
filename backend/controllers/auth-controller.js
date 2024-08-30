@@ -133,4 +133,8 @@ async function refresh(req, res) {
   );
 }
 
-module.exports = { login, logout, refresh, register };
+async function updateUserPassword(req, res) {
+  return res.status(501).json("Unimplemented");
+}
+
+module.exports = { login, logout, refresh, register, updateUserPassword };
