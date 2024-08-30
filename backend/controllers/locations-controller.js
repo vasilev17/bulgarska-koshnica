@@ -16,7 +16,7 @@ async function createLocation(req, res) {
     phone_number: String(req.body.phone_number),
     pos_terminal: parseInt(req.body.pos_terminal),
     schedule: String(req.body.schedule),
-    user_id: parseInt(req.body.user_id),
+    user_id: parseInt(req.tokenPayload.id),
     website: String(req.body.website),
   };
 
@@ -40,4 +40,14 @@ async function reportLocation(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
-module.exports = { createLocation, getLocationReviews, reportLocation };
+async function createUserReview(req, res) {
+  // TODO A validation should be made in the controller for the rating of the review
+  return res.status(501).json("Unimplemented");
+}
+
+module.exports = {
+  createLocation,
+  getLocationReviews,
+  reportLocation,
+  createUserReview,
+};

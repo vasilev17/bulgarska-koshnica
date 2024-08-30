@@ -57,7 +57,7 @@ returns x
 
 *PostUserReview(userID, locationID, rating, comment)
 POST -> "/api/locations/:locationId/reviews" /auth required/
-expects json: {user_id, location_id, rating, comment}
+expects json: {user_id, rating, comment}
 returns x
 
 

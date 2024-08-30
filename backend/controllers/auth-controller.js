@@ -13,7 +13,7 @@ const {
 } = require("../error_handling/exceptions");
 
 async function register(req, res) {
-  const user = req.body;
+  const user = req.body; // TODO RECREATE TO BE OBJECT WITH CERTAIN PARAMETERS
 
   // Check if user already exists
   try {

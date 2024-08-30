@@ -6,7 +6,7 @@ const passwordChain = body("password").isString().isLength({ min: 5, max: 50 });
 const phoneNumberChain = body("phone_number")
   .isString()
   .isLength({ min: 9, max: 14 });
-const userIdChain = body("user_id").isInt({ min: 1 });
+// const userIdChain = body("user_id").isInt({ min: 1 });
 const addressChain = body("address").isString().isLength({ max: 100 });
 const categoryChain = body("category").isInt({
   min: 0,
@@ -27,9 +27,21 @@ const scheduleChain = body("schedule")
 const posTerminalChain = body("pos_terminal").isInt({ min: 0, max: 1 });
 const websiteChain = body("website").isString().isLength({ max: 100 });
 const imageChain = body("image"); // TODO IMPROVE
+
 const reportTypeChain = body("report_type").isInt({ min: 0 }); // TODO ADD MAX VALUE FOR REPORT TYPE
-// TODO A validation should be made in the controller for the content of a report
-// const reportContentChain = body("content").isString().isLength({ max: 1000 });
+const reportContentChain = body("content")
+  .isString()
+  .isLength({ max: 1000 })
+  .optional();
+
+const reviewCommentChain = body("comment")
+  .isString()
+  .isLength({ max: 350 })
+  .optional();
+
+const ratingChain = body("rating")
+  .isInt({ min: 0, max: 5 /* Dummy values TODO CHANGE */ })
+  .optional();
 
 const applyRegisterUserRules = [
   nameChain,
@@ -55,11 +67,12 @@ const applyCreateLocationRules = [
   phoneNumberChain,
   posTerminalChain,
   scheduleChain,
-  userIdChain,
   websiteChain,
 ];
 
-const applyReportLocationRules = [userIdChain, reportTypeChain];
+const applyReportLocationRules = [reportTypeChain, reportContentChain];
+
+const applyUserReviewRules = [reviewCommentChain, ratingChain];
 
 const checkRules = (req, res, next) => {
   const errors = validationResult(req);
@@ -77,5 +90,6 @@ module.exports = {
   applyLoginUserRules,
   applyCreateLocationRules,
   applyReportLocationRules,
+  applyUserReviewRules,
   checkRules,
 };
