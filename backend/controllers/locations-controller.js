@@ -4,7 +4,7 @@ const storage = require("../utils/storage.js");
 async function createLocation(req, res) {
   const location = {
     address: String(req.body.address),
-    email: String(req.body.email),
+    email: String(req.body.business_email),
     name: String(req.body.name),
     category: parseInt(req.body.category),
     delivery: parseInt(req.body.delivery),
@@ -36,12 +36,10 @@ async function getLocationReviews(req, res) {
 }
 
 async function reportLocation(req, res) {
-  // TODO A validation should be made in the controller for the content of a report
   return res.status(501).json("Unimplemented");
 }
 
 async function createUserReview(req, res) {
-  // TODO A validation should be made in the controller for the rating of the review
   return res.status(501).json("Unimplemented");
 }
 

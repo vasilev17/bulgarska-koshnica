@@ -26,7 +26,7 @@ CreateLocation(user_id, name, address, phoneNumber, business_email, coordinates,
 // fill absolute minimum to create location and other can be NULL
 POST -> "/api/locations/create_location" /auth required/
 expects json: {address, email, name, category(?int?), delivery, description, image, keywords, latitude, 
-               longtitude, region(int), phone_number, pos_terminal, schedule, user_id, website }
+               longtitude, region(int), phone_number, pos_terminal, schedule, website }
 returns status x
 
 
@@ -51,7 +51,7 @@ returns json: {5x{review_id, users.name, comment, rating}}
 
 *ReportLocation(phoneNumber, locationID, reportType, message)
 POST -> "/api/locations/:locationId/reports" /auth required/
-expects json: {user_id, report_type, content}
+expects json: {report_type, content}
 returns x
 
 
