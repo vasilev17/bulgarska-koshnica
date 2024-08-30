@@ -8,14 +8,14 @@ const authControllers = require("../controllers/auth-controller");
 
 authRouter.post(
   "/register",
-  jsonValidator.applyRegisterUserRules,
+  jsonValidator.applyRegisterRules,
   jsonValidator.checkRules,
   authControllers.register
 );
 
 authRouter.post(
   "/login",
-  jsonValidator.applyLoginUserRules,
+  jsonValidator.applyLoginRules,
   jsonValidator.checkRules,
   authControllers.login
 );
@@ -28,7 +28,7 @@ authRouter.post(
   security.verifyJWT,
   jsonValidator.applyUpdatePasswordRules,
   jsonValidator.checkRules,
-  authControllers.updateUserPassword
+  authControllers.updatePassword
 );
 
 module.exports = authRouter;

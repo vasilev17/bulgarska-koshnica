@@ -19,7 +19,7 @@ locationsRouter.get(
   "/:locationId/reviews/:reviewId",
   security.verifyLocationId,
   security.verifyReviewId,
-  locationsController.getLocationReviews
+  locationsController.getReviews
 );
 
 locationsRouter.post(
@@ -34,10 +34,10 @@ locationsRouter.post(
 locationsRouter.post(
   "/:locationId/reviews",
   security.verifyLocationId,
-  jsonValidator.applyUserReviewRules,
+  jsonValidator.applyCreateReviewRules,
   jsonValidator.checkRules,
   security.verifyJWT,
-  locationsController.createUserReview
+  locationsController.createReview
 );
 
 locationsRouter.get(

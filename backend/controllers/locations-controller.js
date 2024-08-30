@@ -27,7 +27,7 @@ async function createLocation(req, res) {
   return res.status(501).json("Not finished yet");
 }
 
-async function getLocationReviews(req, res) {
+async function getReviews(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
@@ -35,7 +35,7 @@ async function reportLocation(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
-async function createUserReview(req, res) {
+async function createReview(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
@@ -62,9 +62,9 @@ async function getProducts(req, res) {
 
 module.exports = {
   createLocation,
-  getLocationReviews,
+  getReviews,
   reportLocation,
-  createUserReview,
+  createReview,
   searchLocations,
   getLocationContacts,
   getDeliveryPosInfo,

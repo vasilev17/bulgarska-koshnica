@@ -61,14 +61,14 @@ const ratingChain = body("rating")
   .isInt({ min: 0, max: 5 /* Dummy values TODO CHANGE */ })
   .optional();
 
-const applyRegisterUserRules = [
+const applyRegisterRules = [
   nameChain,
   emailChain,
   passwordChain,
   phoneNumberChain,
 ];
 
-const applyLoginUserRules = [emailChain, passwordChain];
+const applyLoginRules = [emailChain, passwordChain];
 
 const applyCreateLocationRules = [
   addressChain,
@@ -90,7 +90,7 @@ const applyCreateLocationRules = [
 
 const applyReportLocationRules = [reportTypeChain, reportContentChain];
 
-const applyUserReviewRules = [reviewCommentChain, ratingChain];
+const applyCreateReviewRules = [reviewCommentChain, ratingChain];
 
 const applyUpdatePasswordRules = [old_passwordChain, new_passwordChain];
 
@@ -106,11 +106,11 @@ const checkRules = (req, res, next) => {
 };
 
 module.exports = {
-  applyRegisterUserRules,
-  applyLoginUserRules,
+  applyRegisterRules,
+  applyLoginRules,
   applyCreateLocationRules,
   applyReportLocationRules,
-  applyUserReviewRules,
+  applyCreateReviewRules,
   applyUpdatePasswordRules,
   checkRules,
 };
