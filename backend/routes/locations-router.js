@@ -19,7 +19,7 @@ locationsRouter.get(
   "/:locationId/reviews/:reviewId",
   security.verifyLocationId,
   security.verifyReviewId,
-  locationsController.getLocationReviews
+  locationsController.getReviews
 );
 
 locationsRouter.post(
@@ -34,10 +34,52 @@ locationsRouter.post(
 locationsRouter.post(
   "/:locationId/reviews",
   security.verifyLocationId,
-  jsonValidator.applyUserReviewRules,
+  jsonValidator.applyCreateReviewRules,
   jsonValidator.checkRules,
   security.verifyJWT,
-  locationsController.createUserReview
+  locationsController.createReview
+);
+
+locationsRouter.get(
+  "/:locationId/contacts",
+  security.verifyLocationId,
+  locationsController.getContacts
+);
+
+locationsRouter.get(
+  "/:locationId/delivery_pos_info",
+  security.verifyLocationId,
+  locationsController.getDeliveryPosInfo
+);
+
+locationsRouter.get(
+  "/:locationId/schedule",
+  security.verifyLocationId,
+  locationsController.getSchedule
+);
+
+locationsRouter.get(
+  "/:locationId/products",
+  security.verifyLocationId,
+  locationsController.getProducts
+);
+
+locationsRouter.get(
+  "/:locationId/category",
+  security.verifyLocationId,
+  locationsController.getCategory
+);
+
+locationsRouter.get(
+  "/:locationId/coordinates",
+  security.verifyLocationId,
+  locationsController.getCoordinates
+);
+
+locationsRouter.get(
+  "/:locationId/description",
+  security.verifyLocationId,
+  locationsController.getDescription
 );
 
 locationsRouter.get(

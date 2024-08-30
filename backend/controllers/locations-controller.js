@@ -20,18 +20,14 @@ async function createLocation(req, res) {
     website: String(req.body.website),
   };
 
+  // TODO 1 of the reasons to not be finishes is exception
+  // is not general enough. Rethrow
   await storage.createLocation(location);
 
   return res.status(501).json("Not finished yet");
 }
 
-async function getLocationReviews(req, res) {
-  // Take note that locationId and reviewId might be bigger than the biggest
-  // value for primary key and it could overflow the integer in mysql.
-  // TODO: WHEN IMPLEMENTING CHECK FOR INTEGER OVERFLOW BUGS!!!!!
-  // ALSO NOTE THAT THEY CAN BOTH BE ARBIRARY VALUE (NOT JUST INTEGER),
-  // SO TAKE APPROPRIATE ACTIONS TO VALIDATE THE DATA INCOMING BY THIS REQUEST
-
+async function getReviews(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
@@ -39,7 +35,7 @@ async function reportLocation(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
-async function createUserReview(req, res) {
+async function createReview(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
@@ -53,13 +49,46 @@ async function getLocationInfo(req, res) {
     parseInt(req.params.locationId)
   );
   return res.status(200).json(location);
+async function getContacts(req, res) {
+  return res.status(501).json("Unimplemented");
+}
+
+async function getDeliveryPosInfo(req, res) {
+  return res.status(501).json("Unimplemented");
+}
+
+async function getSchedule(req, res) {
+  return res.status(501).json("Unimplemented");
+}
+
+async function getProducts(req, res) {
+  return res.status(501).json("Unimplemented");
+}
+
+async function getCategory(req, res) {
+  return res.status(501).json("Unimplemented");
+}
+
+async function getCoordinates(req, res) {
+  return res.status(501).json("Unimplemented");
+}
+
+async function getDescription(req, res) {
+  return res.status(501).json("Unimplemented");
 }
 
 module.exports = {
   createLocation,
-  getLocationReviews,
+  getReviews,
   reportLocation,
-  createUserReview,
+  createReview,
   searchLocations,
   getLocationInfo,
+  getContacts,
+  getDeliveryPosInfo,
+  getSchedule,
+  getProducts,
+  getCategory,
+  getCoordinates,
+  getDescription,
 };

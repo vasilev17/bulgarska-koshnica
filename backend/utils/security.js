@@ -74,12 +74,15 @@ const verifyLocationId = (req, res, next) => {
   // Check if it's a valid number, compatible with database types
   if (
     isNaN(parseInt(req.params.locationId)) ||
-    req.params.locationId < 1 ||
-    req.params.locationId > 2147483646
+    parseInt(req.params.locationId) < 1 ||
+    parseInt(req.params.locationId) > 2147483646
   ) {
     // User is providing invalid ID
     throw new InvalidParamsException();
   }
+
+  // TODO MIGHT CHANGE
+  req.params.locationId = parseInt(req.params.locationId);
 
   next();
 };
@@ -89,12 +92,15 @@ const verifyReviewId = (req, res, next) => {
   // Check if it's a valid number, compatible with database types
   if (
     isNaN(parseInt(req.params.reviewId)) ||
-    req.params.reviewId < 1 ||
-    req.params.reviewId > 2147483646
+    parseInt(req.params.reviewId) < 1 ||
+    parseInt(req.params.reviewId) > 2147483646
   ) {
     // User is providing invalid ID
     throw new InvalidParamsException();
   }
+
+  // TODO MIGHT CHANGE
+  req.params.reviewId = parseInt(req.params.reviewId);
 
   next();
 };
