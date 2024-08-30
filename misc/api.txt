@@ -99,7 +99,7 @@ returns json: {business_email(nullable), phone_number}
 
 
 *GetLocationDeliveryAndPaymentInfo(locationID)
-GET -> "/api/locations/:locationId/delivery_and_pos_info"
+GET -> "/api/locations/:locationId/delivery_pos_info"
 returns json: {delivery, pos_terminal, website(optional)}
 
 

@@ -54,6 +54,10 @@ async function getLocationContacts(req, res) {
   return res.status(501).json("Unimplemented");
 }
 
+async function getDeliveryPosInfo(req, res) {
+  return res.status(501).json("Unimplemented");
+}
+
 module.exports = {
   createLocation,
   getLocationReviews,
@@ -61,4 +65,5 @@ module.exports = {
   createUserReview,
   searchLocations,
   getLocationContacts,
+  getDeliveryPosInfo,
 };

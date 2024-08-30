@@ -46,6 +46,12 @@ locationsRouter.get(
   locationsController.getLocationContacts
 );
 
+locationsRouter.get(
+  "/:locationId/delivery_pos_info",
+  security.verifyLocationId,
+  locationsController.getDeliveryPosInfo
+);
+
 locationsRouter.get("/search", locationsController.searchLocations);
 
 module.exports = locationsRouter;
