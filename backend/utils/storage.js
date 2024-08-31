@@ -194,6 +194,20 @@ async function getDeliveryPosInfo(location_id) {
 
   return rows[0];
 }
+
+async function getSchedule(location_id) {
+  const [rows] = await db.executeQuery(
+    `SELECT schedule FROM bulgarska_koshnica.locations WHERE location_id = ?;`,
+    [location_id]
+  );
+
+  if (rows[0] === undefined) {
+    throw new LocationNotFoundException();
+  }
+
+  return rows[0];
+}
+
 async function getLocationKeyWords(location_id) {
   const [rows] = await db.executeQuery(
     `SELECT keywords FROM bulgarska_koshnica.locations WHERE location_id = ?;`,
@@ -220,5 +234,6 @@ module.exports = {
   getLocationInfo,
   getContacts,
   getDeliveryPosInfo,
+  getSchedule,
   getLocationKeyWords,
 };
