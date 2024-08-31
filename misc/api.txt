@@ -93,17 +93,17 @@ expects json: { old_password, new_password }
 returns x
 
 
-*GetLocationContacts(locationID)
+GetLocationContacts(locationID)
 GET -> "/api/locations/:locationId/contacts"
 returns json: {business_email(nullable), phone_number}
 
 
-*GetLocationDeliveryAndPaymentInfo(locationID)
+GetLocationDeliveryAndPaymentInfo(locationID)
 GET -> "/api/locations/:locationId/delivery_pos_info"
 returns json: {delivery, pos_terminal, website(optional)}
 
 
-*GetLocationWorkingHours(locationID)
+GetLocationWorkingHours(locationID)
 GET -> "/api/locations/:locationId/schedule"
 returns json: {schedule}
 
