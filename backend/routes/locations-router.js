@@ -15,6 +15,13 @@ locationsRouter.post(
   locationsController.createLocation
 );
 
+locationsRouter.post(
+  "/get_locations_between",
+  jsonValidator.applyGetMapLocationsRules,
+  jsonValidator.checkRules,
+  locationsController.getMapLocations
+);
+
 locationsRouter.get(
   "/:locationId/reviews/:reviewId",
   security.verifyLocationId,

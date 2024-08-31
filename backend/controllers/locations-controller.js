@@ -27,6 +27,10 @@ async function createLocation(req, res) {
   return res.status(501).json("Not finished yet");
 }
 
+async function getMapLocations(req, res) {
+  return res.status(501).json("Unimplemented");
+}
+
 async function getReviews(req, res) {
   return res.status(501).json("Unimplemented");
 }
@@ -81,6 +85,7 @@ async function getDescription(req, res) {
 
 module.exports = {
   createLocation,
+  getMapLocations,
   getReviews,
   reportLocation,
   createReview,
