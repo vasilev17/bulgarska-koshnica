@@ -27,6 +27,9 @@ async function createLocation(req, res) {
 
   // TODO 1 of the reasons to not be finishes is exception
   // is not general enough. Rethrow
+  // TODO Not all arguments are passed and parsed correctly,
+  // some are omitted
+
   await storage.createLocation(location);
 
   return res.status(501).json("Not finished yet");

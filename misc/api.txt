@@ -20,7 +20,7 @@ expects json: {name, userType, email, password, phone_number},
 returns status x
 
 
-CreateLocation(user_id, name, address, phoneNumber, business_email, coordinates, description,
+*CreateLocation(user_id, name, address, phoneNumber, business_email, coordinates, description,
                List<categories>, workingHours, website, delivery, cardPayment, 
                image, List<products>, List<keywords>) 
 // fill absolute minimum to create location and other can be NULL
@@ -44,6 +44,7 @@ returns json: {address, email, delivery, description, image, keywords, region,
 
 
 *GetLocationReviews(locationID, lastReviewID)
+// TODO Now we are going to sort by id but later change by date
 // Get the next 5 reviews starting from reviewId for a location
 GET -> "/api/locations/:locationId/reviews/:reviewId"
 returns json: {5x{review_id, users.name, comment, rating}}
@@ -67,7 +68,7 @@ expects json: {search_string}
 returns json: {{location_id, business_name, address, category, longtitude, latitude}}
 
 
-*GetUserLocations(userID)
+GetUserLocations(userID)
 GET -> "/api/users/locations" /auth required/
 returns json: {{location_id, name, address, image, verified}}
 
@@ -88,6 +89,7 @@ returns json: {user_id, name, phone_number, email}
 
 
 *UpdateUserPassword(oldPass, newPass)
+// TODO might change for patch
 POST -> "/api/auth/password" /auth required/
 expects json: { old_password, new_password }
 returns x
