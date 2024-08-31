@@ -8,6 +8,7 @@ const UnsuccessfulInsertQueryException = require("./exception_definitions/unsucc
 const UserAlreadyExistsException = require("./exception_definitions/user-already-exists-exception");
 const InvalidParamsException = require("./exception_definitions/invalid-params-request");
 const LocationNotFoundException = require("./exception_definitions/not_found_exceptions/location-not-found-exception");
+const NotFoundException = require("./exception_definitions/not_found_exceptions/not-found-exception");
 
 module.exports = {
   IncorrectCredentialsException,
@@ -20,4 +21,5 @@ module.exports = {
   UserAlreadyExistsException,
   InvalidParamsException,
   LocationNotFoundException,
+  NotFoundException,
 };

@@ -1,4 +1,8 @@
 const storage = require("../utils/storage.js");
+const {
+  NotFoundException,
+  LocationNotFoundException,
+} = require("../error_handling/exceptions");
 
 // Sravni idto ot tokena s idto podadeno v post requesta
 async function createLocation(req, res) {
@@ -56,7 +60,19 @@ async function getLocationInfo(req, res) {
 }
 
 async function getContacts(req, res) {
-  return res.status(501).json("Unimplemented");
+  let contacts = undefined;
+
+  try {
+    contacts = await storage.getContacts(parseInt(req.params.locationId));
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(contacts);
 }
 
 async function getDeliveryPosInfo(req, res) {
