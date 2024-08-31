@@ -1,8 +1,4 @@
-const {
-  UserNotFoundException,
-  LocationNotFoundException,
-} = require("../error_handling/exceptions.js");
-const { NotFoundException } = require("../error_handling/exceptions.js");
+const { UserNotFoundException } = require("../error_handling/exceptions.js");
 const storage = require("../utils/storage.js");
 const {
   NotFoundException,
