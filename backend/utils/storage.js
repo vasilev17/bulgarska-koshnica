@@ -169,6 +169,19 @@ async function getLocationInfo(id) {
   return rows[0];
 }
 
+async function getLocationKeyWords(location_id) {
+  const [rows] = await db.executeQuery(
+    `SELECT keywords FROM bulgarska_koshnica.locations WHERE location_id = ?;`,
+    [location_id]
+  );
+
+  if (rows[0] === undefined) {
+    throw new LocationNotFoundException();
+  }
+
+  return rows[0];
+}
+
 module.exports = {
   findUserById,
   findUserByEmail,
@@ -180,4 +193,5 @@ module.exports = {
   findUserNameById,
   createLocation,
   getLocationInfo,
+  getLocationKeyWords,
 };

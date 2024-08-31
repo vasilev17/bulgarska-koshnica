@@ -1,3 +1,8 @@
+const {
+  UserNotFoundException,
+  LocationNotFoundException,
+} = require("../error_handling/exceptions.js");
+const { NotFoundException } = require("../error_handling/exceptions.js");
 const storage = require("../utils/storage.js");
 
 // Sravni idto ot tokena s idto podadeno v post requesta
@@ -45,10 +50,35 @@ async function searchLocations(req, res) {
 }
 
 async function getLocationInfo(req, res) {
-  const location = await storage.getLocationInfo(
-    parseInt(req.params.locationId)
-  );
+  let location = undefined;
+  try {
+    location = await storage.getLocationInfo(parseInt(req.params.locationId));
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
   return res.status(200).json(location);
+}
+
+async function getLocationKeyWords(req, res) {
+  let keywords = undefined;
+  try {
+    keywords = await storage.getLocationKeyWords(
+      parseInt(req.params.locationId)
+    );
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(keywords);
 }
 
 async function getContacts(req, res) {
@@ -93,4 +123,5 @@ module.exports = {
   getCategory,
   getCoordinates,
   getDescription,
+  getLocationKeyWords,
 };

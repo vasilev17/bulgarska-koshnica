@@ -127,13 +127,13 @@ GET -> "/api/locations/:locationId/description"
 returns json: {description}
 
 
-*GetLocationKeyWords(locationID)
+GetLocationKeyWords(locationID)
 GET -> "/api/locations/:locationId/keywords"
 returns json: {keywords}
 
 
 *UpdateProductInfo(productID, name, price, measurement, image)
-PUT -> "/api/locations/:locationId/products/:productId"
+PATCH -> "/api/locations/:locationId/products/:productId"
 returns x
 
 

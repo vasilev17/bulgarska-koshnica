@@ -88,6 +88,12 @@ locationsRouter.get(
   locationsController.getLocationInfo
 );
 
+locationsRouter.get(
+  "/:locationId/keywords",
+  security.verifyLocationId,
+  locationsController.getLocationKeyWords
+);
+
 locationsRouter.get("/search", locationsController.searchLocations);
 
 module.exports = locationsRouter;
