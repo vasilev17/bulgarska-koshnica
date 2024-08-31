@@ -182,6 +182,18 @@ async function getContacts(location_id) {
   return rows[0];
 }
 
+async function getDeliveryPosInfo(location_id) {
+  const [rows] = await db.executeQuery(
+    "SELECT delivery, pos_terminal FROM locations WHERE location_id = ?",
+    [location_id]
+  );
+
+  if (rows[0] === undefined) {
+    throw new LocationNotFoundException();
+  }
+
+  return rows[0];
+}
 module.exports = {
   findUserById,
   findUserByEmail,
@@ -194,4 +206,5 @@ module.exports = {
   createLocation,
   getLocationInfo,
   getContacts,
+  getDeliveryPosInfo,
 };

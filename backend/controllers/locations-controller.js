@@ -76,7 +76,21 @@ async function getContacts(req, res) {
 }
 
 async function getDeliveryPosInfo(req, res) {
-  return res.status(501).json("Unimplemented");
+  let delivery_pos_info = undefined;
+
+  try {
+    delivery_pos_info = await storage.getDeliveryPosInfo(
+      parseInt(req.params.locationId)
+    );
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(delivery_pos_info);
 }
 
 async function getSchedule(req, res) {
