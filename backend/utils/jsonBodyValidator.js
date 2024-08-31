@@ -11,47 +11,59 @@ const new_passwordChain = body("new_password")
   .isLength({ min: 5, max: 50 });
 
 const emailChain = body("email").isEmail().isLength({ min: 5, max: 50 });
-const businessEmailChain = body("business_email")
-  .isEmail()
-  .isLength({ min: 5, max: 50 })
-  .optional();
 
 const phoneNumberChain = body("phone_number")
   .isString()
   .isLength({ min: 9, max: 14 });
 
 // const userIdChain = body("user_id").isInt({ min: 1 });
+
 const addressChain = body("address").isString().isLength({ max: 100 });
+
 const categoryChain = body("category").isInt({
   min: 0,
   max: 10 /* Dummy values TODO CHANGE*/,
 });
-const deliveryChain = body("delivery").isInt({ min: -1, max: 1000 }); // TODO FIX
-const descriptionChain = body("description").isString().isLength({ max: 1000 });
-const keywordsChain = body("keywords").isString({ max: 500 }).optional();
-const latitudeChain = body("latitude").isFloat();
-const longtitudeChain = body("longtitude").isFloat();
 const regionChain = body("region").isInt({
   min: 0,
   max: 10 /* Dummy values TODO CHANGE*/,
 });
+const deliveryChain = body("delivery").isInt({ min: -1, max: 1000 }); // TODO FIX
+
+const descriptionChain = body("description").isString().isLength({ max: 1000 });
+
+const keywordsChain = body("keywords").isString({ max: 500 }).optional();
+
+const coordinatesChain = body(["latitude", "longtitude"]).isFloat();
+const coordinatesPairChain = body([
+  "loc1_longtitude",
+  "loc1_latitude",
+  "loc2_longtitude",
+  "loc2_latitude",
+]).isFloat();
+
 const scheduleChain = body("schedule")
   .isString()
   .isLength({ min: 28, max: 28 })
   .optional();
+
 const posTerminalChain = body("pos_terminal").isInt({ min: 0, max: 1 });
+
 const websiteChain = body("website")
   .isString()
   .isLength({ max: 100 })
   .optional();
+
 const imageChain = body("image").optional(); // TODO IMPROVE
 
 const reportTypeChain = body("report_type").isInt({ min: 0 }); // TODO ADD MAX VALUE FOR REPORT TYPE
+
 const reportContentChain = body("content")
   .isString()
   .isLength({ max: 1000 })
   .optional();
 
+// TODO might mix with content in db and here
 const reviewCommentChain = body("comment")
   .isString()
   .isLength({ max: 350 })
@@ -72,15 +84,14 @@ const applyLoginRules = [emailChain, passwordChain];
 
 const applyCreateLocationRules = [
   addressChain,
-  businessEmailChain,
+  emailChain,
   nameChain,
   categoryChain,
   deliveryChain,
   descriptionChain,
   imageChain,
   keywordsChain,
-  latitudeChain,
-  longtitudeChain,
+  coordinatesChain,
   regionChain,
   phoneNumberChain,
   posTerminalChain,
@@ -93,6 +104,8 @@ const applyReportLocationRules = [reportTypeChain, reportContentChain];
 const applyCreateReviewRules = [reviewCommentChain, ratingChain];
 
 const applyUpdatePasswordRules = [old_passwordChain, new_passwordChain];
+
+const applyGetMapLocationsRules = [coordinatesPairChain];
 
 const checkRules = (req, res, next) => {
   const errors = validationResult(req);
@@ -112,5 +125,6 @@ module.exports = {
   applyReportLocationRules,
   applyCreateReviewRules,
   applyUpdatePasswordRules,
+  applyGetMapLocationsRules,
   checkRules,
 };

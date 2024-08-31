@@ -138,7 +138,7 @@ async function removeRefreshToken(token) {
   return result.affectedRows !== 0;
 }
 
-async function getLocationInfo(id) {
+async function getLocationInfo(location_id) {
   const [rows] = await db.executeQuery(
     `SELECT *
      FROM (
@@ -159,7 +159,20 @@ async function getLocationInfo(id) {
      WHERE business_id = ?
      LIMIT 1
      ) AS rev;`,
-    [id, id]
+    [location_id, location_id]
+  );
+
+  if (rows[0] === undefined) {
+    throw new LocationNotFoundException();
+  }
+
+  return rows[0];
+}
+
+async function getContacts(location_id) {
+  const [rows] = await db.executeQuery(
+    "SELECT email, phone_number FROM locations WHERE location_id = ?",
+    [location_id]
   );
 
   if (rows[0] === undefined) {
@@ -193,5 +206,6 @@ module.exports = {
   findUserNameById,
   createLocation,
   getLocationInfo,
+  getContacts,
   getLocationKeyWords,
 };

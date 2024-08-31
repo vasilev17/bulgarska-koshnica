@@ -4,6 +4,10 @@ const {
 } = require("../error_handling/exceptions.js");
 const { NotFoundException } = require("../error_handling/exceptions.js");
 const storage = require("../utils/storage.js");
+const {
+  NotFoundException,
+  LocationNotFoundException,
+} = require("../error_handling/exceptions");
 
 // Sravni idto ot tokena s idto podadeno v post requesta
 async function createLocation(req, res) {
@@ -30,6 +34,10 @@ async function createLocation(req, res) {
   await storage.createLocation(location);
 
   return res.status(501).json("Not finished yet");
+}
+
+async function getMapLocations(req, res) {
+  return res.status(501).json("Unimplemented");
 }
 
 async function getReviews(req, res) {
@@ -82,7 +90,19 @@ async function getLocationKeyWords(req, res) {
 }
 
 async function getContacts(req, res) {
-  return res.status(501).json("Unimplemented");
+  let contacts = undefined;
+
+  try {
+    contacts = await storage.getContacts(parseInt(req.params.locationId));
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(contacts);
 }
 
 async function getDeliveryPosInfo(req, res) {
@@ -111,6 +131,7 @@ async function getDescription(req, res) {
 
 module.exports = {
   createLocation,
+  getMapLocations,
   getReviews,
   reportLocation,
   createReview,
