@@ -122,6 +122,7 @@ returns json: {category}
 GET -> "/api/locations/:locationId/coordinates"
 returns json: {latitude, longtitude}
 
+
 *GetLocationDescription(locationID)
 GET -> "/api/locations/:locationId/description"
 returns json: {description}

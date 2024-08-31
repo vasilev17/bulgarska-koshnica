@@ -140,7 +140,19 @@ async function getProducts(req, res) {
 }
 
 async function getCategory(req, res) {
-  return res.status(501).json("Unimplemented");
+  let category = undefined;
+
+  try {
+    category = await storage.getCategory(parseInt(req.params.locationId));
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(category);
 }
 
 async function getCoordinates(req, res) {
