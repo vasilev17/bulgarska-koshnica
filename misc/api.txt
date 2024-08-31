@@ -113,17 +113,17 @@ GET -> "/api/locations/:locationId/products"
 returns json: {{product_id, image, product_name, price, price_measurement}}
 
 
-*GetLocationCategories(locationID)
+GetLocationCategories(locationID)
 GET -> "/api/locations/:locationId/category"
 returns json: {category}
 
 
-*GetLocationCoordinates(locationID)
+GetLocationCoordinates(locationID)
 GET -> "/api/locations/:locationId/coordinates"
 returns json: {latitude, longtitude}
 
 
-*GetLocationDescription(locationID)
+GetLocationDescription(locationID)
 GET -> "/api/locations/:locationId/description"
 returns json: {description}
 
