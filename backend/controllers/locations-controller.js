@@ -172,7 +172,19 @@ async function getCoordinates(req, res) {
 }
 
 async function getDescription(req, res) {
-  return res.status(501).json("Unimplemented");
+  let description = undefined;
+
+  try {
+    description = await storage.getDescription(parseInt(req.params.locationId));
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(description);
 }
 
 module.exports = {
