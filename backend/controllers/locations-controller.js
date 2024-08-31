@@ -156,7 +156,19 @@ async function getCategory(req, res) {
 }
 
 async function getCoordinates(req, res) {
-  return res.status(501).json("Unimplemented");
+  let coordinates = undefined;
+
+  try {
+    coordinates = await storage.getCoordinates(parseInt(req.params.locationId));
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(coordinates);
 }
 
 async function getDescription(req, res) {
