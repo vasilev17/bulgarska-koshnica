@@ -5,6 +5,7 @@ const {
   InvalidRefreshTokenException,
   UnsuccessfulInsertQueryException,
   LocationNotFoundException,
+  UnsuccessfulUpdateQueryException,
 } = require("../error_handling/exceptions.js");
 
 async function findUserById(id) {
@@ -104,6 +105,25 @@ async function createLocation(location) {
   if (result.affectedRows === 0) {
     throw new UnsuccessfulInsertQueryException();
   }
+}
+
+async function updateProductInfo(product, product_id) {
+  const [result] = await db.executeQuery(
+    `UPDATE products
+     SET 
+     product_name = ?,
+     price = ?,
+     price_measurement = ?
+     WHERE 
+     product_id = ?;`,
+    [product.product_name, product.price, product.price_measurement, product_id]
+  );
+
+  if (result.affectedRows === 0) {
+    throw new UnsuccessfulUpdateQueryException();
+  }
+
+ // return result.affectedRows !== 0;
 }
 
 async function addRefreshToken(id, token) {
@@ -208,4 +228,5 @@ module.exports = {
   getLocationInfo,
   getContacts,
   getLocationKeyWords,
+  updateProductInfo,
 };

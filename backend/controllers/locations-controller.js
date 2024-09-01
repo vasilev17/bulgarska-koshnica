@@ -1,8 +1,9 @@
-const { UserNotFoundException } = require("../error_handling/exceptions.js");
 const storage = require("../utils/storage.js");
 const {
   NotFoundException,
   LocationNotFoundException,
+  UserNotFoundException,
+  ProductNotFoundException,
 } = require("../error_handling/exceptions");
 
 // Sravni idto ot tokena s idto podadeno v post requesta
@@ -101,6 +102,25 @@ async function getContacts(req, res) {
   return res.status(200).json(contacts);
 }
 
+// TODO add the image field
+// also make sure that the logged user is the owner of the locationId and that this locationId has this productId
+async function updateProductInfo(req, res) {
+  const product = {
+    product_name: String(req.body.product_name),
+    //image: String(req.body.image),
+    price: parseFloat(req.body.price).toFixed(2),
+    price_measurement: parseInt(req.body.price_measurement),
+  };
+
+  try {
+    await storage.updateProductInfo(product, req.params.productId);
+  } catch (err) {
+    throw err; // Rethrow unexpected exceptions
+  }
+
+  return res.status(200);
+}
+
 async function getDeliveryPosInfo(req, res) {
   return res.status(501).json("Unimplemented");
 }
@@ -141,4 +161,5 @@ module.exports = {
   getCoordinates,
   getDescription,
   getLocationKeyWords,
+  updateProductInfo,
 };
