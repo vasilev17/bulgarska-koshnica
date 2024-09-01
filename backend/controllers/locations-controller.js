@@ -28,6 +28,9 @@ async function createLocation(req, res) {
 
   // TODO 1 of the reasons to not be finishes is exception
   // is not general enough. Rethrow
+  // TODO Not all arguments are passed and parsed correctly,
+  // some are omitted
+
   await storage.createLocation(location);
 
   return res.status(501).json("Not finished yet");
@@ -122,11 +125,37 @@ async function updateProductInfo(req, res) {
 }
 
 async function getDeliveryPosInfo(req, res) {
-  return res.status(501).json("Unimplemented");
+  let delivery_pos_info = undefined;
+
+  try {
+    delivery_pos_info = await storage.getDeliveryPosInfo(
+      parseInt(req.params.locationId)
+    );
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(delivery_pos_info);
 }
 
 async function getSchedule(req, res) {
-  return res.status(501).json("Unimplemented");
+  let schedule = undefined;
+
+  try {
+    schedule = await storage.getSchedule(parseInt(req.params.locationId));
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(schedule);
 }
 
 async function getProducts(req, res) {
@@ -134,15 +163,51 @@ async function getProducts(req, res) {
 }
 
 async function getCategory(req, res) {
-  return res.status(501).json("Unimplemented");
+  let category = undefined;
+
+  try {
+    category = await storage.getCategory(parseInt(req.params.locationId));
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(category);
 }
 
 async function getCoordinates(req, res) {
-  return res.status(501).json("Unimplemented");
+  let coordinates = undefined;
+
+  try {
+    coordinates = await storage.getCoordinates(parseInt(req.params.locationId));
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(coordinates);
 }
 
 async function getDescription(req, res) {
-  return res.status(501).json("Unimplemented");
+  let description = undefined;
+
+  try {
+    description = await storage.getDescription(parseInt(req.params.locationId));
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(description);
 }
 
 module.exports = {
