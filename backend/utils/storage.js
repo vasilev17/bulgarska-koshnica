@@ -107,7 +107,7 @@ async function createLocation(location) {
   }
 }
 
-async function updateProductInfo(product, product_id) {
+async function updateProductInfo(product, product_id, location_id) {
   const [result] = await db.executeQuery(
     `UPDATE products
      SET 
@@ -115,15 +115,21 @@ async function updateProductInfo(product, product_id) {
      price = ?,
      price_measurement = ?
      WHERE 
-     product_id = ?;`,
-    [product.product_name, product.price, product.price_measurement, product_id]
+     product_id = ?
+     AND
+     business_id = ?;`,
+    [
+      product.product_name,
+      product.price,
+      product.price_measurement,
+      product_id,
+      location_id,
+    ]
   );
 
   if (result.affectedRows === 0) {
     throw new UnsuccessfulUpdateQueryException();
   }
-
- // return result.affectedRows !== 0;
 }
 
 async function addRefreshToken(id, token) {

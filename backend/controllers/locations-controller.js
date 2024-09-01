@@ -116,12 +116,12 @@ async function updateProductInfo(req, res) {
   };
 
   try {
-    await storage.updateProductInfo(product, req.params.productId);
+    await storage.updateProductInfo(product, req.params.productId, req.params.locationId);
   } catch (err) {
     throw err; // Rethrow unexpected exceptions
   }
 
-  return res.status(200);
+  return res.sendStatus(200);
 }
 
 async function getDeliveryPosInfo(req, res) {
