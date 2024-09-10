@@ -30,7 +30,7 @@ expects json: {address, email, name, category(?int?), delivery, description, ima
 returns status x
 
 
-*GetMapLocations()
+GetMapLocations()
 // Give all locations in a sqare between loc1 and loc2 in a square 
 POST -> "/api/locations/get_locations_between"
 expects json: {loc1_longtitude, loc1_latitude, loc2_longtitude, loc2_latitude}
