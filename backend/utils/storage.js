@@ -191,6 +191,34 @@ async function removeRefreshToken(token) {
   return result.affectedRows !== 0;
 }
 
+async function searchLocations(search_string) {
+  search_string = `%${search_string}%`;
+
+  // TODO Do dynamic loading of all results. Now it could be too heavy
+  // TODO Split search string and for each element, then combine results
+  // NOTE This query relies on SORTED review IDs
+  const [rows] = await db.executeQuery(
+    `SELECT name, description, keywords 
+     FROM bulgarska_koshnica.locations 
+     WHERE location_id 
+     in (
+	    SELECT location_id 
+      FROM locations 
+	    WHERE name LIKE ? 
+      OR description LIKE ? 
+      OR keywords LIKE ?
+     )
+    ORDER BY rating_average;`,
+    [search_string, search_string, search_string]
+  );
+
+  if (rows[0] === undefined) {
+    throw new LocationNotFoundException();
+  }
+
+  return rows;
+}
+
 async function getLocationInfo(location_id) {
   const [rows] = await db.executeQuery(
     `SELECT *
@@ -325,6 +353,7 @@ module.exports = {
   createLocation,
   getMapLocations,
   getReviews,
+  searchLocations,
   getLocationInfo,
   getContacts,
   getDeliveryPosInfo,

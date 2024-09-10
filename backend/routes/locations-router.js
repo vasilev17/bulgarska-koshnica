@@ -100,17 +100,20 @@ locationsRouter.get(
 );
 
 locationsRouter.get(
-  "/:locationId",
-  security.verifyLocationId,
-  locationsController.getLocationInfo
-);
-
-locationsRouter.get(
   "/:locationId/keywords",
   security.verifyLocationId,
   locationsController.getLocationKeyWords
 );
 
 locationsRouter.get("/search", locationsController.searchLocations);
+
+// NOTE If this get is not last in the router file it could mess
+// with other URL endpoints and "steal" the request for it.
+// Gives Invalid Parameters
+locationsRouter.get(
+  "/:locationId",
+  security.verifyLocationId,
+  locationsController.getLocationInfo
+);
 
 module.exports = locationsRouter;

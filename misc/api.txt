@@ -62,9 +62,9 @@ expects json: {user_id, rating, comment}
 returns x
 
 
-*SearchLocation(searchString)
+SearchLocation(searchString)
 GET -> "/api/locations/search?"
-expects json: {search_string}
+expects paramers: {search_string}
 returns json: {{location_id, business_name, address, category, longtitude, latitude}}
 
 
