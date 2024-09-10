@@ -106,6 +106,20 @@ async function createLocation(location) {
   }
 }
 
+async function getMapLocations(coords) {
+  const [rows] = await db.executeQuery(
+    `SELECT location_id, category, name, longtitude, latitude FROM bulgarska_koshnica.locations WHERE (latitude > ?) AND (longtitude > ?) AND (latitude < ?) AND (longtitude < ?);`,
+    // `Select location_id, category, name, longtitude, latitude from bulgarska_koshnica.locations WHERE latitude > ?;`,
+    [coords.la1, coords.lo1, coords.la2, coords.lo2]
+  );
+
+  if (rows[0] === undefined) {
+    throw new LocationNotFoundException();
+  }
+
+  return rows;
+}
+
 async function addRefreshToken(id, token) {
   const [result] = await db.executeQuery(
     "UPDATE users SET refresh_token = ? WHERE user_id = ?",
@@ -270,6 +284,7 @@ module.exports = {
   removeRefreshToken,
   findUserNameById,
   createLocation,
+  getMapLocations,
   getLocationInfo,
   getContacts,
   getDeliveryPosInfo,
