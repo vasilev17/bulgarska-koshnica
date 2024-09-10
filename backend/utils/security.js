@@ -105,6 +105,24 @@ const verifyReviewId = (req, res, next) => {
   next();
 };
 
+// Verify that the product ID from URL is in valid format
+const verifyProductId = (req, res, next) => {
+  // Check if it's a valid number, compatible with database types
+  if (
+    isNaN(parseInt(req.params.productId)) ||
+    parseInt(req.params.productId) < 1 ||
+    parseInt(req.params.productId) > 2147483646
+  ) {
+    // User is providing invalid ID
+    throw new InvalidParamsException();
+  }
+
+  // TODO MIGHT CHANGE
+  req.params.productId = parseInt(req.params.productId);
+
+  next();
+};
+
 async function validateUser(email, password) {
   // Find user. If not found an exception is thrown
   const user = await storage.findUserByEmail(email);
@@ -146,5 +164,6 @@ module.exports = {
   generateRefreshToken,
   verifyLocationId,
   verifyReviewId,
+  verifyProductId,
   // verifyUserBusinessOwnership,
 };
