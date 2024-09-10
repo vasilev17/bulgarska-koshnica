@@ -122,6 +122,25 @@ async function getContacts(req, res) {
   return res.status(200).json(contacts);
 }
 
+// TODO add the image field
+// also make sure that the logged user is the owner of the locationId and that this locationId has this productId
+async function updateProductInfo(req, res) {
+  const product = {
+    product_name: String(req.body.product_name),
+    //image: String(req.body.image),
+    price: parseFloat(req.body.price).toFixed(2),
+    price_measurement: parseInt(req.body.price_measurement),
+  };
+
+  try {
+    await storage.updateProductInfo(product, req.params.productId, req.params.locationId);
+  } catch (err) {
+    throw err; // Rethrow unexpected exceptions
+  }
+
+  return res.sendStatus(200);
+}
+
 async function getDeliveryPosInfo(req, res) {
   let delivery_pos_info = undefined;
 
@@ -224,4 +243,5 @@ module.exports = {
   getCoordinates,
   getDescription,
   getLocationKeyWords,
+  updateProductInfo,
 };

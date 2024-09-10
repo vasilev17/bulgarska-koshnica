@@ -38,6 +38,16 @@ locationsRouter.post(
   locationsController.reportLocation
 );
 
+locationsRouter.patch(
+  "/:locationId/products/:productId",
+  security.verifyLocationId,
+  security.verifyProductId,
+  jsonValidator.applyUpdateProductRules,
+  jsonValidator.checkRules,
+  security.verifyJWT,
+  locationsController.updateProductInfo
+);
+
 locationsRouter.post(
   "/:locationId/reviews",
   security.verifyLocationId,

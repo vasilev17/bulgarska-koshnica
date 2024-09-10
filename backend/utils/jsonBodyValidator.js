@@ -2,6 +2,18 @@ const { body, validationResult } = require("express-validator");
 
 const nameChain = body("name").isString().isLength({ min: 5, max: 50 });
 
+const productNameChain = body("product_name")
+  .isString()
+  .isLength({ min: 3, max: 50 });
+
+const priceChain = body("price").isFloat({ min: 0, max: 9999.99 });
+
+//Not sure about this one, but I believe we represent 0 as /бр and 1 as /кг
+const priceMeasurementChain = body("price_measurement").isInt({
+  min: 0,
+  max: 1,
+});
+
 const passwordChain = body("password").isString().isLength({ min: 5, max: 50 });
 const old_passwordChain = body("old_password")
   .isString()
@@ -107,6 +119,13 @@ const applyUpdatePasswordRules = [old_passwordChain, new_passwordChain];
 
 const applyGetMapLocationsRules = [coordinatesPairChain];
 
+const applyUpdateProductRules = [
+  imageChain,
+  productNameChain,
+  priceChain,
+  priceMeasurementChain,
+];
+
 const checkRules = (req, res, next) => {
   const errors = validationResult(req);
 
@@ -126,5 +145,6 @@ module.exports = {
   applyCreateReviewRules,
   applyUpdatePasswordRules,
   applyGetMapLocationsRules,
+  applyUpdateProductRules,
   checkRules,
 };
