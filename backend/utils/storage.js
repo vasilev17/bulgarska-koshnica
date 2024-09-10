@@ -120,6 +120,20 @@ async function getMapLocations(coords) {
   return rows;
 }
 
+async function getMapLocations(coords) {
+  const [rows] = await db.executeQuery(
+    `SELECT location_id, category, name, longtitude, latitude FROM bulgarska_koshnica.locations WHERE (latitude > ?) AND (longtitude > ?) AND (latitude < ?) AND (longtitude < ?);`,
+    // `Select location_id, category, name, longtitude, latitude from bulgarska_koshnica.locations WHERE latitude > ?;`,
+    [coords.la1, coords.lo1, coords.la2, coords.lo2]
+  );
+
+  if (rows[0] === undefined) {
+    throw new LocationNotFoundException();
+  }
+
+  return rows;
+}
+
 async function updateProductInfo(product, product_id, location_id) {
   const [result] = await db.executeQuery(
     `UPDATE products
