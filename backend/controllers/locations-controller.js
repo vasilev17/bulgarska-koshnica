@@ -58,7 +58,21 @@ async function getMapLocations(req, res) {
 }
 
 async function getReviews(req, res) {
-  return res.status(501).json("Unimplemented");
+  let reviews = undefined;
+  try {
+    reviews = await storage.getReviews(
+      req.params.locationId,
+      req.params.reviewId
+    );
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  return res.status(200).json(reviews);
 }
 
 async function reportLocation(req, res) {
@@ -92,9 +106,7 @@ async function getLocationInfo(req, res) {
 async function getLocationKeyWords(req, res) {
   let keywords = undefined;
   try {
-    keywords = await storage.getLocationKeyWords(
-      parseInt(req.params.locationId)
-    );
+    keywords = await storage.getLocationKeyWords(req.params.locationId);
   } catch (err) {
     if (err instanceof LocationNotFoundException) {
       throw new NotFoundException();
@@ -110,7 +122,7 @@ async function getContacts(req, res) {
   let contacts = undefined;
 
   try {
-    contacts = await storage.getContacts(parseInt(req.params.locationId));
+    contacts = await storage.getContacts(req.params.locationId);
   } catch (err) {
     if (err instanceof LocationNotFoundException) {
       throw new NotFoundException();

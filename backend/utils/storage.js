@@ -120,6 +120,20 @@ async function getMapLocations(coords) {
   return rows;
 }
 
+async function getReviews(locationId, reviewId) {
+  // NOTE This query relies on SORTED review IDs
+  const [rows] = await db.executeQuery(
+    `SELECT review_id FROM bulgarska_koshnica.reviews WHERE (location_id=?) and review_id >= ? LIMIT 5;`,
+    [locationId, reviewId]
+  );
+
+  if (rows[0] === undefined) {
+    throw new LocationNotFoundException();
+  }
+
+  return rows.slice(0, 5);
+}
+
 async function updateProductInfo(product, product_id, location_id) {
   const [result] = await db.executeQuery(
     `UPDATE products
@@ -310,6 +324,7 @@ module.exports = {
   findUserNameById,
   createLocation,
   getMapLocations,
+  getReviews,
   getLocationInfo,
   getContacts,
   getDeliveryPosInfo,

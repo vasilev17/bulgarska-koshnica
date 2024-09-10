@@ -43,7 +43,7 @@ returns json: {address, email, delivery, description, image, keywords, region,
                phone_number, pos_terminal, rating_average, rating_count, schedule, website, review(first) }
 
 
-*GetLocationReviews(locationID, lastReviewID)
+GetLocationReviews(locationID, lastReviewID)
 // TODO Now we are going to sort by id but later change by date
 // Get the next 5 reviews starting from reviewId for a location
 GET -> "/api/locations/:locationId/reviews/:reviewId"
