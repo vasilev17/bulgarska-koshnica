@@ -133,7 +133,11 @@ async function updateProductInfo(req, res) {
   };
 
   try {
-    await storage.updateProductInfo(product, req.params.productId, req.params.locationId);
+    await storage.updateProductInfo(
+      product,
+      req.params.productId,
+      req.params.locationId
+    );
   } catch (err) {
     throw err; // Rethrow unexpected exceptions
   }
