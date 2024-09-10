@@ -85,7 +85,17 @@ async function createReview(req, res) {
 
 async function searchLocations(req, res) {
   // TODO check if query is adequate and watch out for injections
-  return res.status(501).json("Unimplemented, search query: " + req.query.str);
+  let search_results = undefined;
+  try {
+    search_results = await storage.searchLocations(req.query.str);
+  } catch (err) {
+    if (err instanceof LocationNotFoundException) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+  return res.status(200).json(search_results);
 }
 
 async function getLocationInfo(req, res) {
