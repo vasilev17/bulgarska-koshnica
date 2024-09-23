@@ -9,8 +9,11 @@ const UserAlreadyExistsException = require("./exception_definitions/user-already
 const InvalidParamsException = require("./exception_definitions/invalid-params-request");
 const LocationNotFoundException = require("./exception_definitions/not_found_exceptions/location-not-found-exception");
 const NotFoundException = require("./exception_definitions/not_found_exceptions/not-found-exception");
+const ReportNotFoundException = require("./exception_definitions/not_found_exceptions/report-not-found");
 const ProductNotFoundException = require("./exception_definitions/not_found_exceptions/product-not-found-exception");
+const ReviewNotFoundException = require("./exception_definitions/not_found_exceptions/review-not-found-exception");
 const UnsuccessfulUpdateQueryException = require("./exception_definitions/unsuccessful-update-query-exception");
+const RequestLimitException = require("./exception_definitions/request-limit-exception");
 
 module.exports = {
   IncorrectCredentialsException,
@@ -19,6 +22,8 @@ module.exports = {
   InvalidAccessTokenException,
   AccessDeniedException,
   UserNotFoundException,
+  ReportNotFoundException,
+  ReviewNotFoundException,
   UnsuccessfulInsertQueryException,
   UserAlreadyExistsException,
   InvalidParamsException,
@@ -26,4 +31,5 @@ module.exports = {
   NotFoundException,
   ProductNotFoundException,
   UnsuccessfulUpdateQueryException,
+  RequestLimitException,
 };

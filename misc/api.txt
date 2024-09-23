@@ -50,15 +50,16 @@ GET -> "/api/locations/:locationId/reviews/:reviewId"
 returns json: {5x{review_id, users.name, comment, rating}}
 
 
-*ReportLocation(phoneNumber, locationID, reportType, message)
+ReportLocation(phoneNumber, locationID, reportType, message)
 POST -> "/api/locations/:locationId/reports" /auth required/
 expects json: {report_type, content}
 returns x
 
 
-*PostUserReview(userID, locationID, rating, comment)
+// TODO LIMIT UNTIL 5 REPORTS
+*PostUserReview(phoneNumber, locationID, rating, comment)
 POST -> "/api/locations/:locationId/reviews" /auth required/
-expects json: {user_id, rating, comment}
+expects json: {rating, comment}
 returns x
 
 

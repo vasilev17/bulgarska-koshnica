@@ -1,3 +1,6 @@
+const MAX_MYSQL_KEY_VALUE = 2147483647;
+const MIN_MYSQL_KEY_VALUE = 0;
+
 const { body, validationResult } = require("express-validator");
 
 const nameChain = body("name").isString().isLength({ min: 5, max: 50 });
@@ -81,6 +84,10 @@ const reviewCommentChain = body("comment")
   .isLength({ max: 350 })
   .optional();
 
+const reviewIdChain = body("review_id")
+  .isInt({ min: MIN_MYSQL_KEY_VALUE, max: MAX_MYSQL_KEY_VALUE })
+  .optional();
+
 const ratingChain = body("rating")
   .isInt({ min: 0, max: 5 /* Dummy values TODO CHANGE */ })
   .optional();
@@ -111,7 +118,11 @@ const applyCreateLocationRules = [
   websiteChain,
 ];
 
-const applyReportLocationRules = [reportTypeChain, reportContentChain];
+const applyReportLocationRules = [
+  reportTypeChain,
+  reportContentChain,
+  reviewIdChain,
+];
 
 const applyCreateReviewRules = [reviewCommentChain, ratingChain];
 

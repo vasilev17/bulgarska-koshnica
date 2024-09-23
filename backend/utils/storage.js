@@ -5,12 +5,14 @@ const {
   InvalidRefreshTokenException,
   UnsuccessfulInsertQueryException,
   LocationNotFoundException,
+  ReportNotFoundException,
   UnsuccessfulUpdateQueryException,
+  ReviewNotFoundException,
 } = require("../error_handling/exceptions.js");
 
 async function findUserById(id) {
   const [rows] = await db.executeQuery(
-    "SELECT * FROM users WHERE user_id = ?",
+    "SELECT * FROM users WHERE user_id = (?)",
     [parseInt(id)] // Comment for autoformat
   );
 
@@ -27,7 +29,7 @@ async function findUserNameById(id) {
 
 async function findUserByEmail(email) {
   const [rows] = await db.executeQuery(
-    "SELECT * FROM users WHERE email = ?",
+    "SELECT * FROM users WHERE email = (?)",
     [email] // Comment for autoformat
   );
 
@@ -40,12 +42,29 @@ async function findUserByEmail(email) {
 
 async function findUserByPhoneNumber(phone_number) {
   const [rows] = await db.executeQuery(
-    "SELECT * FROM users WHERE phone_number = ?",
+    "SELECT * FROM users WHERE phone_number = (?)",
     [phone_number] // Comment for autoformat
   );
 
   if (rows[0] === undefined) {
     throw new UserNotFoundException();
+  }
+
+  return rows[0];
+}
+
+async function findPhoneByUserId(id) {
+  return (await findUserById(id)).phone_number;
+}
+
+async function findReviewById(id) {
+  const [rows] = await db.executeQuery(
+    "SELECT * FROM reviews WHERE review_id = (?)",
+    [parseInt(id)] // Comment for autoformat
+  );
+
+  if (rows[0] === undefined) {
+    throw new ReviewNotFoundException();
   }
 
   return rows[0];
@@ -107,9 +126,26 @@ async function createLocation(location) {
   }
 }
 
+async function createReport(
+  user_id,
+  location_id,
+  phone_number,
+  report_type,
+  content
+) {
+  const [result] = await db.executeQuery(
+    "INSERT INTO reports(user_id, location_id, phone_number, report_type, content) VALUES (?,?,?,?,?)",
+    [user_id, location_id, phone_number, report_type, content]
+  );
+
+  if (result.affectedRows === 0) {
+    throw new UnsuccessfulInsertQueryException();
+  }
+}
+
 async function getMapLocations(coords) {
   const [rows] = await db.executeQuery(
-    `SELECT location_id, category, name, longtitude, latitude FROM bulgarska_koshnica.locations WHERE (latitude > ?) AND (longtitude > ?) AND (latitude < ?) AND (longtitude < ?);`,
+    "SELECT location_id, category, name, longtitude, latitude FROM bulgarska_koshnica.locations WHERE latitude > (?) AND longtitude > (?) AND latitude < (?) AND longtitude < (?);",
     [coords.la1, coords.lo1, coords.la2, coords.lo2]
   );
 
@@ -123,7 +159,7 @@ async function getMapLocations(coords) {
 async function getReviews(locationId, reviewId) {
   // NOTE This query relies on SORTED review IDs
   const [rows] = await db.executeQuery(
-    `SELECT review_id FROM bulgarska_koshnica.reviews WHERE (location_id=?) and review_id >= ? LIMIT 5;`,
+    "SELECT review_id FROM bulgarska_koshnica.reviews WHERE location_id = (?) AND review_id >= (?) LIMIT 5;",
     [locationId, reviewId]
   );
 
@@ -138,13 +174,13 @@ async function updateProductInfo(product, product_id, location_id) {
   const [result] = await db.executeQuery(
     `UPDATE products
      SET 
-     product_name = ?,
-     price = ?,
-     price_measurement = ?
+     product_name = (?),
+     price = (?),
+     price_measurement = (?)
      WHERE 
-     product_id = ?
+     product_id = (?)
      AND
-     business_id = ?;`,
+     business_id = (?);`,
     [
       product.product_name,
       product.price,
@@ -161,7 +197,7 @@ async function updateProductInfo(product, product_id, location_id) {
 
 async function addRefreshToken(id, token) {
   const [result] = await db.executeQuery(
-    "UPDATE users SET refresh_token = ? WHERE user_id = ?",
+    "UPDATE users SET refresh_token = (?) WHERE user_id = (?)",
     [token, id] // Comment for autoformat
   );
 
@@ -171,7 +207,7 @@ async function addRefreshToken(id, token) {
 
 async function findRefreshToken(token) {
   const [rows] = await db.executeQuery(
-    "SELECT * FROM users WHERE refresh_token = ?",
+    "SELECT * FROM users WHERE refresh_token = (?)",
     [token] // Comment for autoformat
   );
 
@@ -184,7 +220,7 @@ async function findRefreshToken(token) {
 
 async function removeRefreshToken(token) {
   const [result] = await db.executeQuery(
-    "UPDATE users SET refresh_token = NULL WHERE refresh_token = ?",
+    "UPDATE users SET refresh_token = NULL WHERE refresh_token = (?)",
     [token] // Comment for autoformat
   );
 
@@ -205,9 +241,9 @@ async function searchLocations(search_string) {
      in (
 	    SELECT location_id 
       FROM locations 
-	    WHERE name LIKE ? 
-      OR description LIKE ? 
-      OR keywords LIKE ?
+	    WHERE name LIKE (?)
+      OR description LIKE (?) 
+      OR keywords LIKE (?)
      )
     ORDER BY rating_average;`,
     [search_string, search_string, search_string]
@@ -227,7 +263,7 @@ async function getLocationInfo(location_id) {
      SELECT address, email, delivery, description, image, keywords, region, phone_number, pos_terminal, rating_average,
            rating_count, schedule, website
      FROM locations
-     WHERE location_id = ?
+     WHERE location_id = (?)
      LIMIT 1
      ) AS loc
 
@@ -238,7 +274,7 @@ async function getLocationInfo(location_id) {
      comment,
      rating
      FROM reviews
-     WHERE business_id = ?
+     WHERE business_id = (?)
      LIMIT 1
      ) AS rev;`,
     [location_id, location_id]
@@ -253,7 +289,7 @@ async function getLocationInfo(location_id) {
 
 async function getContacts(location_id) {
   const [rows] = await db.executeQuery(
-    "SELECT email, phone_number FROM locations WHERE location_id = ?",
+    "SELECT email, phone_number FROM locations WHERE location_id = (?)",
     [location_id]
   );
 
@@ -266,7 +302,7 @@ async function getContacts(location_id) {
 
 async function getDeliveryPosInfo(location_id) {
   const [rows] = await db.executeQuery(
-    "SELECT delivery, pos_terminal FROM locations WHERE location_id = ?",
+    "SELECT delivery, pos_terminal FROM locations WHERE location_id = (?)",
     [location_id]
   );
 
@@ -279,7 +315,7 @@ async function getDeliveryPosInfo(location_id) {
 
 async function getSchedule(location_id) {
   const [rows] = await db.executeQuery(
-    `SELECT schedule FROM bulgarska_koshnica.locations WHERE location_id = ?;`,
+    "SELECT schedule FROM bulgarska_koshnica.locations WHERE location_id = (?);",
     [location_id]
   );
 
@@ -292,7 +328,7 @@ async function getSchedule(location_id) {
 
 async function getCategory(location_id) {
   const [rows] = await db.executeQuery(
-    `SELECT category FROM bulgarska_koshnica.locations WHERE location_id = ?;`,
+    "SELECT category FROM bulgarska_koshnica.locations WHERE location_id = (?);",
     [location_id]
   );
 
@@ -305,7 +341,7 @@ async function getCategory(location_id) {
 
 async function getCoordinates(location_id) {
   const [rows] = await db.executeQuery(
-    `SELECT latitude, longtitude FROM bulgarska_koshnica.locations WHERE location_id = ?;`,
+    "SELECT latitude, longtitude FROM bulgarska_koshnica.locations WHERE location_id = (?);",
     [location_id]
   );
 
@@ -318,7 +354,7 @@ async function getCoordinates(location_id) {
 
 async function getDescription(location_id) {
   const [rows] = await db.executeQuery(
-    `SELECT description FROM bulgarska_koshnica.locations WHERE location_id = ?;`,
+    "SELECT description FROM bulgarska_koshnica.locations WHERE location_id = (?);",
     [location_id]
   );
 
@@ -331,7 +367,7 @@ async function getDescription(location_id) {
 
 async function getLocationKeyWords(location_id) {
   const [rows] = await db.executeQuery(
-    `SELECT keywords FROM bulgarska_koshnica.locations WHERE location_id = ?;`,
+    "SELECT keywords FROM bulgarska_koshnica.locations WHERE location_id = (?);",
     [location_id]
   );
 
@@ -342,15 +378,32 @@ async function getLocationKeyWords(location_id) {
   return rows[0];
 }
 
+async function getReportCountByLocationIdAndPhone(location_id, phone_number) {
+  const [rows] = await db.executeQuery(
+    "SELECT COUNT(*) AS count FROM reports WHERE location_id = (?) AND phone_number = (?);",
+    [location_id, phone_number]
+  );
+
+  if (rows[0] === undefined) {
+    throw new ReportNotFoundException();
+  }
+
+  return rows[0].count;
+}
+
 module.exports = {
   findUserById,
   findUserByEmail,
   findUserByPhoneNumber,
+  findPhoneByUserId,
+  findUserNameById,
+  findReviewById,
   createUser,
+  createReport,
+  updateProductInfo,
   addRefreshToken,
   findRefreshToken,
   removeRefreshToken,
-  findUserNameById,
   createLocation,
   getMapLocations,
   getReviews,
@@ -363,5 +416,5 @@ module.exports = {
   getCoordinates,
   getDescription,
   getLocationKeyWords,
-  updateProductInfo,
+  getReportCountByLocationIdAndPhone,
 };

@@ -2,6 +2,10 @@ const storage = require("../utils/storage.js");
 const {
   NotFoundException,
   LocationNotFoundException,
+  RequestLimitException,
+  ReportNotFoundException,
+  UserNotFoundException,
+  ReviewNotFoundException,
 } = require("../error_handling/exceptions.js");
 
 // Sravni idto ot tokena s idto podadeno v post requesta
@@ -76,7 +80,64 @@ async function getReviews(req, res) {
 }
 
 async function reportLocation(req, res) {
-  return res.status(501).json("Unimplemented");
+  const MAX_REPORTS_PER_PHONE_NUMBER = 5;
+
+  phone_number = undefined;
+
+  // review_id = req.body.review_id ?? null;
+
+  // // Validate review_id
+  // if (review_id != null) {
+  //   try {
+  //     await storage.findReviewById(review_id);
+  //   } catch (err) {
+  //     if (err instanceof ReviewNotFoundException) {
+  //       throw new NotFoundException();
+  //     } else {
+  //       throw err; // Rethrow unexpected exceptions
+  //     }
+  //   }
+  // }
+
+  try {
+    // Find users' phone number
+    phone_number = await storage.findPhoneByUserId(req.tokenPayload.id);
+
+    // Validate users' right to report this location
+    if (
+      MAX_REPORTS_PER_PHONE_NUMBER <=
+      (await storage.getReportCountByLocationIdAndPhone(
+        req.params.locationId,
+        phone_number
+      ))
+    ) {
+      throw new RequestLimitException();
+    }
+  } catch (err) {
+    if (
+      err instanceof UserNotFoundException ||
+      err instanceof ReportNotFoundException
+    ) {
+      throw new NotFoundException();
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  // Create report
+  try {
+    await storage.createReport(
+      req.tokenPayload.id,
+      req.params.locationId,
+      phone_number,
+      req.body.report_type,
+      req.body.content
+    );
+  } catch (err) {
+    throw err; // Rethrow exceptions
+  }
+
+  return res.sendStatus(200);
 }
 
 async function createReview(req, res) {
