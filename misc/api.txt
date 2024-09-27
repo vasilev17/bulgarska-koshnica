@@ -57,7 +57,7 @@ returns x
 
 
 // TODO LIMIT UNTIL 5 REPORTS
-*PostUserReview(phoneNumber, locationID, rating, comment)
+PostUserReview(phoneNumber, locationID, rating, comment)
 POST -> "/api/locations/:locationId/reviews" /auth required/
 expects json: {rating, comment}
 returns x

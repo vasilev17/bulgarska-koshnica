@@ -170,7 +170,13 @@ async function getMapLocations(coords) {
 async function getReviews(locationId, reviewId) {
   // NOTE This query relies on SORTED review IDs
   const [rows] = await db.executeQuery(
-    "SELECT review_id FROM bulgarska_koshnica.reviews WHERE location_id = (?) AND review_id >= (?) LIMIT 5;",
+    `SELECT review_id, users.name, comment, rating
+    FROM bulgarska_koshnica.reviews 
+    JOIN users ON users.user_id=reviews.user_id
+    WHERE location_id = (?)
+    AND review_id >= (?)
+    ORDER BY review_id
+    LIMIT 5;`,
     [locationId, reviewId]
   );
 
@@ -188,10 +194,8 @@ async function updateProductInfo(product, product_id, location_id) {
      product_name = (?),
      price = (?),
      price_measurement = (?)
-     WHERE 
-     product_id = (?)
-     AND
-     business_id = (?);`,
+     WHERE product_id = (?)
+     AND business_id = (?);`,
     [
       product.product_name,
       product.price,
@@ -277,7 +281,6 @@ async function getLocationInfo(location_id) {
      WHERE location_id = (?)
      LIMIT 1
      ) AS loc
-
      CROSS JOIN (
      SELECT 
      review_id,
