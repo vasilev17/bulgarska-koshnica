@@ -5,7 +5,6 @@ const {
   RequestLimitException,
   ReportNotFoundException,
   UserNotFoundException,
-  ReviewNotFoundException,
 } = require("../error_handling/exceptions.js");
 
 // Sravni idto ot tokena s idto podadeno v post requesta
@@ -143,7 +142,22 @@ async function reportLocation(req, res) {
 }
 
 async function createReview(req, res) {
-  return res.status(501).json("Unimplemented");
+  comment = req.body.comment ?? null;
+  rating = req.body.rating ?? null;
+
+  // Create report
+  try {
+    await storage.createReview(
+      req.tokenPayload.id,
+      comment,
+      rating,
+      req.params.locationId
+    );
+  } catch (err) {
+    throw err; // Rethrow exceptions
+  }
+
+  return res.sendStatus(200);
 }
 
 async function searchLocations(req, res) {

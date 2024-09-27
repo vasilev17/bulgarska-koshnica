@@ -143,6 +143,17 @@ async function createReport(
   }
 }
 
+async function createReview(user_id, comment, rating, location_id) {
+  const [result] = await db.executeQuery(
+    "INSERT INTO reviews(user_id, comment, rating, location_id) VALUES (?,?,?,?)",
+    [user_id, comment, rating, location_id]
+  );
+
+  if (result.affectedRows === 0) {
+    throw new UnsuccessfulInsertQueryException();
+  }
+}
+
 async function getMapLocations(coords) {
   const [rows] = await db.executeQuery(
     "SELECT location_id, category, name, longtitude, latitude FROM bulgarska_koshnica.locations WHERE latitude > (?) AND longtitude > (?) AND latitude < (?) AND longtitude < (?);",
@@ -400,6 +411,7 @@ module.exports = {
   findReviewById,
   createUser,
   createReport,
+  createReview,
   updateProductInfo,
   addRefreshToken,
   findRefreshToken,
