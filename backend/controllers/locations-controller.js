@@ -83,9 +83,11 @@ async function reportLocation(req, res) {
   const MAX_REPORTS_PER_PHONE_NUMBER = 5;
 
   phone_number = undefined;
+  content = req.body.content ?? null;
 
-  // review_id = req.body.review_id ?? null;
-
+  // NOTE: CLEAN AND MOVE TO THE APPROPRIATE PLACEs
+  // This piece of code checks if the review with
+  // this id is present in the database at all
   // // Validate review_id
   // if (review_id != null) {
   //   try {
@@ -131,7 +133,7 @@ async function reportLocation(req, res) {
       req.params.locationId,
       phone_number,
       req.body.report_type,
-      req.body.content
+      content
     );
   } catch (err) {
     throw err; // Rethrow exceptions
