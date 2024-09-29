@@ -23,7 +23,7 @@ authRouter.post(
 authRouter.post("/logout", security.verifyJWT, authControllers.logout);
 authRouter.post("/refresh", authControllers.refresh);
 
-authRouter.post(
+authRouter.patch(
   "/password",
   security.verifyJWT,
   jsonValidator.applyUpdatePasswordRules,

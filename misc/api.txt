@@ -90,8 +90,7 @@ returns json: {user_id, name, phone_number, email}
 
 
 UpdateUserPassword(oldPass, newPass)
-// TODO might change for patch
-POST -> "/api/auth/password" /auth required/
+PATCH -> "/api/auth/password" /auth required/
 expects json: { old_password, new_password }
 returns x
 
