@@ -11,6 +11,7 @@ const {
   UserAlreadyExistsException,
   UnsuccessfulInsertQueryException,
 } = require("../error_handling/exceptions");
+const BaseException = require("../error_handling/exception_definitions/baseException");
 
 async function register(req, res) {
   const user = req.body; // TODO RECREATE TO BE OBJECT WITH CERTAIN PARAMETERS
@@ -134,7 +135,24 @@ async function refresh(req, res) {
 }
 
 async function updatePassword(req, res) {
-  return res.status(501).json("Unimplemented");
+  user = undefined;
+
+  // Validate User
+  try {
+    user_t = await storage.findUserById(req.tokenPayload.id); // TODO Can be optimized
+    user = await security.validateUser(user_t.email, req.body.old_password);
+  } catch (err) {
+    if (err instanceof UserNotFoundException) {
+      throw new IncorrectCredentialsException(); // Hide UserNotFound exception from client
+    } else {
+      throw err; // Rethrow unexpected exceptions
+    }
+  }
+
+  // TODO add hashing to password
+  await storage.updatePassword(user.user_id, req.body.new_password);
+
+  return res.sendStatus(200);
 }
 
 module.exports = { login, logout, refresh, register, updatePassword };
