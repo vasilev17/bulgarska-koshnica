@@ -210,6 +210,17 @@ async function updateProductInfo(product, product_id, location_id) {
   }
 }
 
+async function updatePassword(user_id, new_password) {
+  const [result] = await db.executeQuery(
+    "UPDATE users SET password = (?) WHERE user_id = (?);",
+    [new_password, user_id]
+  );
+
+  if (result.affectedRows === 0) {
+    throw new UnsuccessfulUpdateQueryException();
+  }
+}
+
 async function addRefreshToken(id, token) {
   const [result] = await db.executeQuery(
     "UPDATE users SET refresh_token = (?) WHERE user_id = (?)",
@@ -416,6 +427,7 @@ module.exports = {
   createReport,
   createReview,
   updateProductInfo,
+  updatePassword,
   addRefreshToken,
   findRefreshToken,
   removeRefreshToken,
