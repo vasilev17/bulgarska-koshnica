@@ -7,30 +7,43 @@ const {
   UserNotFoundException,
 } = require("../error_handling/exceptions.js");
 
-// Sravni idto ot tokena s idto podadeno v post requesta
 async function createLocation(req, res) {
   const location = {
     address: String(req.body.address),
-    email: String(req.body.business_email),
+    email: String(req.body.email || null),
     name: String(req.body.name),
     category: parseInt(req.body.category),
     delivery: parseInt(req.body.delivery),
     description: String(req.body.description),
-    keywords: String(req.body.keywords),
+    keywords: String(req.body.keywords || null),
     latitude: parseFloat(req.body.latitude).toFixed(6),
     longtitude: parseFloat(req.body.longtitude).toFixed(6),
     region: parseInt(req.body.region),
     phone_number: String(req.body.phone_number),
     pos_terminal: parseInt(req.body.pos_terminal),
-    schedule: String(req.body.schedule),
+    schedule: String(req.body.schedule || null),
     user_id: parseInt(req.tokenPayload.id),
-    website: String(req.body.website),
+    website: String(req.body.website || null),
   };
+
+  // Ugly solution
+  if (location.email === "null") {
+    location.email = null;
+  }
+  if (location.keywords === "null") {
+    location.keywords = null;
+  }
+  if (location.schedule === "null") {
+    location.schedule = null;
+  }
+  if (location.website === "null") {
+    location.website = null;
+  }
 
   // TODO 1 of the reasons to not be finishes is exception
   // is not general enough. Rethrow
-  // TODO Not all arguments are passed and parsed correctly,
-  // some are omitted
+
+  // TODO Image arguments are not passed and parsed correctly
 
   await storage.createLocation(location);
 

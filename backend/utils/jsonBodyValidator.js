@@ -26,6 +26,10 @@ const new_passwordChain = body("new_password")
   .isLength({ min: 5, max: 50 });
 
 const emailChain = body("email").isEmail().isLength({ min: 5, max: 50 });
+const businessEmailChain = body("email")
+  .isEmail()
+  .isLength({ min: 5, max: 50 })
+  .optional();
 
 const phoneNumberChain = body("phone_number")
   .isString()
@@ -103,7 +107,7 @@ const applyLoginRules = [emailChain, passwordChain];
 
 const applyCreateLocationRules = [
   addressChain,
-  emailChain,
+  businessEmailChain,
   nameChain,
   categoryChain,
   deliveryChain,

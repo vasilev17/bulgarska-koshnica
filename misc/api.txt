@@ -69,7 +69,7 @@ expects paramers: {search_string}
 returns json: {{location_id, business_name, address, category, longtitude, latitude}}
 
 
-GetUserLocations(userID)
+*GetUserLocations(userID)
 GET -> "/api/users/locations" /auth required/
 returns json: {{location_id, name, address, image, verified}}
 
