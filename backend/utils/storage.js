@@ -403,6 +403,19 @@ async function getDescription(location_id) {
   return rows[0];
 }
 
+async function getProducts(location_id) {
+  const [rows] = await db.executeQuery(
+    "SELECT product_id, product_name, image, price, price_measurement FROM bulgarska_koshnica.products WHERE location_id = (?);",
+    [location_id]
+  );
+
+  if (rows[0] === undefined) {
+    throw new LocationNotFoundException();
+  }
+
+  return rows;
+}
+
 async function getLocationKeyWords(location_id) {
   const [rows] = await db.executeQuery(
     "SELECT keywords FROM bulgarska_koshnica.locations WHERE location_id = (?);",
@@ -456,6 +469,7 @@ module.exports = {
   getCategory,
   getCoordinates,
   getDescription,
+  getProducts,
   getLocationKeyWords,
   getReportCountByLocationIdAndPhone,
 };

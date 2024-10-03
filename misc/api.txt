@@ -110,9 +110,9 @@ GET -> "/api/locations/:locationId/schedule"
 returns json: {schedule}
 
 
-*GetLocationProducts(locationID)
+GetLocationProducts(locationID)
 GET -> "/api/locations/:locationId/products"
-returns json: {{product_id, image, product_name, price, price_measurement}}
+returns json: {{product_id, product_name, image, price, price_measurement}}
 
 
 GetLocationCategories(locationID)
