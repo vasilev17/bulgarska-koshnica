@@ -167,6 +167,19 @@ async function getMapLocations(coords) {
   return rows;
 }
 
+async function getUserLocations(user_id) {
+  const [rows] = await db.executeQuery(
+    "SELECT location_id, name, address, image, verified FROM bulgarska_koshnica.locations WHERE user_id = (?);",
+    [user_id]
+  );
+
+  if (rows[0] === undefined) {
+    throw new LocationNotFoundException();
+  }
+
+  return rows;
+}
+
 async function getReviews(locationId, reviewId) {
   // NOTE This query relies on SORTED review IDs
   const [rows] = await db.executeQuery(
@@ -433,6 +446,7 @@ module.exports = {
   removeRefreshToken,
   createLocation,
   getMapLocations,
+  getUserLocations,
   getReviews,
   searchLocations,
   getLocationInfo,
