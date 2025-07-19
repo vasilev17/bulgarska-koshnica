@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1>👨‍🌾🌽 Bulgarska Koshnica — Farm-Market Finder</h1>
+<h1>👨‍🌾🌽 Bulgarska Koshnica — Farmers Market Finder</h1>
 
 <p>A <b>React Native / Expo</b> application that helps Bulgarians discover nearby farmers’ markets, artisan producers and organic stores.</p>
 
@@ -33,7 +33,7 @@
 | **Backend API**      | Node.js 18, Express 5, [express-validator](https://express-validator.github.io/docs/) |
 | **Auth & Security**  | JSON Web Tokens (JWT) |
 | **Database**         | MySQL 8 |
-| **Front-End**        | [FlashList](https://www.npmjs.com/package/@shopify/flash-list), [Lottie](https://lottiefiles.com/) |
+| **Front-End & Design Libs/Tools**  | [FlashList](https://www.npmjs.com/package/@shopify/flash-list), [Lottie](https://lottiefiles.com/) |
 | **DevOps**           | Expo Go for live reload |
 
 ---
@@ -101,8 +101,8 @@ https://github.com/user-attachments/assets/d53d58e0-90e4-4772-99ee-ecd4a629b49b
 <img width="250" height="auto" alt="BusinessKeyWords" src="https://github.com/user-attachments/assets/bd0cc98d-ec1c-4c8b-a263-8f340006ac03" />
 <img width="250" height="auto" alt="Business Creation Success" src="https://github.com/user-attachments/assets/d3b1cf33-8428-4f4e-9c88-2ea689365219" />
 
-
-
-
-
+### For detailed API endpoint information flow and UI design - download and visit:
+<a href="misc/Design%20(Full).fig" target="_blank">
+    <img src="https://img.shields.io/badge/Design%20-%20%231abdff?logo=figma&logoColor=%23a358ff" style="height: 35px; width: auto;">
+</a>
 
