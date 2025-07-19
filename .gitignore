@@ -1,4 +1,5 @@
-/misc/Notebook.txt
+misc/*
+!misc/Design (Full).fig
 /backend/bin/
 /backend/node_modules/
 /backend/public/images/
