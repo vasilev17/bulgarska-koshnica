@@ -15,12 +15,17 @@
 
 ## 🏷️ Features
 
-- **Interactive Map** – Browse an in-app map and instantly see verified farm shops, market stalls and delivery points around you
-- **Powerful Search & Filters** – Find vendors by product category, keywords or location
-- **Location Profiles** – Each vendor page exposes opening hours, contacts, delivery options and a live product catalogue
-- **Ratings & Reviews** – Authenticated users can post comments, give ratings and report inaccurate information or vendor problems
-- **Vendor Dashboard** – Producers can create their own location, upload photos and keep product prices up-to-date straight from their phones
-- **Offline-First Assets** – Images and basic metadata are cached on device so browsing feels snappy even on a low bandwidth internet connection
+- **Interactive Map** – Browse an in-app map and instantly see verified farm shops, market stalls and delivery points around you.
+
+- **Powerful Search & Filters** – Find vendors by product category, keywords or location.
+
+- **Location Profiles** – Each vendor page exposes opening hours, contacts, delivery options and a live product catalogue.
+
+- **Ratings & Reviews** – Authenticated users can post comments, give ratings and report inaccurate information or vendor problems.
+
+- **Vendor Dashboard** – Producers can create their own location, upload photos and keep product prices up-to-date straight from their phones.
+
+- **Offline-First Assets** – Images and basic metadata are cached on device so browsing feels snappy even on a low bandwidth internet connection.
 
 ---
 
@@ -101,7 +106,7 @@ https://github.com/user-attachments/assets/d53d58e0-90e4-4772-99ee-ecd4a629b49b
 <img width="250" height="auto" alt="BusinessKeyWords" src="https://github.com/user-attachments/assets/bd0cc98d-ec1c-4c8b-a263-8f340006ac03" />
 <img width="250" height="auto" alt="Business Creation Success" src="https://github.com/user-attachments/assets/d3b1cf33-8428-4f4e-9c88-2ea689365219" />
 
-### For detailed API endpoint information flow and UI design - download and visit:
+### For detailed API endpoint information flow and UI design - download and view:
 <a href="misc/Design%20(Full).fig" target="_blank">
     <img src="https://img.shields.io/badge/Design%20-%20%231abdff?logo=figma&logoColor=%23a358ff" style="height: 35px; width: auto;">
 </a>
